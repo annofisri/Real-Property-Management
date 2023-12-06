@@ -1,0 +1,8 @@
+sftp-config.json
+upload/*
+build
+node_modules
+project_build.zip
+build-script.php
+.editorconfig
+.vscode

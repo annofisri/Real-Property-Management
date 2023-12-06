@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /cpanel/
+
+# Rewrite /cpanel/SECTION/ACTION to index.php?section=SECTION&action=ACTION
+RewriteRule ^([^/]+)/([^/]+)$ index.php?section=$1_$2 [L,QSA]
+
+# Pass any other requests to index.php with SECTION and ACTION parameters
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?section=$1 [L,QSA]

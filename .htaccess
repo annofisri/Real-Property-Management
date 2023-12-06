@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# Pass any other requests to index.php with SECTION and ACTION parameters
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
