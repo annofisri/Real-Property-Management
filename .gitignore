@@ -6,3 +6,4 @@ project_build.zip
 build-script.php
 .editorconfig
 .vscode
+public/upload
