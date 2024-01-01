@@ -23,7 +23,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getAll') {
     // if ($limit > 100) {
     //     $limit = 100;
     // }
-    $result = $tableProperty->getAll();
+    $result = $tableProperty->getProperties([]);
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Properties fetched successfully';

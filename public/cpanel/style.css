@@ -1099,6 +1099,6 @@ body {
   border-bottom: 1px solid #e2e8f0;
 }
 
-.status {
+.status, .text-capitalize {
   text-transform: capitalize;
 }/*# sourceMappingURL=style.css.map */

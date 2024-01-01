@@ -99,4 +99,127 @@ class TableManager
         }
         return $this->lastInsertId;
     }
+
+    public function getProperties($settings){
+
+        $conditions = $settings['where'] ?? null;
+        
+        $buildConditions = ($conditions) ? $this->_buildWhereClause($conditions) : '';
+
+        $where = '';
+        $params = [];
+
+        if(is_array($buildConditions)){
+            $where = $buildConditions['where'];
+            $params = $buildConditions['params'];
+        }
+        
+        $order_by = $settings['order_by'] ?? 'id DESC';
+        $page = $settings['page'] ?? 1;
+        $limit = $settings['limit'] ?? 10000000;
+        
+        $page = (int)$page;
+        $limit = (int)$limit;
+
+        $offset = ($page - 1) * $limit;
+        
+        $_params = [
+            ':limit' => $limit,
+            ':offset' => $offset,
+        ];
+
+        $params = array_merge($params, $_params);
+
+        $sql = "SELECT 
+        p.id, 
+        p.name, 
+        p.category_id, 
+        p.type, 
+        p.address, 
+        p.gated_community, 
+        p.bedroom,
+        p.bathroom,
+        p.storey,
+        p.security,
+        p.swimming_pool,
+        p.gym,
+        p.monthly_rental,
+        p.contract_term,
+        p.other_information,
+        p.images,
+        p.videos,
+        p.owner_id,
+        p.approve_status,
+        p.visibility_status,
+        p.price,
+        p.default_image,
+        p.created_at,
+        p.updated_at,
+        p.city_id,
+        po.name as owner_name,
+        po.email,
+        po.phone_number,
+        po.address,
+        po.dob,
+        po.profession,
+        ci.name as city_name,
+        ci.district_id,
+        di.name as district_name,
+        di.province_id,
+        pr.name as province_name,
+        cat.name as category_name
+        FROM properties p
+        INNER JOIN property_owners po ON po.id = p.owner_id
+        INNER JOIN cities ci ON ci.id = p.city_id
+        INNER JOIN districts di ON di.id = ci.district_id
+        INNER JOIN provinces pr ON pr.id = di.province_id
+        INNER JOIN categories cat ON cat.id = p.category_id
+        $where ORDER BY $order_by LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->db->prepare($sql);
+
+        foreach ($params as $paramName => $paramValue) {
+            if(in_array($paramName, [':limit', ':offset'])){
+                $stmt->bindValue($paramName, $paramValue, PDO::PARAM_INT);
+            }else{
+                $stmt->bindValue($paramName, $paramValue);
+            }
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+    }
+
+    private function _buildWhereClause($conditions) {
+        if (!is_array($conditions)) {
+            return '';
+        }
+
+        $where = '';
+        $params = [];
+
+        foreach ($conditions as $key => $value) {
+            if (is_array($value)) {
+                $placeholders = implode(', ', array_map(function ($val) use ($key, &$params) {
+                    $paramName = ":{$key}_" . count($params);
+                    $params[$paramName] = $val;
+                    return $paramName;
+                }, $value));
+
+                $where .= "$key IN ($placeholders) AND ";
+            } else {
+                // Handle simple key-value pairs with AND
+                $where .= "$key = :$key AND ";
+                $params[":$key"] = $value;
+            }
+        }
+
+        // Remove the trailing 'AND' from the where clause
+        $where = rtrim($where, 'AND ');
+
+        return ['where' => $where, 'params' => $params];
+    }
+
+
 }

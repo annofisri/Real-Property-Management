@@ -22,8 +22,14 @@
     <main id="main-section">
         <div class="head d-flex px-4 py-3 justify-content-between">
             <div class="title">Admin</div>
-
         </div>
+
+        <pre>
+            <?php
+
+            ?>
+        </pre>
+
     </main>
 
     <?php include_once('./includes/scripts.php'); ?>

@@ -60,10 +60,9 @@
                             <tr>
                                 <th scope="col" class="">S.No.</th>
                                 <th scope="col">User ID</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Phone Number</th>
-                                <th scope="col">Total Properties</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -75,7 +74,6 @@
                                 <td>Property 1</td>
                                 <td>Location 1</td>
                                 <td>Owner 1</td>
-                                <td>1234567890</td>
                                 <td><button type="button" class="btn status pending">Pending</button></td>
                                 <td>
                                     <div class="d-flex">
@@ -164,10 +162,9 @@
                             <tr>
                                 <td>${index + 1}</td>
                                 <td>${property.id}</td>
-                                <td>${property.email}</td>
                                 <td>${property.name}</td>
+                                <td>${property.email}</td>
                                 <td>${property.phone_number}</td>
-                                <td>${property.total_properties}</td>
                                 <td>
                                     <div class="d-flex">
                                         <button class="me-2 view-property" data-property-owners-id="${property.id}">

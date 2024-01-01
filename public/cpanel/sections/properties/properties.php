@@ -148,25 +148,12 @@
                             <div class="row g-3">
 
                                 <div class="col-md-12">
-                                    <label for="propertyName" class="form-label">Property name*</label>
+                                    <label for="propertyName" class="form-label">Property Name*</label>
                                     <input type="text" class="form-control" id="propertyName" name="name" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="propertyAddress" class="form-label">Property Address*</label>
-                                    <input type="text" class="form-control" id="propertyAddress" name="address" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="city" class="form-label">City* </label>
-                                    <select id="city" class="form-select" name="city_id" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Kathmandu</option>
-                                        <option value="2">Lalitpur</option>
-                                        <option value="3">Bhaktapur</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
                                     <label for="province" class="form-label">Province* </label>
-                                    <select id="province" class="form-select" name="province_id" required>
+                                    <select id="province" class="form-select" name="province" required>
                                         <option value="">Choose...</option>
                                         <option value="1">Province 1</option>
                                         <option value="2">Province 2</option>
@@ -186,8 +173,19 @@
                                         <option value="3">Bhaktapur</option>
                                     </select>
                                 </div>
-
-
+                                <div class="col-md-4">
+                                    <label for="city" class="form-label">City* </label>
+                                    <select id="city" class="form-select" name="city" required>
+                                        <option value="">Choose...</option>
+                                        <option value="1">Kathmandu</option>
+                                        <option value="2">Lalitpur</option>
+                                        <option value="3">Bhaktapur</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="propertyAddress" class="form-label">Property Address*</label>
+                                    <input type="text" class="form-control" id="propertyAddress" name="address" required>
+                                </div>
                                 <div class="col-md-4">
                                     <label for="propertyCategory" class="form-label">Category*</label>
                                     <select id="propertyCategory" class="form-select" name="category_id" required>
@@ -787,8 +785,6 @@
         </section>
     </main>
 
-
-
     <?php include_once('./includes/scripts.php'); ?>
 
     <script>
@@ -846,9 +842,9 @@
                                 <td>${formattedDate}</td>
                                 <td>${property.id}</td>
                                 <td>${property.name}</td>
-                                <td>${property.location}</td>
-                                <td>${property.owner_id}</td>
-                                <td>${property.owner_contact}</td>
+                                <td class="text-capitalize">${property.address}, ${property.city_name}, ${property.district_name}, ${property.province_name}</td>
+                                <td>${property.owner_name}</td>
+                                <td>${property.phone_number}</td>
                                 <td>
                                     <div class="btn status ${property.approve_status}">${property.approve_status}</div>
                                 </td>
