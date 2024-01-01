@@ -156,6 +156,8 @@ class TableManager
         p.created_at,
         p.updated_at,
         p.city_id,
+        p.is_featured,
+        p.is_new,
         po.name as owner_name,
         po.email,
         po.phone_number,
@@ -219,6 +221,26 @@ class TableManager
         $where = rtrim($where, 'AND ');
 
         return ['where' => $where, 'params' => $params];
+    }
+
+    public function getCities(){
+
+        $sql = "SELECT 
+        ci.id as city_id,
+        ci.name as city_name,
+        ci.district_id as district_id,
+        di.name as district_name,
+        di.province_id as province_id,
+        pr.name as province_name
+        FROM cities ci
+        INNER JOIN districts di ON di.id = ci.district_id
+        INNER JOIN provinces pr ON pr.id = di.province_id
+        ";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+
     }
 
 

@@ -152,8 +152,8 @@
                                     <input type="text" class="form-control" id="propertyName" name="name" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="province" class="form-label">Province* </label>
-                                    <select id="province" class="form-select" name="province" required>
+                                    <label for="province_id" class="form-label">Province* </label>
+                                    <select id="province_id" class="form-select" name="province_id" required>
                                         <option value="">Choose...</option>
                                         <option value="1">Province 1</option>
                                         <option value="2">Province 2</option>
@@ -165,21 +165,13 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="district" class="form-label">District* </label>
-                                    <select id="district" class="form-select" name="district_id" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Kathmandu</option>
-                                        <option value="2">Lalitpur</option>
-                                        <option value="3">Bhaktapur</option>
+                                    <label for="district_id" class="form-label">District* </label>
+                                    <select id="district_id" class="form-select" name="district_id" required>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="city" class="form-label">City* </label>
-                                    <select id="city" class="form-select" name="city" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Kathmandu</option>
-                                        <option value="2">Lalitpur</option>
-                                        <option value="3">Bhaktapur</option>
+                                    <label for="city_id" class="form-label">City* </label>
+                                    <select id="city_id" class="form-select" name="city_id" required>
                                     </select>
                                 </div>
                                 <div class="col-md-12">
@@ -381,22 +373,13 @@
                                     <label for="propertyName" class="form-label">Property name*</label>
                                     <input type="text" class="form-control" id="propertyName" name="name" required>
                                 </div>
-                                <div class="col-md-4" data-key="address">
+                                <div class="col-md-12" data-key="address">
                                     <label for="propertyAddress" class="form-label">Property Address*</label>
                                     <input type="text" class="form-control" id="propertyAddress" name="address" required>
                                 </div>
-                                <div class="col-md-4" data-key="city_id">
-                                    <label for="city" class="form-label">City* </label>
-                                    <select id="city" class="form-select" name="city_id" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Kathmandu</option>
-                                        <option value="2">Lalitpur</option>
-                                        <option value="3">Bhaktapur</option>
-                                    </select>
-                                </div>
                                 <div class="col-md-4">
-                                    <label for="province" class="form-label">Province </label>
-                                    <select id="province" class="form-select" name="province_id">
+                                    <label for="province_id" class="form-label">Province </label>
+                                    <select id="province_id" class="form-select" name="province_id">
                                         <option value="">Choose...</option>
                                         <option value="1">Province 1</option>
                                         <option value="2">Province 2</option>
@@ -408,15 +391,15 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="district" class="form-label">District</label>
-                                    <select id="district" class="form-select" name="district_id">
-                                        <option value="">Choose...</option>
-                                        <option value="1">Kathmandu</option>
-                                        <option value="2">Lalitpur</option>
-                                        <option value="3">Bhaktapur</option>
+                                    <label for="district_id" class="form-label">District</label>
+                                    <select id="district_id" class="form-select" name="district_id">
                                     </select>
                                 </div>
-
+                                <div class="col-md-4" data-key="city_id">
+                                    <label for="city_id" class="form-label">City* </label>
+                                    <select id="city_id" class="form-select" name="city_id" required>
+                                    </select>
+                                </div>
 
                                 <div class="col-md-4" data-key="category_id">
                                     <label for="propertyCategory" class="form-label">Category*</label>
@@ -1048,6 +1031,76 @@
                     }
                 });
             });
+
+
+            getCities();
+            var AllCities = [];
+
+            function getCities() {
+                $.ajax({
+                    url: '/api/cities.php',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        AllCities = response.data;
+                    }
+                });
+            }
+
+            function getDistrictsByProvince(selectedProvince) {
+                const uniqueDistricts = [];
+                const districtIdsSet = new Set();
+                const districtsInProvince = AllCities.filter(district => district.province_id === selectedProvince).map(district => {
+                    return {
+                        "district_id": district.district_id,
+                        "district_name": district.district_name
+                    }
+                });
+                districtsInProvince.forEach(item => {
+                    if (!districtIdsSet.has(item.district_id)) {
+                        districtIdsSet.add(item.district_id);
+                        uniqueDistricts.push(item);
+                    }
+                });
+
+                return uniqueDistricts;
+            }
+
+            function getCitiesByDistrict(selectedProvince, selectedDistrict) {
+                const citiesInDistrict = AllCities.filter(city => city.province_id === selectedProvince && city.district_id === selectedDistrict);
+                return citiesInDistrict;
+            }
+
+            $('[name="province_id"]').change(function() {
+                $('[name="district_id"]').empty();
+                $('[name="city_id"]').empty();
+                $('[name="district_id"]').append(`<option value="">Choose...</option>`);
+                const selectedProvince = parseInt($(this).val());
+                const districts = getDistrictsByProvince(selectedProvince);
+                districts.forEach(district => {
+                    $('[name="district_id"]').append(`
+                    <option value="${district.district_id}">${district.district_name}</option>
+                    `);
+                });
+
+            });
+            $('[name="district_id"]').change(function() {
+                $('[name="city_id"]').empty();
+                $('[name="city_id"]').append(`<option value="">Choose...</option>`);
+                const selectedProvince = parseInt($(this).closest('.row').find('[name="province_id"]').val());
+                const selectedDistrict = parseInt($(this).val());
+
+                const cities = getCitiesByDistrict(selectedProvince, selectedDistrict);
+                cities.forEach(city => {
+                    $('[name="city_id"]').append(`
+                    <option value="${city.city_id}">${city.city_name}</option>
+                    `);
+                });
+            });
+
+
+
+
 
             //on click of edit property button on action column of properties table
             $('body').on('click', '.edit-property', function() {
