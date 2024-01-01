@@ -126,56 +126,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="property-slider">
-
-                    <?php
-                    echo propertyCard(
-                        $id = 1000,
-                        $type = 'sale',
-                        $image = 'product-img.png',
-                        $title = 'Beautiful Small Apartment',
-                        $location = 'Budhanilkantha, Kathmandu',
-                        $price = 'Rs. 1,50,00,000'
-                    );
-                    echo propertyCard(
-                        $id = 1000,
-                        $type = 'sale',
-                        $image = 'product-img.png',
-                        $title = 'Beautiful Small Apartment',
-                        $location = 'Budhanilkantha, Kathmandu',
-                        $price = 'Rs. 1,50,00,000',
-                        $category = 'Apartment'
-
-                    );
-                    echo propertyCard(
-                        $id = 1000,
-                        $type = 'sale',
-                        $image = 'product-img.png',
-                        $title = 'Beautiful Small Apartment',
-                        $location = 'Budhanilkantha, Kathmandu',
-                        $price = 'Rs. 1,50,00,000',
-                        $category = 'Land'
-                    );
-                    echo propertyCard(
-                        $id = 1000,
-                        $type = 'sale',
-                        $image = 'product-img.png',
-                        $title = 'Beautiful Small Apartment',
-                        $location = 'Budhanilkantha, Kathmandu',
-                        $price = 'Rs. 1,50,00,000',
-                        $category = 'Apartment'
-                    );
-                    echo propertyCard(
-                        $id = 1000,
-                        $type = 'sale',
-                        $image = 'product-img.png',
-                        $title = 'Beautiful Small Apartment',
-                        $location = 'Budhanilkantha, Kathmandu',
-                        $price = 'Rs. 1,50,00,000',
-                        $category = 'Apartment'
-                    );
-
-                    ?>
+                <div id="featured_slider">
                 </div>
             </div>
         </div>
@@ -189,83 +140,8 @@
                     New Listed
                 </p2>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="new-listed-card d-flex flex-row position-relative">
-                        <div class="property-category">
-                            Apartment
-                        </div>
-                        <div class="property-id position-absolute new-listed-id end-0">ID: 1000</div>
-                        <img src="./assets/images/product-img.png" class="property-img" alt="...">
-                        <div class="new-listed-card-body">
-                            <h5 class="new-listed-card-title">Banepa</h5>
-                            <div class="location d-flex">
-                                <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />
-                                <div class="new-listed-card-text">Budhanilkantha, Kathmandu</div>
-                            </div>
-                            <div class="new-listed-card-text price">Rs. 1,50,000/-</div>
-                            <div class="new-listed-card-text size">(Per Aana) </div>
-                            <a href="/property-single" class="default-btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="new-listed-card d-flex flex-row position-relative">
-                        <div class="property-category">
-                            Apartment
-                        </div>
-                        <div class="property-id position-absolute new-listed-id end-0">ID: 1000</div>
-                        <img src="./assets/images/product-img.png" class="property-img" alt="...">
-                        <div class="new-listed-card-body">
-                            <h5 class="new-listed-card-title">Banepa</h5>
-                            <div class="location d-flex">
-                                <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />
-                                <div class="new-listed-card-text">Budhanilkantha, Kathmandu</div>
-                            </div>
-                            <div class="new-listed-card-text price">Rs. 1,50,000/-</div>
-                            <div class="new-listed-card-text size">(Per Aana) </div>
-                            <a href="/property-single" class="default-btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="new-listed-card d-flex flex-row position-relative">
-                        <div class="property-category">
-                            Apartment
-                        </div>
-                        <div class="property-id position-absolute new-listed-id end-0">ID: 1000</div>
-                        <img src="./assets/images/product-img.png" class="property-img" alt="...">
-                        <div class="new-listed-card-body">
-                            <h5 class="new-listed-card-title">Banepa</h5>
-                            <div class="location d-flex">
-                                <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />
-                                <div class="new-listed-card-text">Budhanilkantha, Kathmandu</div>
-                            </div>
-                            <div class="new-listed-card-text price">Rs. 1,50,000/-</div>
-                            <div class="new-listed-card-text size">(Per Aana) </div>
-                            <a href="/property-single" class="default-btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="new-listed-card d-flex flex-row position-relative">
-                        <div class="property-category">
-                            Apartment
-                        </div>
-                        <div class="property-id position-absolute new-listed-id end-0">ID: 1000</div>
-                        <img src="./assets/images/product-img.png" class="property-img" alt="...">
-                        <div class="new-listed-card-body">
-                            <h5 class="new-listed-card-title">Banepa</h5>
-                            <div class="location d-flex">
-                                <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />
-                                <div class="new-listed-card-text">Budhanilkantha, Kathmandu</div>
-                            </div>
-                            <div class="new-listed-card-text price">Rs. 1,50,000/-</div>
-                            <div class="new-listed-card-text size">(Per Aana) </div>
-                            <a href="/property-single" class="default-btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="new_section">
+                
             </div>
         </div>
     </section>
@@ -327,10 +203,148 @@
     include_once './includes/scripts.php'
     ?>
     <script>
+        $(document).ready(function() {
 
+            const $featured_slider = $('#featured_slider');
+            const $new_section = $('#new_section');
+
+            console.log($featured_slider, $new_section);
+
+            var featuredProperties = [];
+
+            function getFeaturedProperties() {
+                $.ajax({
+                    url: '/api/property.php?getFeaturedProperties',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        featuredProperties = response.data;
+
+                        $featured_slider.empty();
+                        if (featuredProperties.length > 0) {
+                            featuredProperties.forEach(property => {
+                                $featured_slider.append(`<div class="card property-card" style="width: 306px;">
+                                    <div class="card-img-top position-relative" >
+                                    <div class="property-type ${property.type}"><span class="text-capitalize">For ${property.type}</span></div>
+                                    <img src="./assets/images/${property.default_image}" alt="product-img" class="img-fluid w-100 h-100">
+                                    <div class="property-id d-flex justify-content-end p-2">ID: ${property.id}</div>
+
+                                    <div class="property-category">${property.category_name}</div>
+                                    </div>
+                                    <div class="card-body ">
+                                    
+                                    <h5 class="card-title">${property.name}</h5>
+                                    <div class="d-flex location">
+                                            <div class="icon-box">
+                                            <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100" />
+                                            </div>
+                                            <a class="nav-link" href="">${property.address}</a>
+                                    </div>
+                                    <p class="card-text">Rs. ${property.price}</p>
+                                    <a href="/property-single?id=${property.id}" class="view-details-btn">View Details</a>
+                                    </div>
+                                </div>`);
+                            });
+                        }
+
+                        $featured_slider.slick({
+                            dots: true,
+                            infinite: true,
+                            autoplay: false,
+                            speed: 300,
+                            adaptiveHeight: true,
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            arrows: true,
+
+                            height: '100%',
+                            gap: 10,
+
+                            responsive: [{
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1,
+                                        infinite: true,
+                                        dots: false
+                                    }
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1,
+                                        infinite: true,
+                                        dots: false
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1,
+                                        infinite: true,
+                                        dots: false
+                                    }
+                                }
+                                // You can unslick at a given breakpoint now by adding:
+                                // settings: "unslick"
+                                // instead of a settings object
+                            ]
+                        });
+                    }
+                });
+            }
+
+            var newProperties = [];
+
+            function getNewProperties() {
+                $new_section.empty();
+                $.ajax({
+                    url: '/api/property.php?getNewProperties',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        newProperties = response.data;
+
+                        newProperties.forEach(property => {
+                            $new_section.append(`
+                            <div class="col-md-6">
+                                <div class="new-listed-card d-flex flex-row position-relative">
+                                    <div class="property-category">
+                                        ${property.category_name}
+                                    </div>
+                                    <div class="property-id position-absolute new-listed-id end-0">ID: ${property.id}</div>
+                                    <img src="./assets/images/${property.default_image}" class="property-img" alt="...">
+                                    <div class="new-listed-card-body">
+                                        <h5 class="new-listed-card-title">${property.address}</h5>
+                                        <div class="location d-flex">
+                                            <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />
+                                            <div class="new-listed-card-text">${property.city}, ${property.district}, ${property.province}</div>
+                                        </div>
+                                        <div class="new-listed-card-text price">Rs. ${property.price}/-</div>
+                                        <div class="new-listed-card-text size">${property.contract}</div>
+                                        <a href="/property-single?id=${property.id}" class="default-btn">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            `);
+                        });
+
+                    }
+                });
+            }
+
+            function init(){
+                getFeaturedProperties();
+                getNewProperties();
+            }
+            init();
+
+
+        });
     </script>
 
 </body>
 
 </html>
-<script async defer src="//www.instagram.com/embed.js"></script>

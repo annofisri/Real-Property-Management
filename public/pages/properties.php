@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="filters col-md-3">
-                    <form method="post">
+                    <form id="filter_form">
                         <h5 class="title">
                             Filter Properties
                         </h5>
@@ -38,42 +38,31 @@
                             Property Status
                         </h6>
                         <div class="property-status-btns d-flex gap-3">
-                            <label for="rentCheckbox">
-                                <input type="checkbox" id="rentCheckbox" name="rentStatus" value="true">
-                                <div class="property-status-btn checkbox-btn" onclick="toggleCheckbox('#rentCheckbox')">Rent</div>
+                            <label for="checkbox-rent">
+                                <input type="checkbox" id="checkbox-rent" name="type[]" value="rent" checked>
+                                <div class="property-status-btn checkbox-btn">Rent</div>
                             </label>
-                            <label for="saleCheckbox">
-                                <input type="checkbox" id="saleCheckbox" name="saleStatus" value="true">
-                                <div class="property-status-btn checkbox-btn" onclick="toggleCheckbox('#saleCheckbox')">Sale</div>
+                            <label for="checkbox-sale">
+                                <input type="checkbox" id="checkbox-sale" name="type[]" value="sale" checked>
+                                <div class="property-status-btn checkbox-btn">Sale</div>
                             </label>
                         </div>
                         <h6 class="property-category">
                             Property Category
                         </h6>
                         <div class="property-category-btn d-flex flex-column gap-2">
-                            <label for="houseCheckbox">
-                                <input type="checkbox" id="houseCheckbox" name="houseCategory" value="true">
-                                <div class="property-status-btn checkbox-btn" onclick="toggleCheckbox('#houseCheckbox')">House</div>
+                            <label for="checkbox-cat-1">
+                                <input type="checkbox" id="checkbox-cat-1" name="category_id[]" value="1" checked>
+                                <div class="property-status-btn checkbox-btn">House</div>
                             </label>
-                            <label for="appartmentCheckbox">
-                                <input type="checkbox" id="appartmentCheckbox" name="appartmentCategory" value="true">
-                                <div class="property-status-btn checkbox-btn" onclick="toggleCheckbox('#appartmentCheckbox')">Appartment</div>
+                            <label for="checkbox-cat-2">
+                                <input type="checkbox" id="checkbox-cat-2" name="category_id[]" value="2" checked>
+                                <div class="property-status-btn checkbox-btn">Appartment</div>
                             </label>
-                            <label for="housingColonyCheckbox">
-                                <input type="checkbox" id="housingColonyCheckbox" name="housingColonyCategory" value="true">
-                                <div class="property-status-btn checkbox-btn" onclick="toggleCheckbox('#housingColonyCheckbox')">Housing Colony</div>
+                            <label for="checkbox-cat-3">
+                                <input type="checkbox" id="checkbox-cat-3" name="category_id[]" value="3" checked>
+                                <div class="property-status-btn checkbox-btn">Housing Colony</div>
                             </label>
-                            <!-- <label for="landCheckbox">
-                                <input type="checkbox" id="landCheckbox" name="landCategory" value="true">
-                                <div class="property-status-btn checkbox-btn" onclick="toggleCheckbox('#landCheckbox')">Land</div>
-                            </label> -->
-                        </div>
-                        <h6 class="property-price-range">
-                            Price Range
-                        </h6>
-                        <div class="property-price-range-checkbox">
-                            <input type="checkbox" id="all-range" name="all-range" value="all-range" checked disabled>
-                            <label for="all-range">All Range</label><br>
                         </div>
                     </form>
                 </div>
@@ -89,7 +78,7 @@
                                         <path d="M15.75 16.6314L12.4875 13.3689" stroke="#4E4E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
-                                <input class="form-control me-2 search-input" type="search" placeholder="Search property by address, name or ID" aria-label="Search">
+                                <input class="form-control me-2 search-input" id="search-property" type="search" placeholder="Search property by address, name or ID" aria-label="Search">
                             </form>
                         </div>
                         <div class="browse-properties col-md-12 d-flex">
@@ -99,15 +88,13 @@
                             </h4>
                             <div class="sort-by">
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sort By
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-                                        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
-                                        <li><a class="dropdown-item" href="#">Newest</a></li>
-                                        <li><a class="dropdown-item" href="#">Oldest</a></li>
-                                    </ul>
+                                    <select name="sort_by" id="sort_by">
+                                        <option value="">Sort By</option>
+                                        <option value="price-low-high">Price: Low to High</option>
+                                        <option value="price-high-low">Price: High to Low</option>
+                                        <option value="property-desc">Newest</option>
+                                        <option value="property-asc">Oldest</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -116,7 +103,33 @@
 
                         </div>
 
-                        <div class="row all-properties">
+                        <div class="row" id="property-list">
+                            <div class="col-md-4">
+                                <div class="property-item">
+                                    <div class="card property-card" style="width: 306px;">
+                                        <div class="card-img-top position-relative">
+                                            <div class="property-type sale">
+                                                For sale
+                                            </div>
+                                            <img src="./assets/images/placeholder.jpg" alt="product-img" class="img-fluid w-100 h-100">
+                                            <div class="property-id d-flex justify-content-end p-2">
+                                                ID: 8
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <h5 class="card-title">Bhat Bhateni</h5>
+                                            <div class="d-flex location">
+                                                <div class="icon-box">
+                                                    <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100">
+                                                </div>
+                                                <div>Pokhara</div>
+                                            </div>
+                                            <p class="card-text">Rs. 36544000.00</p>
+                                            <a href="/property-single?id=8" class="view-details-btn">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="pagination-section">
@@ -154,108 +167,90 @@
     <?php include_once 'tags/footer.php'; ?>
     <?php include_once './includes/scripts.php'; ?>
 
-
-    <?php
-    //     function propertyCard($id = '1', $type = 'sale', $image = 'product-img.png', $title = 'Beautiful Apartment', $location = 'Kathmandu', $price = 'Rs. 1,50,000', $category = 'Apartment')
-    //     {
-
-
-    //         $card = '
-
-    //       <div class="card property-card" style="width: 306px;">
-    //         <div class="card-img-top position-relative" >
-    //           <div class="property-type ' . $type . '">For ' . ucfirst($type) . '</div>
-    //           <img src="./assets/images/' . $image . '" alt="product-img" class="img-fluid w-100 h-100">
-    //           <div class="property-id d-flex justify-content-end p-2">ID: ' . $id . '</div>
-
-    //           ' . ($category == '' ? '' : '<div class="property-category">' . $category . '</div>') . '
-    //         </div>
-    //         <div class="card-body ">
-
-    //           <h5 class="card-title">' . $title . '</h5>
-    //           <div class="d-flex location">
-    //                 <div class="icon-box">
-    //                   <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100" />
-    //                 </div>
-    //                 <a class="nav-link" href=""> ' . $location . '</a>
-    //           </div>
-    //           <p class="card-text">' . $price . '</p>
-    //           <a href="/property-single" class="view-details-btn">View Details</a>
-    //         </div>
-    //       </div>
-
-    //   ';
-    //         return $card;
-    //     } 
-
-    ?>
-
-
     <script>
-        //property card component
-        function propertyCard(id = '', type = '', image = '', title = '', location = '', price = '', category = '') {
-            return `
-                <div class="card property-card" style="width: 306px;">
-                    <div class="card-img-top position-relative" >
-                        <div class="property-type ${type}">
-                            For ${type}
-                        </div>
-                        <img src="./assets/images/${image ? image : 'placeholder.jpg'}" alt="product-img" class="img-fluid w-100 h-100">
-                        <div class="property-id d-flex justify-content-end p-2">
-                            ID: ${id}
-                        </div>
-                        ${category == '' ? '' : `<div class="property-category">${category}</div>`}
-                    </div>
-                    <div class="card-body ">
-                        <h5 class="card-title">${title}</h5>
-                        <div class="d-flex location">
-                                <div class="icon-box">
-                                 <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100" />
-                                </div>
-                                <a class="nav-link" href=""> ${location}</a>
-                        </div>
-                        <p class="card-text">Rs. ${price}</p>
-                        <a href="/property-single?id=${id}" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-            `;
-        }
+        
 
         $(document).ready(function() {
 
-            function toggleCheckbox(checkbox) {
-                $(checkbox).prop('checked', !$(checkbox).prop('checked'));
+            $('#filter_form').on('click', '.checkbox', function(){
+                $(this).prop('checked', !$(this).prop('checked'));
+            });
+
+            var properties = [];
+
+            const handleChange = function() {
+                $('#property-list').addClass('opacity-05');
+                const searchProperty = $('#search-property').val();
+                const sortBy = $('#sort_by').val();
+                let formData = 'filterProperty&';
+                formData += $('#filter_form').serialize();
+                if(searchProperty){
+                    formData += `&searchProperty=${encodeURIComponent(searchProperty)}`;
+                }
+                if(sortBy){
+                    formData += `&sortBy=${encodeURIComponent(sortBy)}`;
+                }
+
+                $.ajax({
+                    url: '/api/property.php',
+                    type: 'GET',
+                    data: formData,
+                    success: function(response) {
+                        properties = response.data;
+                        // Update the URI using the History API
+                        const newUri = '?' + formData;
+                        history.pushState({}, '', newUri);
+                        getPropertiesByFilter();
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    },
+                    complete: function(){
+                        $('#property-list').removeClass('opacity-05');
+                    }
+                });
             }
 
-            $.ajax({
-                url: 'api/property.php?action=getAll',
-                method: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response);
-                    if (response.success) {
-                        $('.properties .all-properties').html('');
-                        response.data.forEach(property => {
-                            $('.properties .all-properties').append(` 
-                                <div class = "col-md-4 property-item" >
-                                    ${propertyCard(
-                                        property.id,
-                                        property.type,
-                                        property.image,
-                                        property.name,
-                                        property.address,
-                                        property.price,
-                                        property.category
-                                    )}
+            handleChange();
+            
+            $('#filter_form input, #sort_by, #search-property').on('change', handleChange);
+
+            function getPropertiesByFilter() {
+                if(properties.length > 0){
+                    $('#property-list').empty();
+                    properties.forEach(property => {
+                        $('#property-list').append(`
+                            <div class="col-md-4">
+                                <div class="property-item">
+                                    <div class="card property-card">
+                                        <div class="card-img-top position-relative">
+                                            <div class="property-type ${property.type}">
+                                                For ${property.type}
+                                            </div>
+                                            <img src="./assets/images/${property.default_image || "placeholder.jpg"}" alt="product-img" class="img-fluid w-100 h-100">
+                                            <div class="property-id d-flex justify-content-end p-2">
+                                                ID: ${property.id}
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <h5 class="card-title">${property.name}</h5>
+                                            <div class="d-flex location">
+                                                <div class="icon-box">
+                                                    <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100">
+                                                </div>
+                                                <div>${property.address}, ${property.city_name}, ${property.district_name}, ${property.province_name}</div>
+                                            </div>
+                                            <p class="card-text">Rs. ${property.price}</p>
+                                            <a href="/property-single?id=${property.id}" class="view-details-btn">View Details</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                `);
-                        });
-                    }
-                },
-                error: function(err) {
-                    console.log(err);
+                            </div>
+                        `);
+                    });
                 }
-            });
+            }
+
         });
     </script>
 </body>
