@@ -1,4 +1,4 @@
-<section class="property-owners-view d-none" id="propertyDetails">
+<section class="property-owners-view d-none" id="propertyOwnerDetails">
     <div class="head d-flex px-4 py-3 justify-content-between" style="height: 69px;">
         <div class="d-flex gap-2">
             <div class="d-flex align-items-center property-owners-back-btn">

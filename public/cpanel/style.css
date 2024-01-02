@@ -384,6 +384,10 @@ body {
   color: #ed1c24;
 }
 
+.section-icon {
+  height: 16px;
+}
+
 .side-dropdown:hover > .section-icon svg path {
   fill: #ed1c24;
 }
@@ -993,7 +997,8 @@ body {
   line-height: 20px; /* 142.857% */
 }
 
-.add-property-btn {
+.add-property-btn,
+.add-btn {
   border-radius: 4px;
   background: #192e3d;
   display: flex;
@@ -1002,14 +1007,16 @@ body {
   align-items: center;
   gap: 8px;
 }
-.add-property-btn .title {
+.add-property-btn .title,
+.add-btn .title {
   color: #fff;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-.add-property-btn:hover {
+.add-property-btn:hover,
+.add-btn:hover {
   cursor: pointer;
 }
 
@@ -1099,6 +1106,7 @@ body {
   border-bottom: 1px solid #e2e8f0;
 }
 
-.status, .text-capitalize {
+.status,
+.text-capitalize {
   text-transform: capitalize;
 }/*# sourceMappingURL=style.css.map */

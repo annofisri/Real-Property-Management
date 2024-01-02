@@ -18,7 +18,7 @@ $current_page = str_replace(['add-', 'edit-', '-details', '-stall'], '', $curren
 
     <div class="sidenav-wrapper">
         <div class="sidenav-item">
-            <div class="side-dropdown">
+            <!-- <div class="side-dropdown">
                 <div class="dropdown-link">
                     <div class="section-icon mb-2">
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,8 +28,8 @@ $current_page = str_replace(['add-', 'edit-', '-details', '-stall'], '', $curren
                     </div>
                     <a class="<?php if ($current_page == 'dashboard') echo 'active'; ?>" href="/cpanel/dashboard">Dashboard</a>
                 </div>
-            </div>
-            <div class="section-head">Pages</div>
+            </div> -->
+            <!-- <div class="section-head">Pages</div> -->
             <div class="side-dropdown">
 
                 <div class="dropdown-link">
@@ -49,11 +49,29 @@ $current_page = str_replace(['add-', 'edit-', '-details', '-stall'], '', $curren
                 </div>
             </div>
 
-            <div class="section-head">Accounts</div>
+
             <div class="side-dropdown">
                 <div class="dropdown-link">
                     <div class="section-icon">
-                        <img src="./assets/images/property-owner-icon.svg" alt="icon" class="mb-1">
+                        <img src="./assets/images/category-icon.png" alt="icon" class="mb-3 h-100 w-100 object-fit-cover">
+                    </div>
+                    <a class="<?php if ($current_page == 'categories') echo 'active'; ?>" href="/cpanel/categories">Categories</a>
+                </div>
+            </div>
+            <div class="side-dropdown">
+                <div class="dropdown-link">
+                    <div class="section-icon">
+                        <img src="./assets/images/faqs-icon.png" alt="icon" class="mb-3 h-100 w-100 object-fit-cover">
+                    </div>
+                    <a class="<?php if ($current_page == 'faqs') echo 'active'; ?>" href="/cpanel/faqs">FAQ's</a>
+                </div>
+            </div>
+
+            <!-- <div class="section-head">Accounts</div> -->
+            <div class="side-dropdown">
+                <div class="dropdown-link">
+                    <div class="section-icon">
+                        <img src="./assets/images/property-owner-icon.svg" alt="icon" class="mb-1 h-100 w-100 object-fit-cover">
                     </div>
                     <a class="<?php if ($current_page == 'property-owners') echo 'active'; ?>" href="/cpanel/property-owners">Property Owners</a>
                 </div>

@@ -121,7 +121,7 @@
                         Cancel
                     </div>
                     <div class="default-btn save-btn" onclick="$('form#addPropertyForm').submit()">
-                        Save & Publish
+                        Save
                     </div>
                 </div>
             </div>
@@ -325,6 +325,8 @@
                 </form>
             </div>
         </section>
+
+
         <section class="property-add property-edit d-none" id="editProperty">
             <div class="head d-flex px-4 py-3 justify-content-between" style="height: 69px;">
                 <div class="d-flex gap-2">
@@ -340,7 +342,7 @@
                         Cancel
                     </div>
                     <div class="default-btn save-btn" onclick="$('form#editPropertyForm').submit()">
-                        Edit & Publish
+                        Save
                     </div>
                 </div>
             </div>
@@ -561,10 +563,10 @@
                     <div class="title">Property Details</div>
                 </div>
                 <div class="save-btns d-flex gap-3">
-                    <div class="default-btn-outlined reject-btn" id="rejectProperty">
+                    <div class="default-btn-outlined reject-btn approveOrRejectProperty" data-status="rejected" id="rejectProperty">
                         Reject
                     </div>
-                    <div class="default-btn approve-btn" id="approveProperty">
+                    <div class="default-btn approve-btn approveOrRejectProperty" data-status="approved" id="approveProperty">
                         Approve
                     </div>
                 </div>
@@ -747,7 +749,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="propertyDetailsDescription" class="form-label">Property Descriptions</label>
-                                <textarea class="form-control" id="propertyDetailsDescription" rows="10" readonly>hi</textarea>
+                                <textarea class="form-control" id="propertyDetailsDescription" rows="10" readonly disabled></textarea>
                             </div>
                             <div class="col-md-12 view-all-images">
                                 <div class="title">
@@ -763,6 +765,23 @@
                         </div>
                     </div>
 
+
+                    <form id="metaTagsForm">
+
+                        <input type="hidden" name="id" value="">
+                        <div class="col-md-12">
+                            <div class="row px-4">
+                                <div class="col-md-12 mb-2">
+                                    <label for="metaTitle" class="form-label">Meta Title</label>
+                                    <input type="text" class="form-control" id="metaTitle" name="meta_title">
+                                </div>
+                                <div class="col-md-12 mb-2">
+                                    <label for="metaDescription" class="form-label">Meta Description</label>
+                                    <textarea class="form-control" id="metaDescription" rows="3" name="meta_description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -975,21 +994,31 @@
                             $('#propertyDetails .property-info-value').text('');
                             $('#propertyDetails .images-viewer .row').html('');
                             $('#propertyDetailsDescription').val('');
+                            $('#metaTagsForm input[name="id"]').val('');
+                            $('#metaTagsForm input[name="meta_title"]').val('');
+                            $('#metaTagsForm textarea[name="meta_description"]').val('');
+
 
                             let property = response.data;
                             let date = new Date(property.created_at);
                             let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
+                            // patching data to property details
                             $('#propertyDetails .property-info-value').each(function() {
                                 let key = $(this).data('key');
                                 $(this).text(property[key]);
                             });
 
-                            console.log($('#propertyDetailsDescription'));
+                            $('#metaTagsForm input[name="meta_title"]').val(property.meta_title);
+                            $('#metaTagsForm textarea[name="meta_description"]').val(property.meta_description);
 
+                            // patching property id to meta tags form
+                            $('#metaTagsForm input[name="id"]').val(property.id);
 
+                            // patching other_information to property description
                             $('#propertyDetailsDescription').val(property.other_information);
 
+                            //patching images and videos to images viewer
                             const images = property.images;
 
                             if (images) {
@@ -1028,6 +1057,41 @@
                     },
                     error: function(error) {
                         console.log(error);
+                    }
+                });
+            });
+
+            //on click of approve property buttonon view property section
+            $('.approveOrRejectProperty').click(function() {
+                let status = $(this).data('status');
+
+                //get meta tags form data
+                let formData = new FormData($('#metaTagsForm')[0]);
+                formData.append('action', 'approveOrRejectProperty');
+                formData.append('status', status);
+
+                $.ajax({
+                    url: '/api/property.php',
+                    method: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            fetchAndSetProperties();
+                            showPropertyHome();
+                            if (status == 'approved') {
+                                toastr.success('Property Successfully Approved', 'Success');
+                            } else {
+                                toastr.error('Property Rejected', 'Success');
+                            }
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        toastr.error('Something went wrong', 'Error');
                     }
                 });
             });
@@ -1146,6 +1210,31 @@
                     }
                 });
                 showEditProperty();
+            });
+
+            //on click of delete property button on action column of properties table
+            $('body').on('click', '.delete-property', function() {
+                let propertyId = $(this).data('property-id');
+                console.log(propertyId);
+                $.ajax({
+                    url: '/api/property.php?action=deleteById&id=' + propertyId,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function() {
+                        return confirm("Are you sure you want to delete this property?");
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            fetchAndSetProperties();
+                            toastr.success('Property Successfully Deleted', 'Success');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        toastr.error('Something went wrong', 'Error');
+                    }
+                });
             });
 
         });

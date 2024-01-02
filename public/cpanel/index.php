@@ -16,14 +16,16 @@ require_once __DIR__ . '/../../core/consoleLog.php';
 
 
 
-$requestedPage = $_GET['section'] ?? 'dashboard';
+$requestedPage = $_GET['section'] ?? 'properties';
 
 $availablePages = [
-    'dashboard' => './sections/dashboard/dashboard.php',
+    // 'dashboard' => './sections/dashboard/dashboard.php',
     'leads' => './sections/leads/leads.php',
     'properties' => './sections/properties/properties.php',
     'admin' => './sections/admin/admin.php',
     'property-owners' => './sections/property-owners/property-owners.php',
+    'categories' => './sections/categories/categories.php',
+    'faqs' => './sections/faqs/faqs.php',
 
 ];
 
