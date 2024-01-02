@@ -67,7 +67,7 @@ $current_page = str_replace(['add-', 'edit-', '-details', '-stall'], '', $curren
                 </div>
             </div>
 
-            <div class="section-head">Accounts</div>
+            <!-- <div class="section-head">Accounts</div> -->
             <div class="side-dropdown">
                 <div class="dropdown-link">
                     <div class="section-icon">

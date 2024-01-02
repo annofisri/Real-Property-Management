@@ -13,7 +13,7 @@
         Cancel
       </div>
       <div class="default-btn save-btn" onclick="$('form#addCategoryForm').submit()">
-        Save & Publish
+        Save
       </div>
     </div>
   </div>

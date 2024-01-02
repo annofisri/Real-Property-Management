@@ -49,7 +49,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'getById' && isset($_GET['id'])
 if (isset($_GET['action']) && $_GET['action'] == 'deleteById' && isset($_GET['id'])) {
     //TODO: delete property by id
     //TODO: check user login status
-    echo 'deleteById';
+
+    $result = $tableProperty->deleteById($_GET['id']);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Property Owner deleted successfully';
+    echo json_encode($output);
+
     exit;
 }
 

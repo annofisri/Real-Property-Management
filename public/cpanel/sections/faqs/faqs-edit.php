@@ -13,7 +13,7 @@
         Cancel
       </div>
       <div class="default-btn save-btn" onclick="$('form#editFaqForm').submit()">
-        Edit & Publish
+        Save
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 
             <div class="col-md-12" data-key="id">
               <label for="id" class="form-label">Faq ID</label>
-              <input type="text" class="form-control" id="id" name="id" readonly>
+              <input type="text" class="form-control" id="id" name="id" readonly disabled>
             </div>
             <div class="col-md-12" data-key="question">
               <label for="question" class="form-label">Question*</label>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-12" data-key="answer">
               <label for="answer" class="form-label">Answer*</label>
-              <input type="text" class="form-control" id="answer" name="answer" required>
+              <textarea type="text" class="form-control" id="answer" name="answer" rows="8" required></textarea>
             </div>
           </div>
         </div>

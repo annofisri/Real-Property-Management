@@ -13,7 +13,7 @@
                 Cancel
             </div>
             <div class="default-btn save-btn" onclick="$('form#addPropertyForm').submit()">
-                Save & Publish
+                Save
             </div>
         </div>
     </div>

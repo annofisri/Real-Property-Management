@@ -219,7 +219,7 @@
                             if (response.success) {
                                 fetchAndSetpropertyOwners();
                                 showpropertyOwnersHome();
-                                toastr.success('New Property Successfully Added', 'Success');
+                                toastr.success('New Property Owner Successfully Added', 'Success');
                             }
                         },
                         error: function(error) {
@@ -236,7 +236,6 @@
             //on click of edit and submit button of edit property form
             $('#editPropertyForm').on('submit', function(e) {
                 e.preventDefault();
-                console.log('edit property form submitted');
                 //check validity
                 if (this.checkValidity()) {
                     let formData = new FormData(this);
@@ -254,7 +253,7 @@
                             if (response.success) {
                                 fetchAndSetpropertyOwners();
                                 showpropertyOwnersHome();
-                                toastr.success('Property Successfully Updated', 'Success');
+                                toastr.success('Property Owner Successfully Updated', 'Success');
                             }
                         },
                         error: function(error) {
@@ -410,6 +409,32 @@
                     }
                 });
                 showEditProperty();
+            });
+
+            //on click of delete property button on action column of property-owners-owners table
+            $('body').on('click', '.delete-property', function() {
+                let propertyId = $(this).data('property-owners-id');
+                console.log(propertyId);
+                $.ajax({
+                    url: '/api/property-owners.php?action=deleteById&id=' + propertyId,
+                    method: 'GET',
+                    dataType: 'json',
+                    //toaster to confirm
+                    beforeSend: function() {
+                        confirm('Are you sure you want to delete this property owner?');
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            fetchAndSetpropertyOwners();
+                            toastr.success('Property Owner Successfully Deleted', 'Success');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        toastr.error('Something went wrong', 'Error');
+                    }
+                });
             });
 
         });

@@ -386,7 +386,6 @@
       //on click of delete faq button on action column of faqs table
       $('body').on('click', '.delete-faq', function() {
         let faqId = $(this).data('faqs-id');
-        console.log(faqId);
         if (confirm('Are you sure you want to delete this faq?')) {
           $.ajax({
             url: '/api/faq.php?action=deleteById&id=' + faqId,

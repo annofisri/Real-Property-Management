@@ -32,16 +32,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 appointment-form ">
-                    <form action="" method="post" data-url="./api/submit_form.php" class="row">
+                    <form class="row" id="contact-form">
 
                         <div class="col-md-6 ">
                             <label for="firstName">First Name*</label>
-                            <input type="text" class="form-control" id="firstName" name="firstname" required />
+                            <input type="text" class="form-control" id="firstName" name="first_name" required />
 
                         </div>
                         <div class="col-md-6">
                             <label for="lastName">Last Name*</label>
-                            <input type="text" class="form-control col-md-6" id="lastName" name="lastname" required />
+                            <input type="text" class="form-control col-md-6" id="lastName" name="last_name" required />
                         </div>
                         <div class="col-md-6 mt-3">
 
@@ -117,6 +117,36 @@
     <?php include_once 'tags/footer.php'; ?>
 
     <?php include_once './includes/scripts.php'; ?>
+
+    <script>
+        $(document).ready(function() {
+            $('#contact-form').submit(function(e) {
+                e.preventDefault();
+                var form = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: '/api/leads.php?action=addNew',
+                    data: form,
+                    processData: false,
+                    contentType: false,
+
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            toastr.success('Message successfully sent.', 'Success');
+                            $('#contact-form').trigger('reset');
+                        } else {
+                            toastr.error(response.message, 'Error');
+                        }
+                    },
+                    error: function(response) {
+                        console.log(response);
+                        toastr.error(response.responseText, 'Error');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

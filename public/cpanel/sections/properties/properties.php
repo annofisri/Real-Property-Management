@@ -121,7 +121,7 @@
                         Cancel
                     </div>
                     <div class="default-btn save-btn" onclick="$('form#addPropertyForm').submit()">
-                        Save & Publish
+                        Save
                     </div>
                 </div>
             </div>
@@ -342,7 +342,7 @@
                         Cancel
                     </div>
                     <div class="default-btn save-btn" onclick="$('form#editPropertyForm').submit()">
-                        Edit & Publish
+                        Save
                     </div>
                 </div>
             </div>
@@ -749,7 +749,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="propertyDetailsDescription" class="form-label">Property Descriptions</label>
-                                <textarea class="form-control" id="propertyDetailsDescription" rows="10" readonly>hi</textarea>
+                                <textarea class="form-control" id="propertyDetailsDescription" rows="10" readonly disabled></textarea>
                             </div>
                             <div class="col-md-12 view-all-images">
                                 <div class="title">
@@ -1008,6 +1008,9 @@
                                 let key = $(this).data('key');
                                 $(this).text(property[key]);
                             });
+
+                            $('#metaTagsForm input[name="meta_title"]').val(property.meta_title);
+                            $('#metaTagsForm textarea[name="meta_description"]').val(property.meta_description);
 
                             // patching property id to meta tags form
                             $('#metaTagsForm input[name="id"]').val(property.id);

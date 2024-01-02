@@ -13,7 +13,7 @@
         Cancel
       </div>
       <div class="default-btn save-btn" onclick="$('form#editCategoryForm').submit()">
-        Edit & Publish
+        Save
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 
             <div class="col-md-12" data-key="id">
               <label for="id" class="form-label">Category ID</label>
-              <input type="text" class="form-control" id="id" name="id" readonly>
+              <input type="text" class="form-control" id="id" name="id" readonly disabled>
             </div>
             <div class="col-md-12" data-key="name">
               <label for="name" class="form-label">Category Name*</label>

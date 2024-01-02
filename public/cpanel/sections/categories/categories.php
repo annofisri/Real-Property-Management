@@ -7,7 +7,7 @@
 
 
   <?php include_once('./includes/links.php'); ?>
-  <title>Category Owners</title>
+  <title>Category</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     <section class="categories-home" id="categoryHome">
       <div class="head d-flex px-4 py-3 justify-content-between">
         <div class="d-flex align-items-center gap-3">
-          <div class="title">Category Owners</div>
+          <div class="title">Category</div>
           <!-- <div class="total">Total:100</div> -->
 
           <div class="search-block">
@@ -337,7 +337,7 @@
         });
       });
 
-      //on click of edit category button on action column of categories-owners table
+      //on click of edit category button on action column of categories table
       $('body').on('click', '.edit-category', function() {
         let categoryId = $(this).data('categories-id');
 

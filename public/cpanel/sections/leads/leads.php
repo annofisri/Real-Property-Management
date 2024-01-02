@@ -23,7 +23,7 @@
 
 
         <div class="head d-flex px-4 py-3 justify-content-between">
-            <div class="title">Real Property - Leads</div>
+            <div class="title">Leads</div>
             <!-- <div class="total">Total:100</div> -->
             <div class="">
 
@@ -76,7 +76,7 @@
     <script>
         function getAllLeads() {
             $.ajax({
-                url: '/api/getAllLeads.php',
+                url: '/api/leads.php?action=getAll',
                 type: 'GET',
                 success: function(response) {
                     console.log(response);
