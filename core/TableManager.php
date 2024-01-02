@@ -204,7 +204,13 @@ class TableManager
         $params = [];
 
         foreach ($conditions as $key => $value) {
-            if (is_array($value)) {
+            if (!is_array($value) AND strpos($value, '%LIKE%') !== false) {
+                $likeValue = str_replace('%LIKE%', '', $value);
+                $rand = 'L_'.rand(1000,9999);
+                // Handle LIKE clause
+                $where .= "$key LIKE :$rand AND ";
+                $params[":$rand"] = '%' . $likeValue . '%';
+            } elseif (is_array($value)) {
                 $placeholders = implode(', ', array_map(function ($val) use ($key, &$params) {
                     $paramName = ":{$key}_" . count($params);
                     $params[$paramName] = $val;
