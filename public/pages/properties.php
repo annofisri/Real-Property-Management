@@ -216,8 +216,8 @@
             $('#filter_form input, #sort_by, #search-property').on('change', handleChange);
 
             function getPropertiesByFilter() {
+                $('#property-list').empty();
                 if(properties.length > 0){
-                    $('#property-list').empty();
                     properties.forEach(property => {
                         $('#property-list').append(`
                             <div class="col-md-4">
@@ -248,6 +248,8 @@
                             </div>
                         `);
                     });
+                }else{
+                    $('#property-list').html('<div class="alert alert-info">No property found. Try changing your filter criteria.</div>');
                 }
             }
 

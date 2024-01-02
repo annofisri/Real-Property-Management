@@ -163,7 +163,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'addNew') {
 //get featured properties
 if (isset($_GET['getFeaturedProperties'])) {
     $settings = [
-        'where' => ['approve_status'=> 'approved', 'visibility_status'=> 1, 'is_featured'=> 1]
+        'where' => ['approve_status' => 'approved', 'visibility_status' => 1, 'is_featured' => 1]
     ];
     $result = $tableProperty->getProperties($settings);
     $output['success'] = true;
@@ -177,7 +177,7 @@ if (isset($_GET['getFeaturedProperties'])) {
 //get new properties
 if (isset($_GET['getNewProperties'])) {
     $settings = [
-        'where' => ['approve_status'=> 'approved', 'visibility_status'=> 1, 'is_new'=> 1]
+        'where' => ['approve_status' => 'approved', 'visibility_status' => 1, 'is_new' => 1]
     ];
     $result = $tableProperty->getProperties($settings);
     $output['success'] = true;
@@ -190,9 +190,37 @@ if (isset($_GET['getNewProperties'])) {
 
 //filter properties based on category, type, search, 
 if (isset($_GET['filterProperty'])) {
+
+    $types = $_GET['type'] ?? [];
+    $category_ids = $_GET['category_id'] ?? [];
+    $searchProperty = $_GET['searchProperty'] ?? '';
+    $sortBy = $_GET['sortBy'] ?? '';
+
+    $order_by = match ($sortBy) {
+        'price-low-high' => 'price ASC',
+        'price-high-low' => 'price DESC',
+        'property-asc'   => 'id ASC',
+        'property-desc'  => 'id DESC',
+        default          => 'id DESC'
+    };
+    
     $settings = [
-        'where' => ['approve_status'=> 'approved', 'visibility_status'=> 1, 'is_featured'=> 1]
+        'where' => ['approve_status' => 'approved', 'visibility_status' => 1]
     ];
+
+    if (!empty($types)) {
+        $settings['where']['type'] = $types;
+    }
+    if (!empty($category_ids)) {
+        $settings['where']['category_id'] = $category_ids;
+    }
+    if (!empty($sortBy)) {
+        $settings['order_by'] = $order_by;
+    }
+    if (!empty($searchProperty)) {
+        $settings['where']['p.name'] = '%LIKE%'.$searchProperty;
+    }
+
     $result = $tableProperty->getProperties($settings);
     $output['success'] = true;
     $output['data'] = $result;
