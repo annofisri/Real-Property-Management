@@ -243,7 +243,7 @@
                                     <div class="upload-images-title">
                                         Upload Property Images and Videos*
                                     </div>
-                                    <input type="file" id="uploadImages" name="images" multiple required>
+                                    <input type="file" id="uploadImages" name="images[]" multiple required>
                                     <!-- <div class="default-btn-outlined mt-2" id="uploadImagesBtn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <g clip-path="url(#clip0_440_8663)">
@@ -466,7 +466,7 @@
                                     <div class="upload-images-title">
                                         Upload Property Images and Videos*
                                     </div>
-                                    <input type="file" id="uploadImages" name="images" multiple required>
+                                    <input type="file" id="uploadImages" name="images[]" multiple required>
                                     <!-- <div class="default-btn-outlined mt-2" id="uploadImagesBtn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <g clip-path="url(#clip0_440_8663)">

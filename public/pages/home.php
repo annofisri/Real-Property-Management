@@ -226,7 +226,7 @@
                                 $featured_slider.append(`<div class="card property-card" style="width: 306px;">
                                     <div class="card-img-top position-relative" >
                                     <div class="property-type ${property.type}"><span class="text-capitalize">For ${property.type}</span></div>
-                                    <img src="./assets/images/${property.default_image}" alt="product-img" class="img-fluid w-100 h-100">
+                                    <img src="./assets/images/${property.default_image || 'placeholder.jpg'}" alt="product-img" class="img-fluid w-100 h-100">
                                     <div class="property-id d-flex justify-content-end p-2">ID: ${property.id}</div>
 
                                     <div class="property-category">${property.category_name}</div>
@@ -315,7 +315,7 @@
                                         ${property.category_name}
                                     </div>
                                     <div class="property-id position-absolute new-listed-id end-0">ID: ${property.id}</div>
-                                    <img src="./assets/images/${property.default_image}" class="property-img" alt="...">
+                                    <img src="./assets/images/${property.default_image || 'placeholder.jpg'}" class="property-img" alt="...">
                                     <div class="new-listed-card-body">
                                         <h5 class="new-listed-card-title">${property.address}</h5>
                                         <div class="location d-flex">

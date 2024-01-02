@@ -100,29 +100,30 @@ class TableManager
         return $this->lastInsertId;
     }
 
-    public function getProperties($settings){
+    public function getProperties($settings)
+    {
 
         $conditions = $settings['where'] ?? null;
-        
+
         $buildConditions = ($conditions) ? $this->_buildWhereClause($conditions) : '';
 
         $where = '';
         $params = [];
 
-        if(is_array($buildConditions)){
+        if (is_array($buildConditions)) {
             $where = 'WHERE ' . $buildConditions['where'];
             $params = $buildConditions['params'];
         }
-        
+
         $order_by = $settings['order_by'] ?? 'id DESC';
         $page = $settings['page'] ?? 1;
         $limit = $settings['limit'] ?? 10000000;
-        
+
         $page = (int)$page;
         $limit = (int)$limit;
 
         $offset = ($page - 1) * $limit;
-        
+
         $_params = [
             ':limit' => $limit,
             ':offset' => $offset,
@@ -181,9 +182,9 @@ class TableManager
         $stmt = $this->db->prepare($sql);
 
         foreach ($params as $paramName => $paramValue) {
-            if(in_array($paramName, [':limit', ':offset'])){
+            if (in_array($paramName, [':limit', ':offset'])) {
                 $stmt->bindValue($paramName, $paramValue, PDO::PARAM_INT);
-            }else{
+            } else {
                 $stmt->bindValue($paramName, $paramValue);
             }
         }
@@ -192,10 +193,10 @@ class TableManager
 
         $stmt->execute();
         return $stmt->fetchAll();
-
     }
 
-    private function _buildWhereClause($conditions) {
+    private function _buildWhereClause($conditions)
+    {
         if (!is_array($conditions)) {
             return '';
         }
@@ -204,9 +205,9 @@ class TableManager
         $params = [];
 
         foreach ($conditions as $key => $value) {
-            if (!is_array($value) AND strpos($value, '%LIKE%') !== false) {
+            if (!is_array($value) and strpos($value, '%LIKE%') !== false) {
                 $likeValue = str_replace('%LIKE%', '', $value);
-                $rand = 'L_'.rand(1000,9999);
+                $rand = 'L_' . rand(1000, 9999);
                 // Handle LIKE clause
                 $where .= "$key LIKE :$rand AND ";
                 $params[":$rand"] = '%' . $likeValue . '%';
@@ -231,7 +232,8 @@ class TableManager
         return ['where' => $where, 'params' => $params];
     }
 
-    public function getCities(){
+    public function getCities()
+    {
 
         $sql = "SELECT 
         ci.id as city_id,
@@ -248,8 +250,49 @@ class TableManager
 
         $stmt->execute();
         return $stmt->fetchAll();
-
     }
 
+    public function uploadFiles($files)
+    {
+        if (!isset($files["images"])) {
+            return null;
+        }
 
+        $uploadedFiles = ['images' => null, 'videos' => null];
+
+        $images_filename = [];
+        $videos_filename = [];
+
+        // Loop through each file
+        foreach ($files as $image => $filename) {
+            // Generate a unique filename using time() and rand()
+            $uniqueFilename = time() . '_' . rand(1000, 9999) . '_' . $filename['name'];
+            // Define the target directory
+            $targetDirectory = __DIR__ . "/../public/upload/";
+
+            // Construct the full path for the uploaded file
+            $targetFilePath = $targetDirectory . $uniqueFilename;
+
+            // Check if the file was uploaded successfully
+            if (move_uploaded_file($files[$image]["tmp_name"], $targetFilePath)) {
+                // Determine the file type (image or video) based on the file extension
+                $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+                // Categorize the uploaded file
+                if (in_array($fileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+                    // It's an image
+                    $images_filename[] = $uniqueFilename;
+                } elseif (in_array($fileType, ['mp4', 'mov', 'avi'])) {
+                    // It's a video
+                    $videos_filename[] = $uniqueFilename;
+                }
+            }
+        }
+
+        $uploadedFiles['images'] = implode(',', $images_filename);
+        $uploadedFiles['videos'] = implode(',', $videos_filename);
+
+        return $uploadedFiles;
+
+    }
 }
