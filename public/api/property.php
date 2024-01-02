@@ -14,7 +14,7 @@ $output = [
 ];
 
 
-//get all properties
+//get all
 if (isset($_GET['action']) && $_GET['action'] == 'getAll') {
     // $page = $_GET['page'] ?? 1;
     // $limit = $_GET['limit'] ?? 12;
@@ -28,6 +28,31 @@ if (isset($_GET['action']) && $_GET['action'] == 'getAll') {
     $output['data'] = $result;
     $output['message'] = 'Properties fetched successfully';
 
+    echo json_encode($output);
+    exit;
+}
+
+// approve property
+if (isset($_POST['action']) && $_POST['action'] == 'approveOrRejectProperty' && isset($_POST['id'])) {
+    $data = [];
+    $data['approve_status'] = $_POST['status'];
+    $data['meta_title'] = $_POST['meta_title'] ?? null;
+    $data['meta_description'] = $_POST['meta_description'] ?? null;
+    $result = $tableProperty->updateById($_POST['id'], $data);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Property approved successfully';
+
+    echo json_encode($output);
+    exit;
+}
+
+//delete by id
+if (isset($_GET['action']) && $_GET['action'] == 'deleteById' && isset($_GET['id'])) {
+    $result = $tableProperty->deleteById($_GET['id']);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Property deleted successfully';
     echo json_encode($output);
     exit;
 }

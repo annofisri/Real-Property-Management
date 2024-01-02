@@ -54,79 +54,78 @@
 
                         </div>
                         <div class="col-md-12 property-description">
-                            <div class="title">Property Description</div>
+                            <div class="head-title">Property Description</div>
                             <p class="texts"></p>
                         </div>
                         <div class="col-md-12 property-details">
-                            <div class="title">Property Details</div>
-                            <div class="row texts">
-                                <div class="col-md-6 row " style="padding-left: 24px;">
-                                    <!-- <ul class="col-6">
-
-                                        <li>Property ID</li>
-                                        <li>Price</li>
-                                        <li>Location</li>
-                                        <li>No. of Storeys</li>
-                                        <li>Property Type</span></li>
-                                    </ul>
-
-                                    <ul class="col-6 border-end">
-                                        <li>: 001</li>
-                                        <li>: Rs. 1,50,00,000</li>
-                                        <li>: Budhanilkantha, Kathmandu</li>
-                                        <li>: 2</li>
-                                        <li>: House</li>
-                                    </ul> -->
-
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Property ID</div>
-                                        <div class="col-6 data" data-key="id"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Price</div>
-                                        <div class="col-6 data" data-key="price"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Location</div>
-                                        <div class="col-6 data" data-key="address"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">No. of Storeys</div>
-                                        <div class="col-6 data" data-key="storey"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Property Type</div>
-                                        <div class="col-6 data" data-key="type"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 row" style="padding-left: 24px;">
-                                    <!-- <ul class="col-6">
-                                        <li>Bedrooms</li>
-                                        <li>Bathrooms</li>
-                                    </ul>
-                                    <ul class="col-6">
-                                        <li>: 2</li>
-                                        <li>: 2</li>
-                                    </ul> -->
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Bedrooms</div>
-                                        <div class="col-6 data" data-key="bedroom"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Bathrooms</div>
-                                        <div class="col-6 data" data-key="bathroom"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 title">Gym</div>
-                                        <div class="col-6 data" data-key="gym"></div>
-                                    </div>
-                                    <div class="col-md-12 row detail-item justify-content-between border-bottom">
-                                        <div class=" col-6 ">
-                                            <div class="title w-100">Swimming Pool</div>
+                            <div class="head-title">Property Details</div>
+                            <div class="texts">
+                                <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Property ID</div>
+                                                    <div class="col-6 data" data-key="id"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Price</div>
+                                                    <div class="col-6 data" data-key="price"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Location</div>
+                                                    <div class="col-6 data" data-key="address"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">No. of Storeys</div>
+                                                    <div class="col-6 data" data-key="storey"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Property Type</div>
+                                                    <div class="col-6 data" data-key="type"></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-6 data" data-key="swimming_pool"></div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Bedrooms</div>
+                                                    <div class="col-6 data " data-key="bedroom"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Bathrooms</div>
+                                                    <div class="col-6 data" data-key="bathroom"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Gym</div>
+                                                    <div class="col-6 data boolean" data-key="gym"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 ">
+                                                        <div class="key w-100">Swimming Pool</div>
+                                                    </div>
+                                                    <div class="col-6 data boolean" data-key="swimming_pool"></div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -263,29 +262,46 @@
                     if (response.success) {
                         var property = response.data;
                         console.log(property);
-                        $('.detail-item .data').each(function() {
+                        $('.data').each(function() {
                             var key = $(this).data('key');
                             $(this).text(': ' + property[key]);
+                            //check if property is null
+                            if (property[key] == null) {
+                                $(this).text(': N/A');
+                            }
                         });
 
-                        var images = property.images.split(',');
+                        //select data with boolean value
+                        $('.boolean').each(function() {
+                            var key = $(this).data('key');
+                            $(this).text(': ' + (property[key] ? 'Yes' : 'No'));
+                            //check if property is null
+                            if (property[key] == null) {
+                                $(this).text(': N/A');
+                            }
+                        });
+                        if (property.images) {
+                            var images = property.images.split(',');
 
+                            //patch images to gallery thumbnails
+                            images.forEach(function(image) {
+                                $('.thumbnails').append('<img class="thumbnail" src="/upload/' + image + '" alt="Image 1">');
+                            });
+                            //patch first index image to large image
+                            $('.large-image img').attr('src', '/upload/' + images[0]);
+
+
+
+                            thumbnails = $('.thumbnail');
+                            highlightThumbnail();
+                        }
                         // update description and name
                         $('.property-name').text(property.name);
                         $('.property-description .texts').text(property.other_information);
-
-                        //patch images to gallery thumbnails
-                        images.forEach(function(image) {
-                            $('.thumbnails').append('<img class="thumbnail" src="/upload/' + image + '" alt="Image 1">');
-                        });
-                        //patch first index image to large image
-                        $('.large-image img').attr('src', '/upload/' + images[0]);
-
-
-
-                        thumbnails = $('.thumbnail');
-                        highlightThumbnail();
-
+                        //check if property.other_information is null
+                        if (property.other_information == null) {
+                            $('.property-description .texts').text('N/A');
+                        }
                     } else {
                         toastr.error(response.message);
                     }
@@ -320,9 +336,7 @@
                         $('.similar-properties .row').empty();
                         properties.forEach(function(property) {
                             $('.similar-properties .row').append(
-
-                                `
-                                
+                                `                                
                                 <div class="col-md-12 item">
                                     <div class="card property-card">
                                         <div class="card-img-top position-relative">
@@ -359,9 +373,6 @@
 
         $(document).ready(function() {
 
-
-
-
             $('body').on('click', '.thumbnail', function() {
                 $('.large-image img').attr('src', $(this).attr('src'));
                 currentIndex = thumbnails.index(this);
@@ -379,9 +390,6 @@
                 $('.large-image img').attr('src', thumbnails.eq(currentIndex).attr('src'));
                 highlightThumbnail();
             });
-
-
-
 
             //get property details
             getPropertyDetails(propertyId);

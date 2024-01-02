@@ -21,7 +21,7 @@
         <!-- <button type="button" class="btn  status-pending">pending</button> -->
         <!-- <button type="button" class="btn  status-rejected">rejected</button> -->
 
-        <section class="property-owners-home" id="propertyHome">
+        <section class="property-owners-home" id="propertyOwnersHome">
             <div class="head d-flex px-4 py-3 justify-content-between">
                 <div class="d-flex align-items-center gap-3">
                     <div class="title">Property Owners</div>
@@ -47,7 +47,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <div class="title">Add Property</div>
+                    <div class="title">Add Property Owners</div>
                 </div>
 
             </div>
@@ -111,33 +111,33 @@
 
     <script>
         // function to show add property
-        function showAddProperty() {
+        function showAddPropertyOwners() {
             $('#addProperty').removeClass('d-none');
-            $('#propertyHome').addClass('d-none');
-            $('#propertyDetails').addClass('d-none');
+            $('#propertyOwnersHome').addClass('d-none');
+            $('#propertyOwnerDetails').addClass('d-none');
             $('#editProperty').addClass('d-none');
         }
 
         // function to show edit property
         function showEditProperty() {
             $('#editProperty').removeClass('d-none');
-            $('#propertyHome').addClass('d-none');
-            $('#propertyDetails').addClass('d-none');
+            $('#propertyOwnersHome').addClass('d-none');
+            $('#propertyOwnerDetails').addClass('d-none');
             $('#addProperty').addClass('d-none');
         }
 
         // function to show property details
-        function showPropertyDetails() {
-            $('#propertyDetails').removeClass('d-none');
-            $('#propertyHome').addClass('d-none');
+        function showpropertyOwnerDetails() {
+            $('#propertyOwnerDetails').removeClass('d-none');
+            $('#propertyOwnersHome').addClass('d-none');
             $('#addProperty').addClass('d-none');
             $('#editProperty').addClass('d-none');
         }
 
         // function to show property home
-        function showPropertyHome() {
-            $('#propertyHome').removeClass('d-none');
-            $('#propertyDetails').addClass('d-none');
+        function showpropertyOwnersHome() {
+            $('#propertyOwnersHome').removeClass('d-none');
+            $('#propertyOwnerDetails').addClass('d-none');
             $('#addProperty').addClass('d-none');
             $('#editProperty').addClass('d-none');
         }
@@ -218,7 +218,7 @@
                             console.log(response);
                             if (response.success) {
                                 fetchAndSetpropertyOwners();
-                                showPropertyHome();
+                                showpropertyOwnersHome();
                                 toastr.success('New Property Successfully Added', 'Success');
                             }
                         },
@@ -253,7 +253,7 @@
                             console.log(response);
                             if (response.success) {
                                 fetchAndSetpropertyOwners();
-                                showPropertyHome();
+                                showpropertyOwnersHome();
                                 toastr.success('Property Successfully Updated', 'Success');
                             }
                         },
@@ -272,10 +272,10 @@
             // show hide sections            
             $('.property-owners-back-btn').click(function() {
                 fetchAndSetpropertyOwners();
-                showPropertyHome();
+                showpropertyOwnersHome();
             });
             $('#addPropertyOwnersBtn').click(function() {
-                showAddProperty();
+                showAddPropertyOwners();
             });
             $('.cancel-btn').click(function() {
                 //reset all input fields of add property
@@ -289,7 +289,7 @@
                 $('#editPropertyForm select').val('');
                 $('#editPropertyForm .images-viewer .row').html('');
                 fetchAndSetpropertyOwners();
-                showPropertyHome();
+                showpropertyOwnersHome();
             });
 
             //on click of view property button on action column of propertyOwners table
@@ -306,23 +306,23 @@
                         if (response.success) {
 
                             // reseting all fields
-                            $('#propertyDetails .property-owners-info-value').text('');
-                            $('#propertyDetails .images-viewer .row').html('');
-                            $('#propertyDetailsDescription').val('');
+                            $('#propertyOwnerDetails .property-owners-info-value').text('');
+                            $('#propertyOwnerDetails .images-viewer .row').html('');
+                            $('#propertyOwnerDetailsDescription').val('');
 
                             let property = response.data;
                             let date = new Date(property.created_at);
                             let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
-                            $('#propertyDetails .property-owners-info-value').each(function() {
+                            $('#propertyOwnerDetails .property-owners-info-value').each(function() {
                                 let key = $(this).data('key');
                                 $(this).text(property[key]);
                             });
 
-                            console.log($('#propertyDetailsDescription'));
+                            console.log($('#propertyOwnerDetailsDescription'));
 
 
-                            $('#propertyDetailsDescription').val(property.other_information);
+                            $('#propertyOwnerDetailsDescription').val(property.other_information);
 
                             const images = property.images;
 
@@ -337,7 +337,7 @@
                                     </div>
                                     `;
                                 });
-                                $('#propertyDetails .images-viewer .row').append(imagesHtml);
+                                $('#propertyOwnerDetails .images-viewer .row').append(imagesHtml);
                             }
                             const videos = property.videos;
 
@@ -352,11 +352,11 @@
                                     </div>
                                     `;
                                 });
-                                $('#propertyDetails .images-viewer .row').append(imagesHtml);
+                                $('#propertyOwnerDetails .images-viewer .row').append(imagesHtml);
                             }
 
 
-                            showPropertyDetails();
+                            showpropertyOwnerDetails();
                         }
 
                     },

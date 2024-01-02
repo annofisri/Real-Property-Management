@@ -1221,8 +1221,8 @@ input[type=radio]:checked + label {
 .property-details-hero .all-details .property-details {
   margin-top: 20px;
 }
-.property-details-hero .all-details .property-description .title,
-.property-details-hero .all-details .property-details .title {
+.property-details-hero .all-details .property-description .head-title,
+.property-details-hero .all-details .property-details .head-title {
   color: var(--Text-3, #192e3d);
   font-size: 20px;
   font-style: normal;
@@ -1241,9 +1241,9 @@ input[type=radio]:checked + label {
   font-weight: 400;
   line-height: 125%; /* 20px */
 }
-.property-details-hero .all-details .property-description .texts .title,
+.property-details-hero .all-details .property-description .texts .key,
 .property-details-hero .all-details .property-description .texts .data,
-.property-details-hero .all-details .property-details .texts .title,
+.property-details-hero .all-details .property-details .texts .key,
 .property-details-hero .all-details .property-details .texts .data {
   color: var(--Text-1, #4e4e4e);
   font-size: 16px;

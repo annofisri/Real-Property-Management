@@ -24,6 +24,8 @@ $availablePages = [
     'properties' => './sections/properties/properties.php',
     'admin' => './sections/admin/admin.php',
     'property-owners' => './sections/property-owners/property-owners.php',
+    'categories' => './sections/categories/categories.php',
+    'faqs' => './sections/faqs/faqs.php',
 
 ];
 

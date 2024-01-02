@@ -49,11 +49,29 @@ $current_page = str_replace(['add-', 'edit-', '-details', '-stall'], '', $curren
                 </div>
             </div>
 
+
+            <div class="side-dropdown">
+                <div class="dropdown-link">
+                    <div class="section-icon">
+                        <img src="./assets/images/category-icon.png" alt="icon" class="mb-3 h-100 w-100 object-fit-cover">
+                    </div>
+                    <a class="<?php if ($current_page == 'categories') echo 'active'; ?>" href="/cpanel/categories">Categories</a>
+                </div>
+            </div>
+            <div class="side-dropdown">
+                <div class="dropdown-link">
+                    <div class="section-icon">
+                        <img src="./assets/images/faqs-icon.png" alt="icon" class="mb-3 h-100 w-100 object-fit-cover">
+                    </div>
+                    <a class="<?php if ($current_page == 'faqs') echo 'active'; ?>" href="/cpanel/faqs">FAQ's</a>
+                </div>
+            </div>
+
             <div class="section-head">Accounts</div>
             <div class="side-dropdown">
                 <div class="dropdown-link">
                     <div class="section-icon">
-                        <img src="./assets/images/property-owner-icon.svg" alt="icon" class="mb-1">
+                        <img src="./assets/images/property-owner-icon.svg" alt="icon" class="mb-1 h-100 w-100 object-fit-cover">
                     </div>
                     <a class="<?php if ($current_page == 'property-owners') echo 'active'; ?>" href="/cpanel/property-owners">Property Owners</a>
                 </div>
