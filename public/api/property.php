@@ -78,8 +78,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'getSimilarProperties' && isset
 
 //get property by id
 if (isset($_GET['action']) && $_GET['action'] == 'getById' && isset($_GET['id'])) {
-
-    $result = $tableProperty->getById($_GET['id']);
+    $settings = ['where' => ['id' => $_GET['id']]];
+    $result = $tableProperty->getProperties($settings);
+    if (!empty($result)) {
+        $result = $result[0];
+    }
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Property fetched successfully';
@@ -228,7 +231,7 @@ if (isset($_GET['filterProperty'])) {
         'property-desc'  => 'id DESC',
         default          => 'id DESC'
     };
-    
+
     $settings = [
         'where' => ['approve_status' => 'approved', 'visibility_status' => 1]
     ];
@@ -243,8 +246,10 @@ if (isset($_GET['filterProperty'])) {
         $settings['order_by'] = $order_by;
     }
     if (!empty($searchProperty)) {
-        $settings['where']['p.name'] = '%LIKE%'.$searchProperty;
+        $settings['where']['p.name'] = '%LIKE%' . $searchProperty;
     }
+
+    var_dump($settings);
 
     $result = $tableProperty->getProperties($settings);
     $output['success'] = true;
