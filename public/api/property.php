@@ -164,13 +164,19 @@ if (isset($_GET['action']) && $_GET['action'] == 'addNew') {
     $data['monthly_rental'] = $_POST['monthly_rent'] ?? 0.00;
     $data['contract_term'] = $_POST['contract_term'] ?? null;
     $data['other_information'] = $_POST['other_information'] ?? null;
-    $data['images'] = null;
-    $data['videos'] = $_FILES['videos'] ?? null;
+    $uploadedFiles = $tableProperty->uploadFiles($_FILES);
+    $data['images'] = $uploadedFiles['images'];
+    $data['videos'] = $uploadedFiles['videos'];
     $data['owner_id'] = $_POST['owner_id'] ?? null;
     $data['approve_status'] = $_POST['approve_status'] ?? 'pending'; //pending, approved, rejected
     $data['visibility_status'] = $_POST['visibility_status'] ?? 0;
     $data['price'] = $_POST['price'] ?? 0.00;
-    $data['default_image'] = $_FILES['default_image'] ?? null;
+    $default_image = 'placeholder.jpg';
+    $_default = explode(',', $uploadedFiles['images']);
+    if(isset($_default[0])){
+        $default_image = $_default[0];
+    }
+    $data['default_image'] = $default_image;
     $data['city_id'] = $_POST['city_id'] ?? null;
 
     //required fields : name, category_id, type, address, price, city_id, owner_id
