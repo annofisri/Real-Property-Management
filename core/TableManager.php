@@ -110,7 +110,7 @@ class TableManager
         $params = [];
 
         if(is_array($buildConditions)){
-            $where = $buildConditions['where'];
+            $where = 'WHERE ' . $buildConditions['where'];
             $params = $buildConditions['params'];
         }
         
@@ -187,6 +187,8 @@ class TableManager
                 $stmt->bindValue($paramName, $paramValue);
             }
         }
+
+        // echo $sql;
 
         $stmt->execute();
         return $stmt->fetchAll();

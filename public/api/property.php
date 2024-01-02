@@ -185,5 +185,47 @@ if (isset($_GET['action']) && $_GET['action'] == 'addNew') {
     exit;
 }
 
+//get featured properties
+if (isset($_GET['getFeaturedProperties'])) {
+    $settings = [
+        'where' => ['approve_status'=> 'approved', 'visibility_status'=> 1, 'is_featured'=> 1]
+    ];
+    $result = $tableProperty->getProperties($settings);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Properties fetched successfully';
+
+    echo json_encode($output);
+    exit;
+}
+
+//get new properties
+if (isset($_GET['getNewProperties'])) {
+    $settings = [
+        'where' => ['approve_status'=> 'approved', 'visibility_status'=> 1, 'is_new'=> 1]
+    ];
+    $result = $tableProperty->getProperties($settings);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Properties fetched successfully';
+
+    echo json_encode($output);
+    exit;
+}
+
+//filter properties based on category, type, search, 
+if (isset($_GET['filterProperty'])) {
+    $settings = [
+        'where' => ['approve_status'=> 'approved', 'visibility_status'=> 1, 'is_featured'=> 1]
+    ];
+    $result = $tableProperty->getProperties($settings);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Properties fetched successfully';
+
+    echo json_encode($output);
+    exit;
+}
+
 
 echo json_encode($output);
