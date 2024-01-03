@@ -38,8 +38,11 @@
 
                 <div class="animated-text pb-4">
                     <span class="">LETS FIND A </span>
-                    <span id="animated-word"></span><span class="cursor">|</span>
-                    <span class=""> FOR YOU!</span>
+                    <div class=" animated-texts">
+                        <span id="animated-word"></span><span class="cursor">|</span>
+                        <span class="for-text">FOR</span>
+                    </div>
+                    <div class="you-text">YOU!</div>
                 </div>
 
 
@@ -109,7 +112,7 @@
     <section class="featured-properties">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 d-flex mb-4 gap-3">
+                <div class="col-md-12 d-flex mb-4 gap-3 featured-properties-head">
                     <h2 class="title mb-0">
                         Featured Property
                     </h2>
@@ -140,8 +143,8 @@
                     New Listed
                 </p2>
             </div>
-            <div class="row" id="new_section">
-                
+            <div class="row new-property-slider" id="new_section">
+
             </div>
         </div>
     </section>
@@ -275,7 +278,8 @@
                                         slidesToShow: 1,
                                         slidesToScroll: 1,
                                         infinite: true,
-                                        dots: false
+                                        dots: true,
+                                        arrows: false
                                     }
                                 },
                                 {
@@ -284,7 +288,8 @@
                                         slidesToShow: 1,
                                         slidesToScroll: 1,
                                         infinite: true,
-                                        dots: false
+                                        dots: true,
+                                        arrows: false
                                     }
                                 }
                                 // You can unslick at a given breakpoint now by adding:
@@ -309,14 +314,14 @@
 
                         newProperties.forEach(property => {
                             $new_section.append(`
-                            <div class="col-md-6">
+                            <div class="col-lg-6">
                                 <div class="new-listed-card d-flex flex-row position-relative">
                                     <div class="property-category">
                                         ${property.category_name}
                                     </div>
                                     <div class="property-id position-absolute new-listed-id end-0">ID: ${property.id}</div>
                                     <img src="./assets/images/${property.default_image || 'placeholder.jpg'}" class="property-img" alt="...">
-                                    <div class="new-listed-card-body">
+                                    <div class="new-listed-card-body position-relative">
                                         <h5 class="new-listed-card-title">${property.address}</h5>
                                         <div class="location d-flex">
                                             <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />
@@ -324,7 +329,7 @@
                                         </div>
                                         <div class="new-listed-card-text price">Rs. ${property.price}/-</div>
                                         <div class="new-listed-card-text size">${property.contract}</div>
-                                        <a href="/property-single?id=${property.id}" class="default-btn">View Details</a>
+                                        <a href="/property-single?id=${property.id}" class="default-btn new-listed-see-details-btn position-absolute bottom-0 mb-3">View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -335,7 +340,7 @@
                 });
             }
 
-            function init(){
+            function init() {
                 getFeaturedProperties();
                 getNewProperties();
             }

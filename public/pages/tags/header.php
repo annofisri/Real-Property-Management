@@ -21,8 +21,7 @@ function navbar()
             " href="/about">About Us</a>
           </li>
           <li>
-            <a class="nav-link scrollto" href="/services">Services </a>
-            
+            <a class="nav-link scrollto" href="/services">Services </a>            
           </li>
          
           <li>

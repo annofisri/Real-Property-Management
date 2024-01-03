@@ -21,7 +21,7 @@
     <section class="login-hero">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="login-box col-md-4">
+                <div class="login-box col-lg-5 col-md-6">
                     <div class="title col-12">
 
                         <span class="login-text">Sign in /</span>

@@ -4,7 +4,7 @@
 
       <div class="col-lg-12 footer-head">
         <a href="index.html" class=" me-auto footer-logo">
-          <img src="./assets/images/realproperty-logo.png" alt="logo" class="h-100 img-fluid w-100" />
+          <img src="./assets/images/realproperty-logo.png" alt="logo" class="img-fluid w-100" />
         </a>
 
         <div class="footer-media-icons">
@@ -115,27 +115,26 @@
           <div class="row">
             <ul class="col nav flex-column nav-opacity nav-gap-sm">
 
-              <li class="nav-item d-flex">
-                <div class="icon-box">
+              <li class="nav-item d-flex  align-items-center">
+                <div class="icon-box mb-2">
                   <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100" />
                 </div>
                 <a class="nav-link" href="">
 
                   Budhanilkantha, Kathmandu</a>
               </li>
-              <li class="nav-item d-flex">
-                <div class="icon-box">
+              <li class="nav-item d-flex  align-items-center">
+                <div class="icon-box mb-2">
                   <img src="./assets/images/phone-icon.svg" alt="phone-icon" class="h-100 img-fluid w-100" />
                 </div>
                 <a class="nav-link" href="tel:+977-984-1234567">
                   +977-984-1234567</a>
               </li>
-              <li class="nav-item d-flex">
-                <div class="icon-box">
+              <li class="nav-item d-flex align-items-center">
+                <div class="icon-box mb-2">
                   <img src="./assets/images/mail-icon.svg" alt="gmail-icon" class="h-100 img-fluid w-100" />
                 </div>
-                <a class="nav-link" href="mailto:nirajshrestha539@gmail.com">
-                  nirajshrestha539@gmail.com</a>
+                <a class="nav-link" href="mailto:nirajshrestha539@gmail.com">realproperty@gmail.com</a>
               </li>
 
 

@@ -5,9 +5,8 @@
  * License: https://bootstrapmade.com/license/
  */
 
-
 $(document).ready(function () {
-  $('.property-slider').slick({
+  $(".property-slider").slick({
     dots: true,
     infinite: true,
     autoplay: false,
@@ -17,7 +16,7 @@ $(document).ready(function () {
     slidesToScroll: 1,
     arrows: true,
 
-    height: '100%',
+    height: "100%",
     gap: 10,
 
     responsive: [
@@ -27,8 +26,8 @@ $(document).ready(function () {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
-        }
+          dots: false,
+        },
       },
       {
         breakpoint: 600,
@@ -36,8 +35,9 @@ $(document).ready(function () {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
-        }
+          dots: true,
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -45,19 +45,32 @@ $(document).ready(function () {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
-        }
-      }
+          dots: true,
+          arrows: false,
+        },
+      },
       // You can unslick at a given breakpoint now by adding:
       // settings: "unslick"
       // instead of a settings object
-    ]
+    ],
   });
+
+  // if (window.matchMedia("(max-width: 600px)").matches) {
+  //   $(".new-property-slider").slick({
+  //     dots: true,
+  //     infinite: true,
+  //     autoplay: false,
+  //     speed: 300,
+  //     adaptiveHeight: true,
+  //     slidesToShow: 1,
+  //     slidesToScroll: 1,
+  //     arrows: true,
+
+  //     height: "100%",
+  //     gap: 10,
+  //   });
+  // }
 });
-
-
-
-
 
 (function () {
   "use strict";
@@ -73,8 +86,6 @@ $(document).ready(function () {
       return document.querySelector(el);
     }
   };
-
-
 
   /**
    * Easy event listener function
@@ -96,8 +107,6 @@ $(document).ready(function () {
   const onscroll = (el, listener) => {
     el.addEventListener("scroll", listener);
   };
-
-
 
   /**
    * Toggle .header-scrolled class to #header when page is scrolled
@@ -129,7 +138,6 @@ $(document).ready(function () {
     } else {
       document.body.style.overflow = "auto";
     }
-
   });
 
   // dismiss navbar when I click outside the navbar
@@ -147,10 +155,7 @@ $(document).ready(function () {
         navbarToggle.classList.add("bi-list");
         document.body.style.overflow = "auto";
       });
-
     }
-
-
   });
 
   /**
@@ -167,9 +172,6 @@ $(document).ready(function () {
     },
     true
   );
-
-
-
 
   // Get modal and image elements
   const modal = document.getElementById("imageModal");
@@ -222,29 +224,30 @@ $(document).ready(function () {
   });
 })();
 
-
-
 // custom font size for doctor card
-window.addEventListener('DOMContentLoaded', function () {
-  var doctorNames = document.getElementsByClassName('doctor-name');
+window.addEventListener("DOMContentLoaded", function () {
+  var doctorNames = document.getElementsByClassName("doctor-name");
   for (var i = 0; i < doctorNames.length; i++) {
     while (doctorNames[i].scrollWidth > doctorNames[i].offsetWidth) {
-      var fontSize = parseFloat(window.getComputedStyle(doctorNames[i], null).getPropertyValue('font-size'));
-      doctorNames[i].style.fontSize = (fontSize - 1) + 'px';
+      var fontSize = parseFloat(
+        window
+          .getComputedStyle(doctorNames[i], null)
+          .getPropertyValue("font-size")
+      );
+      doctorNames[i].style.fontSize = fontSize - 1 + "px";
     }
   }
 });
 // custom font size for doctor card end
 
-
 //home hero animated text
-const words = ['HOME', 'RENT'];
+const words = ["HOME", "RENT"];
 let index = 0;
-const animatedWord = document.getElementById('animated-word');
-const cursor = document.querySelector('.cursor');
+const animatedWord = document.getElementById("animated-word");
+const cursor = document.querySelector(".cursor");
 
 function animateWord(word, add, callback) {
-  const letters = word.split('');
+  const letters = word.split("");
   const interval = setInterval(() => {
     if (letters.length === 0) {
       clearInterval(interval);
@@ -269,15 +272,8 @@ function animate() {
   });
 }
 
-
 if (animatedWord) {
-  window.addEventListener('DOMContentLoaded', animate);
+  window.addEventListener("DOMContentLoaded", animate);
 }
 
 //home hero animated text end
-
-
-
-
-
-
