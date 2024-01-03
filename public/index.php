@@ -1,7 +1,16 @@
 <?php
-
-error_reporting(E_ALL);
+  
 session_start();
+error_reporting(E_ALL);
+
+if(isset($_GET['demo'])){
+    $_SESSION['demo'] = true;
+}
+
+if(!isset($_SESSION['demo'])){
+    include('../coming_soon.html');
+    exit();
+}
 
 // always include consoleLog.php file
 include_once('./../core/consoleLog.php');
@@ -10,9 +19,6 @@ include_once('./../core/consoleLog.php');
 if (isset($_GET['logout'])) {
   session_destroy();
 }
-
-
-
 
 
 $availablePages = [

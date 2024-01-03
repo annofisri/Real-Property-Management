@@ -166,7 +166,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'addNew') {
     $data['videos'] = $uploadedFiles['videos'];
     $data['owner_id'] = $_POST['owner_id'] ?? null;
     $data['approve_status'] = $_POST['approve_status'] ?? 'pending'; //pending, approved, rejected
-    $data['visibility_status'] = $_POST['visibility_status'] ?? 0;
+    $data['visibility_status'] = $_POST['visibility_status'] ?? 1;
     $data['price'] = $_POST['price'] ?? 0.00;
     $default_image = 'placeholder.jpg';
     $_default = explode(',', $uploadedFiles['images']);

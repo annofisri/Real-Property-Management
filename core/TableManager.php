@@ -263,18 +263,24 @@ class TableManager
         $images_filename = [];
         $videos_filename = [];
 
+        // var_dump($files);
+
         // Loop through each file
-        foreach ($files as $image => $filename) {
+        foreach ($files as $image => $file) {
             // Generate a unique filename using time() and rand()
-            $uniqueFilename = time() . '_' . rand(1000, 9999) . '_' . $filename['name'];
+            // var_dump($filename);
+            $uniqueFilename = time() . '_' . rand(1000, 9999) . '_' . $file['name'][0];
+            // var_dump($file);
             // Define the target directory
             $targetDirectory = __DIR__ . "/../public/upload/";
 
             // Construct the full path for the uploaded file
             $targetFilePath = $targetDirectory . $uniqueFilename;
 
+            // var_dump($image);
+
             // Check if the file was uploaded successfully
-            if (move_uploaded_file($files[$image]["tmp_name"], $targetFilePath)) {
+            if (move_uploaded_file($files[$image]["tmp_name"][0], $targetFilePath)) {
                 // Determine the file type (image or video) based on the file extension
                 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 

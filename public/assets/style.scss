@@ -663,9 +663,7 @@ a:hover {
 //home hero section
 
 .home-hero {
-  // background: url("image/hero-bg.png") ;
-  //no repeat bg with cover
-  background: url("images/hero-bg.png") no-repeat center center/cover;
+  background: url("images/hero-bg.jpg") no-repeat center center/cover;
   text-align: center;
   padding: 220px 0px;
 
@@ -919,7 +917,7 @@ input[type="radio"]:checked + label {
 //home services section
 
 .home-services {
-  background: url("images/home-services-bg.png") no-repeat center center/cover;
+  background: url("images/home-services-bg.jpg") no-repeat center center/cover;
   padding: 80px 0px;
   text-align: center;
   .title {
@@ -960,7 +958,7 @@ input[type="radio"]:checked + label {
 
 .hero-bg {
   padding: 80px 0px;
-  background: url("images/all-hero-bg.png") no-repeat center center/cover;
+  background: url("images/all-hero-bg.jpg") no-repeat center center/cover;
   .title {
     h1 {
       color: var(--Text-3, #192e3d);
