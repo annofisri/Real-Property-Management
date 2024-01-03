@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../core/consoleLog.php';
 $requestedPage = $_GET['section'] ?? 'properties';
 
 $availablePages = [
-    // 'dashboard' => './sections/dashboard/dashboard.php',
+    'dashboard' => './sections/dashboard/dashboard.php',
     'leads' => './sections/leads/leads.php',
     'properties' => './sections/properties/properties.php',
     'admin' => './sections/admin/admin.php',

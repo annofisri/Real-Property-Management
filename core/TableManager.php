@@ -254,7 +254,7 @@ class TableManager
 
     public function uploadFiles($files)
     {
-        if (!isset($files["images"])) {
+        if (!isset($files["files"])) {
             return null;
         }
 
@@ -263,13 +263,14 @@ class TableManager
         $images_filename = [];
         $videos_filename = [];
 
+        $files = $files['files'];
         // var_dump($files);
 
         // Loop through each file
-        foreach ($files as $image => $file) {
+        foreach ($files["name"] as $key => $value) {
             // Generate a unique filename using time() and rand()
             // var_dump($filename);
-            $uniqueFilename = time() . '_' . rand(1000, 9999) . '_' . $file['name'][0];
+            $uniqueFilename = date('Y') . '_' . time() . '_' . rand(1000, 9999) . '_' . $files['name'][$key];
             // var_dump($file);
             // Define the target directory
             $targetDirectory = __DIR__ . "/../public/upload/";
@@ -280,7 +281,7 @@ class TableManager
             // var_dump($image);
 
             // Check if the file was uploaded successfully
-            if (move_uploaded_file($files[$image]["tmp_name"][0], $targetFilePath)) {
+            if (move_uploaded_file($files["tmp_name"][$key], $targetFilePath)) {
                 // Determine the file type (image or video) based on the file extension
                 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
