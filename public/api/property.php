@@ -78,8 +78,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getSimilarProperties' && isset
 
 //get property by id
 if (isset($_GET['action']) && $_GET['action'] == 'getById' && isset($_GET['id'])) {
-    $settings = [];
-    $settings['where'] = ['p.id' => $_GET['id']];
+    $settings = ['where' => ['id' => $_GET['id']]];
     $result = $tableProperty->getProperties($settings);
     if (!empty($result)) {
         $result = $result[0];
@@ -170,7 +169,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'addNew') {
     $data['videos'] = $uploadedFiles['videos'];
     $data['owner_id'] = $_POST['owner_id'] ?? null;
     $data['approve_status'] = $_POST['approve_status'] ?? 'pending'; //pending, approved, rejected
-    $data['visibility_status'] = $_POST['visibility_status'] ?? 0;
+    $data['visibility_status'] = $_POST['visibility_status'] ?? 1;
     $data['price'] = $_POST['price'] ?? 0.00;
     $default_image = 'placeholder.jpg';
     $_default = explode(',', $uploadedFiles['images']);
@@ -255,6 +254,7 @@ if (isset($_GET['filterProperty'])) {
     if (!empty($searchProperty)) {
         $settings['where']['p.name'] = '%LIKE%' . $searchProperty;
     }
+
 
     $result = $tableProperty->getProperties($settings);
     $output['success'] = true;

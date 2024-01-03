@@ -26,7 +26,7 @@ function navbar()
          
           <li>
             <a class="nav-link scrollto 
-            " href="/properties">Properties</a>
+            " href="/properties?filterProperty&">Properties</a>
          
           <li>
             <a class="nav-link scrollto

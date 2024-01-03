@@ -205,15 +205,15 @@ class TableManager
         $params = [];
 
         foreach ($conditions as $key => $value) {
+            $rand = 'P_' . rand(1000, 9999);
             if (!is_array($value) and strpos($value, '%LIKE%') !== false) {
                 $likeValue = str_replace('%LIKE%', '', $value);
-                $rand = 'L_' . rand(1000, 9999);
                 // Handle LIKE clause
                 $where .= "$key LIKE :$rand AND ";
                 $params[":$rand"] = '%' . $likeValue . '%';
             } elseif (is_array($value)) {
-                $placeholders = implode(', ', array_map(function ($val) use ($key, &$params) {
-                    $paramName = ":{$key}_" . count($params);
+                $placeholders = implode(', ', array_map(function ($val) use ($rand, &$params) {
+                    $paramName = ":{$rand}_" . count($params);
                     $params[$paramName] = $val;
                     return $paramName;
                 }, $value));
@@ -221,8 +221,8 @@ class TableManager
                 $where .= "$key IN ($placeholders) AND ";
             } else {
                 // Handle simple key-value pairs with AND
-                $where .= "$key = :$key AND ";
-                $params[":$key"] = $value;
+                $where .= "$key = :$rand AND ";
+                $params[":$rand"] = $value;
             }
         }
 
@@ -263,18 +263,24 @@ class TableManager
         $images_filename = [];
         $videos_filename = [];
 
+        // var_dump($files);
+
         // Loop through each file
-        foreach ($files as $image => $filename) {
+        foreach ($files as $image => $file) {
             // Generate a unique filename using time() and rand()
-            $uniqueFilename = time() . '_' . rand(1000, 9999) . '_' . $filename['name'];
+            // var_dump($filename);
+            $uniqueFilename = time() . '_' . rand(1000, 9999) . '_' . $file['name'][0];
+            // var_dump($file);
             // Define the target directory
             $targetDirectory = __DIR__ . "/../public/upload/";
 
             // Construct the full path for the uploaded file
             $targetFilePath = $targetDirectory . $uniqueFilename;
 
+            // var_dump($image);
+
             // Check if the file was uploaded successfully
-            if (move_uploaded_file($files[$image]["tmp_name"], $targetFilePath)) {
+            if (move_uploaded_file($files[$image]["tmp_name"][0], $targetFilePath)) {
                 // Determine the file type (image or video) based on the file extension
                 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 

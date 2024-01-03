@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['id'])) {
     header('location:login.php');
     exit;
@@ -10,7 +9,6 @@ if (isset($_GET['logout'])) {
     header('location:login.php');
     exit;
 }
-
 require_once __DIR__ . '/../../core/TableManager.php';
 require_once __DIR__ . '/../../core/consoleLog.php';
 

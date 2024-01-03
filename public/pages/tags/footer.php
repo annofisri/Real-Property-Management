@@ -30,49 +30,10 @@
       </div>
 
       <div class="col-12 row footer-body">
-        <div class="col-lg-5 col-md-8 ">
+        <div class="col-lg-5 col-md-8" id="recently-viewed-list">
           <h6 class="title pb-3">Recently Viewed</h6>
 
           <ul class="col nav flex-column nav-opacity nav-gap-sm gap-3">
-            <li class="nav-item recently-viewed-product-card">
-              <div class="product-img">
-                <img src="./assets/images/product-img.png" alt="produt-img">
-
-              </div>
-
-              <div class="product-details">
-
-                <p class="product-price">Rs. 1,50,00,000</p>
-                <p class="product-name">Beautiful Small Apartment</p>
-                <p class="product-location">Budhanilkantha, Kathmandu</p>
-              </div>
-            </li>
-            <li class="nav-item recently-viewed-product-card">
-              <div class="product-img">
-                <img src="./assets/images/product-img.png" alt="produt-img">
-
-              </div>
-
-              <div class="product-details">
-
-                <p class="product-price">Rs. 1,50,00,000</p>
-                <p class="product-name">Beautiful Small Apartment</p>
-                <p class="product-location">Budhanilkantha, Kathmandu</p>
-              </div>
-            </li>
-            <li class="nav-item recently-viewed-product-card">
-              <div class="product-img">
-                <img src="./assets/images/product-img.png" alt="produt-img">
-
-              </div>
-
-              <div class="product-details">
-
-                <p class="product-price">Rs. 1,50,00,000</p>
-                <p class="product-name">Beautiful Small Apartment</p>
-                <p class="product-location">Budhanilkantha, Kathmandu</p>
-              </div>
-            </li>
 
           </ul>
         </div>
@@ -97,7 +58,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/properties">
+                <a class="nav-link" href="/properties?filterProperty&">
                   Properties
                 </a>
               </li>

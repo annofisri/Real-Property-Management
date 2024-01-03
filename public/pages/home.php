@@ -116,7 +116,7 @@
                     <h2 class="title mb-0">
                         Featured Property
                     </h2>
-                    <a href="/properties" class="see-more-btn d-flex" style="color:white;">
+                    <a href="/properties?filterProperty&is_featured" class="see-more-btn d-flex" style="color:white;">
                         <div>
                             See More
                         </div>
@@ -136,12 +136,26 @@
     </section>
 
 
-    <section class="new-listed-properties">
+    <section class="featured-properties new-listed-properties">
         <div class="container">
             <div class="row">
-                <p2 class="title col-md-12">
-                    New Listed
-                </p2>
+                <div class="col-md-12">
+                    <div class="d-flex gap-3">
+                        <h2 class="title mb-0">
+                            New Listed
+                        </h2>
+                        <a href="/properties?filterProperty&is_new" class="see-more-btn d-flex" style="color:white;">
+                            <div>
+                                See More
+                            </div>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                                <path d="M6.75 14.3813L11.25 9.88135L6.75 5.38135" stroke="#F6F6F6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="row new-property-slider" id="new_section">
 
@@ -226,10 +240,11 @@
                         $featured_slider.empty();
                         if (featuredProperties.length > 0) {
                             featuredProperties.forEach(property => {
-                                $featured_slider.append(`<div class="card property-card" style="width: 306px;">
+                                $featured_slider.append(`
+                                <div class="card property-card" style="width: 306px;">
                                     <div class="card-img-top position-relative" >
                                     <div class="property-type ${property.type}"><span class="text-capitalize">For ${property.type}</span></div>
-                                    <img src="./assets/images/${property.default_image || 'placeholder.jpg'}" alt="product-img" class="img-fluid w-100 h-100">
+                                    <img src="/upload/${property.default_image || 'placeholder.jpg'}" alt="product-img" class="img-fluid w-100 h-100">
                                     <div class="property-id d-flex justify-content-end p-2">ID: ${property.id}</div>
 
                                     <div class="property-category">${property.category_name}</div>
@@ -246,7 +261,8 @@
                                     <p class="card-text">Rs. ${property.price}</p>
                                     <a href="/property-single?id=${property.id}" class="view-details-btn">View Details</a>
                                     </div>
-                                </div>`);
+                                </div>
+                                `);
                             });
                         }
 
@@ -320,8 +336,8 @@
                                         ${property.category_name}
                                     </div>
                                     <div class="property-id position-absolute new-listed-id end-0">ID: ${property.id}</div>
-                                    <img src="./assets/images/${property.default_image || 'placeholder.jpg'}" class="property-img" alt="...">
-                                    <div class="new-listed-card-body position-relative">
+                                    <img src="/upload/${property.default_image || 'placeholder.jpg'}" class="property-img" alt="...">
+                                    <div class="new-listed-card-body">
                                         <h5 class="new-listed-card-title">${property.address}</h5>
                                         <div class="location d-flex">
                                             <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 " />

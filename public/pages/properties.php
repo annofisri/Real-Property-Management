@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="filters col-md-3">
-                    <form id="filter_form">
+                    <form id="filter_form" class="pe-3">
                         <h5 class="title">
                             Filter Properties
                         </h5>
@@ -104,32 +104,6 @@
                         </div>
 
                         <div class="row" id="property-list">
-                            <div class="col-md-4">
-                                <div class="property-item">
-                                    <div class="card property-card" style="width: 306px;">
-                                        <div class="card-img-top position-relative">
-                                            <div class="property-type sale">
-                                                For sale
-                                            </div>
-                                            <img src="./assets/images/placeholder.jpg" alt="product-img" class="img-fluid w-100 h-100">
-                                            <div class="property-id d-flex justify-content-end p-2">
-                                                ID: 8
-                                            </div>
-                                        </div>
-                                        <div class="card-body ">
-                                            <h5 class="card-title">Bhat Bhateni</h5>
-                                            <div class="d-flex location">
-                                                <div class="icon-box">
-                                                    <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100">
-                                                </div>
-                                                <div>Pokhara</div>
-                                            </div>
-                                            <p class="card-text">Rs. 36544000.00</p>
-                                            <a href="/property-single?id=8" class="view-details-btn">View Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                         <div class="pagination-section">
@@ -225,7 +199,7 @@
                                             <div class="property-type ${property.type}">
                                                 For ${property.type}
                                             </div>
-                                            <img src="./assets/images/${property.default_image || "placeholder.jpg"}" alt="product-img" class="img-fluid w-100 h-100">
+                                            <img src="/upload/${property.default_image || "placeholder.jpg"}" alt="product-img" class="img-fluid w-100 h-100">
                                             <div class="property-id d-flex justify-content-end p-2">
                                                 ID: ${property.id}
                                             </div>

@@ -11,7 +11,7 @@ $current_page = str_replace(['add-', 'edit-', '-details', '-stall'], '', $curren
     <a href="/">
         <div class="logo-image" style="height:125px;">
             <div class="logo h-100 w-100">
-                <img src="./assets/images/realproperty-logo.png" alt="" style="object-fit: cover;" class="blend">
+                <img src="./assets/images/realproperty-logo.jpg" alt="" style="object-fit: cover;" class="blend">
             </div>
         </div>
     </a>
