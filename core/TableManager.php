@@ -205,15 +205,15 @@ class TableManager
         $params = [];
 
         foreach ($conditions as $key => $value) {
+            $rand = 'P_' . rand(1000, 9999);
             if (!is_array($value) and strpos($value, '%LIKE%') !== false) {
                 $likeValue = str_replace('%LIKE%', '', $value);
-                $rand = 'L_' . rand(1000, 9999);
                 // Handle LIKE clause
                 $where .= "$key LIKE :$rand AND ";
                 $params[":$rand"] = '%' . $likeValue . '%';
             } elseif (is_array($value)) {
-                $placeholders = implode(', ', array_map(function ($val) use ($key, &$params) {
-                    $paramName = ":{$key}_" . count($params);
+                $placeholders = implode(', ', array_map(function ($val) use ($rand, &$params) {
+                    $paramName = ":{$rand}_" . count($params);
                     $params[$paramName] = $val;
                     return $paramName;
                 }, $value));
@@ -221,8 +221,8 @@ class TableManager
                 $where .= "$key IN ($placeholders) AND ";
             } else {
                 // Handle simple key-value pairs with AND
-                $where .= "$key = :$key AND ";
-                $params[":$key"] = $value;
+                $where .= "$key = :$rand AND ";
+                $params[":$rand"] = $value;
             }
         }
 

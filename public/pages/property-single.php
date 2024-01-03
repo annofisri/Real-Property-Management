@@ -249,8 +249,8 @@
         var currentIndex = 0;
 
         //get property id from url
-        var url = window.location.href;
-        const propertyId = url.split('?')[1].split('=')[1];
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = parseInt(urlParams.get('id'));
 
         //function to get all the property details by id
         function getPropertyDetails(propertyId) {
@@ -258,10 +258,11 @@
                 url: '/api/property.php?action=getById&id=' + propertyId,
                 method: 'GET',
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.success) {
                         var property = response.data;
-                        console.log(property);
+                        saveVisitedPage(property);
+                        // console.log(property);
                         $('.data').each(function() {
                             var key = $(this).data('key');
                             $(this).text(': ' + property[key]);
@@ -307,7 +308,7 @@
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    // console.log(error);
                     toastr.error('Something went wrong!');
                 }
             });
@@ -329,10 +330,10 @@
                 url: '/api/property.php?action=getSimilarProperties&id=' + propertyId,
                 method: 'GET',
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.success) {
                         var properties = response.data;
-                        console.log(properties);
+                        // console.log(properties);
                         $('.similar-properties .row').empty();
                         properties.forEach(function(property) {
                             $('.similar-properties .row').append(
@@ -363,12 +364,25 @@
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    // console.log(error);
                     toastr.error('Something went wrong!');
                 }
             });
         }
 
+        // for handling recent visited pages
+        function saveVisitedPage(property) {
+            let visitedPages = JSON.parse(localStorage.getItem('visitedPages')) || [];
+            const index = visitedPages.findIndex((page) => page.id === propertyId);
+            if (index !== -1) {
+                visitedPages.splice(index, 1);
+            }
+
+            visitedPages.unshift(property);
+            const maxSize = 3;
+            visitedPages = visitedPages.slice(0, maxSize);
+            localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
+        }
 
 
         $(document).ready(function() {

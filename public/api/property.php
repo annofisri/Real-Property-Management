@@ -78,7 +78,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getSimilarProperties' && isset
 
 //get property by id
 if (isset($_GET['action']) && $_GET['action'] == 'getById' && isset($_GET['id'])) {
-    $settings = ['where' => ['id' => $_GET['id']]];
+    $settings = ['where' => ['p.id' => $_GET['id']]];
     $result = $tableProperty->getProperties($settings);
     if (!empty($result)) {
         $result = $result[0];
@@ -255,7 +255,7 @@ if (isset($_GET['filterProperty'])) {
         $settings['where']['p.name'] = '%LIKE%' . $searchProperty;
     }
 
-    var_dump($settings);
+    // var_dump($settings);
 
     $result = $tableProperty->getProperties($settings);
     $output['success'] = true;

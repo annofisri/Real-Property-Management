@@ -1,10 +1,3 @@
-/**
- * Template Name: Arsha
- * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
- */
-
 
 $(document).ready(function () {
   $('.property-slider').slick({
@@ -53,6 +46,34 @@ $(document).ready(function () {
       // instead of a settings object
     ]
   });
+
+  if($('#recently-viewed-list')){
+    const $container = $('#recently-viewed-list');
+    let visitedPages = JSON.parse(localStorage.getItem('visitedPages')) || [];
+    const $ul = $container.find('ul');
+
+    if(visitedPages.length){
+      $container.removeClass('invisible');
+      visitedPages.forEach(property => {
+        $ul.append(`
+        <li class="nav-item recently-viewed-product-card">
+          <div class="product-img">
+            <img src="/upload/${property.default_image || 'placeholder.jpg'}" alt="${property.name}">
+          </div>
+          <div class="product-details">
+            <p class="product-price">Rs. ${property.price}</p>
+            <p class="product-name">${property.name}</p>
+            <p class="product-location">${property.address}, ${property.city_name}</p>
+          </div>
+        </li>
+        `);
+      });
+    }else{
+      $container.addClass('invisible');
+    }
+
+  }
+
 });
 
 
