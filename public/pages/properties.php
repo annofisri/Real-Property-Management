@@ -39,11 +39,11 @@
                         </h6>
                         <div class="property-status-btns d-flex gap-3">
                             <label for="checkbox-rent">
-                                <input type="checkbox" id="checkbox-rent" name="type[]" value="rent" checked>
+                                <input type="checkbox" id="checkbox-rent" name="type[]" value="rent">
                                 <div class="property-status-btn checkbox-btn">Rent</div>
                             </label>
                             <label for="checkbox-sale">
-                                <input type="checkbox" id="checkbox-sale" name="type[]" value="sale" checked>
+                                <input type="checkbox" id="checkbox-sale" name="type[]" value="sale">
                                 <div class="property-status-btn checkbox-btn">Sale</div>
                             </label>
                         </div>
@@ -52,15 +52,15 @@
                         </h6>
                         <div class="property-category-btns">
                             <label for="checkbox-cat-1" class="mb-3">
-                                <input type="checkbox" id="checkbox-cat-1" name="category_id[]" value="1" checked>
+                                <input type="checkbox" id="checkbox-cat-1" name="category_id[]" value="1">
                                 <div class="property-status-btn checkbox-btn">House</div>
                             </label>
                             <label for="checkbox-cat-2" class="mb-3">
-                                <input type="checkbox" id="checkbox-cat-2" name="category_id[]" value="2" checked>
+                                <input type="checkbox" id="checkbox-cat-2" name="category_id[]" value="2">
                                 <div class="property-status-btn checkbox-btn">Appartment</div>
                             </label>
                             <label for="checkbox-cat-3" class="mb-3">
-                                <input type="checkbox" id="checkbox-cat-3" name="category_id[]" value="3" checked>
+                                <input type="checkbox" id="checkbox-cat-3" name="category_id[]" value="3">
                                 <div class="property-status-btn checkbox-btn">Housing Colony</div>
                             </label>
                         </div>
