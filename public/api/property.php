@@ -78,7 +78,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getSimilarProperties' && isset
 
 //get property by id
 if (isset($_GET['action']) && $_GET['action'] == 'getById' && isset($_GET['id'])) {
-    $settings = ['where' => ['id' => $_GET['id']]];
+    $settings = ['where' => ['p.id' => $_GET['id']]];
     $result = $tableProperty->getProperties($settings);
     if (!empty($result)) {
         $result = $result[0];
@@ -227,6 +227,8 @@ if (isset($_GET['filterProperty'])) {
 
     $types = $_GET['type'] ?? [];
     $category_ids = $_GET['category_id'] ?? [];
+    $isFeatured = $_GET['is_featured'] ?? '';
+    $isNew = $_GET['is_new'] ?? '';
     $searchProperty = $_GET['searchProperty'] ?? '';
     $sortBy = $_GET['sortBy'] ?? '';
 
@@ -247,6 +249,12 @@ if (isset($_GET['filterProperty'])) {
     }
     if (!empty($category_ids)) {
         $settings['where']['category_id'] = $category_ids;
+    }
+    if (!empty($isFeatured)) {
+        $settings['where']['is_featured'] = 1;
+    }
+    if (!empty($isNew)) {
+        $settings['where']['is_new'] = 1;
     }
     if (!empty($sortBy)) {
         $settings['order_by'] = $order_by;
