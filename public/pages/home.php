@@ -38,8 +38,11 @@
 
                 <div class="animated-text pb-4">
                     <span class="">LETS FIND A </span>
-                    <span id="animated-word"></span><span class="cursor">|</span>
-                    <span class=""> FOR YOU!</span>
+                    <div class=" animated-texts">
+                        <span id="animated-word"></span><span class="cursor">|</span>
+                        <span class="for-text">FOR</span>
+                    </div>
+                    <div class="you-text">YOU!</div>
                 </div>
 
 
@@ -109,11 +112,11 @@
     <section class="featured-properties">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 d-flex mb-4 gap-3">
+                <div class="col-md-12 d-flex mb-4 gap-3 featured-properties-head">
                     <h2 class="title mb-0">
                         Featured Property
                     </h2>
-                    <a href="/properties" class="see-more-btn d-flex" style="color:white;">
+                    <a href="/properties?filterProperty&is_featured" class="see-more-btn d-flex" style="color:white;">
                         <div>
                             See More
                         </div>
@@ -133,15 +136,29 @@
     </section>
 
 
-    <section class="new-listed-properties">
+    <section class="featured-properties new-listed-properties">
         <div class="container">
             <div class="row">
-                <p2 class="title col-md-12">
-                    New Listed
-                </p2>
+                <div class="col-md-12">
+                    <div class="d-flex gap-3">
+                        <h2 class="title mb-0">
+                            New Listed
+                        </h2>
+                        <a href="/properties?filterProperty&is_new" class="see-more-btn d-flex" style="color:white;">
+                            <div>
+                                See More
+                            </div>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                                <path d="M6.75 14.3813L11.25 9.88135L6.75 5.38135" stroke="#F6F6F6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="row" id="new_section">
-                
+            <div class="row new-property-slider" id="new_section">
+
             </div>
         </div>
     </section>
@@ -223,7 +240,8 @@
                         $featured_slider.empty();
                         if (featuredProperties.length > 0) {
                             featuredProperties.forEach(property => {
-                                $featured_slider.append(`<div class="card property-card" style="width: 306px;">
+                                $featured_slider.append(`
+                                <div class="card property-card" style="width: 306px;">
                                     <div class="card-img-top position-relative" >
                                     <div class="property-type ${property.type}"><span class="text-capitalize">For ${property.type}</span></div>
                                     <img src="/upload/${property.default_image || 'placeholder.jpg'}" alt="product-img" class="img-fluid w-100 h-100">
@@ -243,7 +261,8 @@
                                     <p class="card-text">Rs. ${property.price}</p>
                                     <a href="/property-single?id=${property.id}" class="view-details-btn">View Details</a>
                                     </div>
-                                </div>`);
+                                </div>
+                                `);
                             });
                         }
 
@@ -275,7 +294,8 @@
                                         slidesToShow: 1,
                                         slidesToScroll: 1,
                                         infinite: true,
-                                        dots: false
+                                        dots: true,
+                                        arrows: false
                                     }
                                 },
                                 {
@@ -284,7 +304,8 @@
                                         slidesToShow: 1,
                                         slidesToScroll: 1,
                                         infinite: true,
-                                        dots: false
+                                        dots: true,
+                                        arrows: false
                                     }
                                 }
                                 // You can unslick at a given breakpoint now by adding:
@@ -309,7 +330,7 @@
 
                         newProperties.forEach(property => {
                             $new_section.append(`
-                            <div class="col-md-6">
+                            <div class="col-lg-6">
                                 <div class="new-listed-card d-flex flex-row position-relative">
                                     <div class="property-category">
                                         ${property.category_name}
@@ -324,7 +345,7 @@
                                         </div>
                                         <div class="new-listed-card-text price">Rs. ${property.price}/-</div>
                                         <div class="new-listed-card-text size">${property.contract}</div>
-                                        <a href="/property-single?id=${property.id}" class="default-btn">View Details</a>
+                                        <a href="/property-single?id=${property.id}" class="default-btn new-listed-see-details-btn position-absolute bottom-0 mb-3">View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -335,7 +356,7 @@
                 });
             }
 
-            function init(){
+            function init() {
                 getFeaturedProperties();
                 getNewProperties();
             }

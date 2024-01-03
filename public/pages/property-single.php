@@ -34,19 +34,7 @@
                                 <button class="arrow right-arrow">&gt;</button>
                             </div>
                             <div class="thumbnails">
-                                <!-- <img class="thumbnail" src="./assets/images/gallery-img-1.jpg" alt="Image 1">
-                                <img class="thumbnail" src="./assets/images/gallery-img-2.jpg" alt="Image 2">
-                                <img class="thumbnail" src="./assets/images/gallery-img-3.jpg" alt="Image 3">
-                                <img class="thumbnail" src="./assets/images/gallery-img-1.jpg" alt="Image 1">
-                                <img class="thumbnail" src="./assets/images/gallery-img-2.jpg" alt="Image 2">
-                                <img class="thumbnail" src="./assets/images/gallery-img-3.jpg" alt="Image 3">
-                                <img class="thumbnail" src="./assets/images/gallery-img-1.jpg" alt="Image 1">
-                                <img class="thumbnail" src="./assets/images/gallery-img-2.jpg" alt="Image 2">
-                                <img class="thumbnail" src="./assets/images/gallery-img-3.jpg" alt="Image 3">
-                                <img class="thumbnail" src="./assets/images/gallery-img-1.jpg" alt="Image 1">
-                                <img class="thumbnail" src="./assets/images/gallery-img-2.jpg" alt="Image 2">
-                                <img class="thumbnail" src="./assets/images/gallery-img-3.jpg" alt="Image 3"> -->
-                                <!-- Add more thumbnails as needed -->
+
                             </div>
                         </div>
 

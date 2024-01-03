@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="filters col-md-3">
-                    <form id="filter_form">
+                    <form id="filter_form" class="pe-3">
                         <h5 class="title">
                             Filter Properties
                         </h5>
@@ -50,16 +50,16 @@
                         <h6 class="property-category">
                             Property Category
                         </h6>
-                        <div class="property-category-btn d-flex flex-column gap-2">
-                            <label for="checkbox-cat-1">
+                        <div class="property-category-btns">
+                            <label for="checkbox-cat-1" class="mb-3">
                                 <input type="checkbox" id="checkbox-cat-1" name="category_id[]" value="1" checked>
                                 <div class="property-status-btn checkbox-btn">House</div>
                             </label>
-                            <label for="checkbox-cat-2">
+                            <label for="checkbox-cat-2" class="mb-3">
                                 <input type="checkbox" id="checkbox-cat-2" name="category_id[]" value="2" checked>
                                 <div class="property-status-btn checkbox-btn">Appartment</div>
                             </label>
-                            <label for="checkbox-cat-3">
+                            <label for="checkbox-cat-3" class="mb-3">
                                 <input type="checkbox" id="checkbox-cat-3" name="category_id[]" value="3" checked>
                                 <div class="property-status-btn checkbox-btn">Housing Colony</div>
                             </label>
@@ -142,11 +142,9 @@
     <?php include_once './includes/scripts.php'; ?>
 
     <script>
-        
-
         $(document).ready(function() {
 
-            $('#filter_form').on('click', '.checkbox', function(){
+            $('#filter_form').on('click', '.checkbox', function() {
                 $(this).prop('checked', !$(this).prop('checked'));
             });
 
@@ -158,10 +156,10 @@
                 const sortBy = $('#sort_by').val();
                 let formData = 'filterProperty&';
                 formData += $('#filter_form').serialize();
-                if(searchProperty){
+                if (searchProperty) {
                     formData += `&searchProperty=${encodeURIComponent(searchProperty)}`;
                 }
-                if(sortBy){
+                if (sortBy) {
                     formData += `&sortBy=${encodeURIComponent(sortBy)}`;
                 }
 
@@ -179,22 +177,22 @@
                     error: function(error) {
                         console.error('Error:', error);
                     },
-                    complete: function(){
+                    complete: function() {
                         $('#property-list').removeClass('opacity-05');
                     }
                 });
             }
 
             handleChange();
-            
+
             $('#filter_form input, #sort_by, #search-property').on('change', handleChange);
 
             function getPropertiesByFilter() {
                 $('#property-list').empty();
-                if(properties.length > 0){
+                if (properties.length > 0) {
                     properties.forEach(property => {
                         $('#property-list').append(`
-                            <div class="col-md-4">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="property-item">
                                     <div class="card property-card">
                                         <div class="card-img-top position-relative">
@@ -222,7 +220,7 @@
                             </div>
                         `);
                     });
-                }else{
+                } else {
                     $('#property-list').html('<div class="alert alert-info">No property found. Try changing your filter criteria.</div>');
                 }
             }
