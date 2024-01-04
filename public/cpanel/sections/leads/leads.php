@@ -53,6 +53,8 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Message</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Property Id</th>
                         </tr>
                     </thead>
                     <tbody class="table-body">
@@ -102,6 +104,12 @@
                                 </td>
                                 <td>
                                     ${item.message}
+                                </td>
+                                <td>
+                                    ${item.type}
+                                </td>
+                                <td>
+                                    ${item.property_id}
                                 </td>
                             `)
                         })

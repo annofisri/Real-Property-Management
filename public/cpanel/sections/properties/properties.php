@@ -132,7 +132,9 @@
                         <div class="col-md-12 row">
                             <div class="col-md-4">
                                 <label for="clientInfo" class="form-label">Client Info*</label>
-                                <input type="text" class="form-control" id="clientInfo" name="owner_id" required>
+                                <select id="clientInfo" class="form-select" name="owner_id" required>
+
+                                </select>
                             </div>
                             <div class="col-md-2 pe-0">
                                 <label for="approveStatus" class="form-label">Approve Status*</label>
@@ -195,8 +197,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="contractTerms" class="form-label">Contract Terms*</label>
-                                    <input type="text" class="form-control" id="contractTerms" name="contract_term" required>
+                                    <label for="contractTerms" class="form-label">Contract Terms (Rent) </label>
+                                    <input type="text" class="form-control" id="contractTerms" name="contract_term">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="totalStoreys" class="form-label">Total Storeys</label>
@@ -205,6 +207,14 @@
                                 <div class="col-md-4">
                                     <label for="price" class="form-label">Price*</label>
                                     <input type="number" class="form-control" id="price" name="price" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="visibility_status" class="form-label">Visibility Status*</label>
+                                    <select id="visibility_status" class="form-select" name="visibility_status" required>
+                                        <option value="">Choose...</option>
+                                        <option value="1">Visible</option>
+                                        <option value="0">Hidden</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-12">
@@ -356,7 +366,11 @@
                         <div class="col-md-12 row">
                             <div class="col-md-4" data-key="owner_id">
                                 <label for="clientInfo" class="form-label">Client Info*</label>
-                                <input type="text" class="form-control" id="clientInfo" name="owner_id" required>
+
+                                <select id="clientInfo" class="form-select" name="owner_id" required>
+
+                                </select>
+
                             </div>
                             <div class="col-md-2 pe-0" data-key="approve_status">
                                 <label for="approveStatus" class="form-label">Approve Status*</label>
@@ -420,8 +434,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4" data-key="contract_term">
-                                    <label for="contractTerms" class="form-label">Contract Terms*</label>
-                                    <input type="text" class="form-control" id="contractTerms" name="contract_term" required>
+                                    <label for="contractTerms" class="form-label">Contract Terms (Rent)</label>
+                                    <input type="text" class="form-control" id="contractTerms" name="contract_term">
                                 </div>
                                 <div class="col-md-4" data-key="storey">
                                     <label for="totalStoreys" class="form-label">Total Storeys</label>
@@ -430,6 +444,15 @@
                                 <div class="col-md-4" data-key="price">
                                     <label for="price" class="form-label">Price*</label>
                                     <input type="number" class="form-control" id="price" name="price" required>
+                                </div>
+
+                                <div class="col-md-4" data-key="visibility_status">
+                                    <label for="visibility_status" class="form-label">Visibility Status*</label>
+                                    <select id="visibility_status" class="form-select" name="visibility_status" required>
+                                        <option value="">Choose...</option>
+                                        <option value="1">Visible</option>
+                                        <option value="0">Hidden</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-12">
@@ -709,7 +732,7 @@
                                 <div class="col-md-12">
                                     <div class="detail">
                                         <div class="property-info-name">
-                                            Contract Terms
+                                            Contract Terms (Rent)
                                         </div>
                                         <div class="property-info-value" data-key="contract_term">
                                         </div>
@@ -790,6 +813,64 @@
     <?php include_once('./includes/scripts.php'); ?>
 
     <script>
+        //fetch categories dynamically
+        function fetchAndSetCategories() {
+            $.ajax({
+                url: '/api/category.php?action=getAll',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        let categories = response.data;
+                        let propertyCategoryAdd = $('#addPropertyForm #propertyCategory');
+                        let propertyCategoryEdit = $('#editPropertyForm #propertyCategory');
+                        propertyCategoryAdd.empty();
+                        propertyCategoryEdit.empty();
+                        propertyCategoryAdd.append(`<option value="">Choose...</option>`);
+                        propertyCategoryEdit.append(`<option value="">Choose...</option>`);
+                        categories.forEach((category, index) => {
+                            let categoryOption = `<option value="${category.id}">${category.name}</option>`;
+                            propertyCategoryAdd.append(categoryOption);
+                            propertyCategoryEdit.append(categoryOption);
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        //function to fetch and set client info
+        function fetchAndSetClientInfo() {
+            $.ajax({
+                url: '/api/property-owners.php?action=getAll',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        let clients = response.data;
+                        let clientInfoAdd = $('#addPropertyForm #clientInfo');
+                        let clientInfoEdit = $('#editPropertyForm #clientInfo');
+
+                        clientInfoAdd.empty();
+                        clientInfoEdit.empty();
+                        clientInfoAdd.append(`<option value="">Choose...</option>`);
+                        clientInfoEdit.append(`<option value="">Choose...</option>`);
+                        clients.forEach((client, index) => {
+                            let clientOption = `<option value="${client.id}">${client.name}</option>`;
+                            clientInfoAdd.append(clientOption);
+                            clientInfoEdit.append(clientOption);
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
         // function to show add property
         function showAddProperty() {
             $('#addProperty').removeClass('d-none');
@@ -883,6 +964,17 @@
             //fetch and set properties on page load
             fetchAndSetProperties();
 
+            //fetch and set client info and categories on page load
+            $('#addPropertyForm').ready(function() {
+                fetchAndSetClientInfo();
+                fetchAndSetCategories();
+
+            });
+            $('#editPropertyForm').ready(function() {
+                fetchAndSetClientInfo();
+                fetchAndSetCategories();
+            });
+
 
             //on click of save and publish button of add property form
             $('#addPropertyForm').on('submit', function(e) {
@@ -956,6 +1048,17 @@
 
             // show hide sections            
             $('.property-back-btn').click(function() {
+
+                //reset all input fields of add property
+                $('#addPropertyForm input').val('');
+                $('#addPropertyForm textarea').val('');
+                $('#addPropertyForm select').val('');
+                $('#addPropertyForm .images-viewer .row').html('');
+                //reset all input fields of edit property
+                $('#editPropertyForm input').val('');
+                $('#editPropertyForm textarea').val('');
+                $('#editPropertyForm select').val('');
+                $('#editPropertyForm .images-viewer .row').html('');
                 fetchAndSetProperties();
                 showPropertyHome();
             });
@@ -1186,7 +1289,7 @@
                             let date = new Date(property.created_at);
                             let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
-                            // console.log(property);
+                            console.log(property);
 
 
                             //select all divs inside edit property form with data-key attribute

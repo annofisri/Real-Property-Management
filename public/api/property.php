@@ -105,6 +105,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'updateById' && isset($_GET['id
     //TODO: update property by id
     //TODO: check user login status
 
+    $thisProperty = $tableProperty->getById($_GET['id']);
+
     $data = [];
     $data['id'] = $_GET['id'] ?? null;
     $data['name'] = $_POST['name'] ?? null;
@@ -129,6 +131,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'updateById' && isset($_GET['id
     $data['price'] = $_POST['price'] ?? 0.00;
     $data['default_image'] = $_FILES['default_image'] ?? null;
     $data['city_id'] = $_POST['city_id'] ?? null;
+
+
+    if(!isset($_FILES['images'])){
+        $data['images'] = $thisProperty['images'];
+    }
 
     //required fields : id, name, category_id, type, address, price, city_id, owner_id
     if (!$data['id'] || !$data['name'] || !$data['category_id'] || !$data['type'] || !$data['address'] || !$data['price'] || !$data['city_id'] || !$data['owner_id']) {

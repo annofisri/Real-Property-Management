@@ -51,18 +51,7 @@
                             Property Category
                         </h6>
                         <div class="property-category-btns">
-                            <label for="checkbox-cat-1" class="mb-3">
-                                <input type="checkbox" id="checkbox-cat-1" name="category_id[]" value="1">
-                                <div class="property-status-btn checkbox-btn">House</div>
-                            </label>
-                            <label for="checkbox-cat-2" class="mb-3">
-                                <input type="checkbox" id="checkbox-cat-2" name="category_id[]" value="2">
-                                <div class="property-status-btn checkbox-btn">Appartment</div>
-                            </label>
-                            <label for="checkbox-cat-3" class="mb-3">
-                                <input type="checkbox" id="checkbox-cat-3" name="category_id[]" value="3">
-                                <div class="property-status-btn checkbox-btn">Housing Colony</div>
-                            </label>
+
                         </div>
                     </form>
                 </div>
@@ -97,10 +86,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
-
-
                         </div>
 
                         <div class="row" id="property-list">
@@ -142,7 +127,35 @@
     <?php include_once './includes/scripts.php'; ?>
 
     <script>
+
+        //fetch categories dynamically
+        function fetchAndSetCategories() {
+            $.ajax({
+                url: '/api/category.php?action=getAll',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        $('.property-category-btns').html('');
+                        response.data.forEach((item, index) => {
+                            $('.property-category-btns').append(`
+                                <label for="checkbox-cat-${item.id}" class="mb-3">
+                                    <input type="checkbox" id="checkbox-cat-${item.id}" name="category_id[]" value="${item.id}">
+                                    <div class="property-status-btn checkbox-btn">${item.name}</div>
+                                </label>
+                            `)
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
         $(document).ready(function() {
+            //get categories dynamically
+            $('body').on('load', fetchAndSetCategories());
 
             $('#filter_form').on('click', '.checkbox', function() {
                 $(this).prop('checked', !$(this).prop('checked'));
@@ -184,8 +197,8 @@
             }
 
             handleChange();
-
-            $('#filter_form input, #sort_by, #search-property').on('change', handleChange);
+            //handle filter change for dynamic filters
+            $('body').on('change', '#filter_form input, #sort_by, #search-property', handleChange);
 
             function getPropertiesByFilter() {
                 $('#property-list').empty();

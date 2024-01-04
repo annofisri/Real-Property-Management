@@ -82,6 +82,7 @@
   <?php include_once('./includes/scripts.php'); ?>
 
   <script>
+    let categoryId;
     // function to show add category
     function showAddCategory() {
       $('#addCategory').removeClass('d-none');
@@ -211,10 +212,8 @@
         //check validity
         if (this.checkValidity()) {
           let formData = new FormData(this);
-          //get id from form data
-          let id = formData.get('id');
           $.ajax({
-            url: '/api/category.php?action=updateById&id=' + id,
+            url: '/api/category.php?action=updateById&id=' + categoryId,
             method: 'POST',
             data: formData,
             dataType: 'json',
@@ -262,10 +261,9 @@
         fetchAndSetcategories();
         showCategoryHome();
       });
-
       //on click of view category button on action column of categories table
       $('body').on('click', '.view-category', function() {
-        let categoryId = $(this).data('categories-id');
+        categoryId = $(this).data('categories-id');
         console.log(categoryId);
 
         $.ajax({
@@ -339,7 +337,7 @@
 
       //on click of edit category button on action column of categories table
       $('body').on('click', '.edit-category', function() {
-        let categoryId = $(this).data('categories-id');
+        categoryId = $(this).data('categories-id');
 
         $.ajax({
           url: '/api/category.php?action=getById&id=' + categoryId,
@@ -385,8 +383,7 @@
 
       //on click of delete category button on action column of categories table
       $('body').on('click', '.delete-category', function() {
-        let categoryId = $(this).data('categories-id');
-        console.log(categoryId);
+        categoryId = $(this).data('categories-id');
         if (confirm('Are you sure you want to delete this category?')) {
           $.ajax({
             url: '/api/category.php?action=deleteById&id=' + categoryId,

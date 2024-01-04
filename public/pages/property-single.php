@@ -149,15 +149,15 @@
 
                         <div class="col-md-12">
                             <div class="inquery-form">
-                                <form method="POST">
+                                <form method="POST" id="inqueryForm">
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="firstname">First Name<span class="required">*</span></label>
-                                            <input type="text" class="form-control" aria-label="First name" id="firstname" name="firstname" required>
+                                            <input type="text" class="form-control" aria-label="First name" id="firstname" name="first_name" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="lastname">Last Name<span class="required">*</span></label>
-                                            <input type="text" class="form-control" aria-label="Last name" id="lastname" name="lastname" required>
+                                            <input type="text" class="form-control" aria-label="Last name" id="lastname" name="last_name" required>
                                         </div>
 
 
@@ -167,7 +167,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="phone">Phone Number<span class="required">*</span></label>
-                                            <input type="text" class="form-control" aria-label="Phone" id="phone" name="phone" required>
+                                            <input type="text" class="form-control" aria-label="Phone" id="phone" name="phone_number">
                                         </div>
                                         <!-- <div class="col-md-6">
                                             <label for="customerId">Customer ID (If available)</label>
@@ -373,6 +373,28 @@
         }
 
 
+        function sendInquiry(data) {
+            $.ajax({
+                url: '/api/leads.php?action=addNew&type=property-inquiry',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    // console.log(response);
+                    if (response.success) {
+                        toastr.success(response.message);
+                        $('#inqueryForm').trigger('reset');
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function(error) {
+                    // console.log(error);
+                    toastr.error('Something went wrong!');
+                }
+            });
+        }
+
+
         $(document).ready(function() {
 
             $('body').on('click', '.thumbnail', function() {
@@ -397,6 +419,18 @@
             getPropertyDetails(propertyId);
             //get similar properties
             getSimilarProperties();
+
+            //send inquiry
+            $('body').on('submit', '.inquery-form form', function(e) {
+                e.preventDefault();
+                // var formData = new FormData(this);
+                // formData.append('type', 'property-inquiry');
+                // formData.append('property_id', propertyId);
+                let formData = $(this).serialize();
+                formData += '&property_id=' + propertyId;
+                // console.log(formData);
+                sendInquiry(formData);
+            });
 
         });
     </script>
