@@ -330,7 +330,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'deleteMedia') {
         exit;
     }
 
-    // unlink(__DIR__ . '/../public/upload/' . $media_file_name);
+    unlink(__DIR__ . '/../public/upload/' . $media_file_name);
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Media file deleted successfully';

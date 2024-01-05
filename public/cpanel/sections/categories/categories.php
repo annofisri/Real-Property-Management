@@ -240,6 +240,16 @@
 
       // show hide sections            
       $('.categories-back-btn').click(function() {
+        //reset all input fields of add category
+        $('#addCategoryForm input').val('');
+        $('#addCategoryForm textarea').val('');
+        $('#addCategoryForm select').val('');
+        $('#addCategoryForm .images-viewer .row').html('');
+        //reset all input fields of edit category
+        $('#editCategoryForm input').val('');
+        $('#editCategoryForm textarea').val('');
+        $('#editCategoryForm select').val('');
+        $('#editCategoryForm .images-viewer .row').html('');
         fetchAndSetcategories();
         showCategoryHome();
       });

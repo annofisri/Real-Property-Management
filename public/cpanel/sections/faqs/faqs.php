@@ -242,6 +242,16 @@
 
       // show hide sections            
       $('.faqs-back-btn').click(function() {
+        //reset all input fields of add faq
+        $('#addFaqForm input').val('');
+        $('#addFaqForm textarea').val('');
+        $('#addFaqForm select').val('');
+        $('#addFaqForm .images-viewer .row').html('');
+        //reset all input fields of edit faq
+        $('#editFaqForm input').val('');
+        $('#editFaqForm textarea').val('');
+        $('#editFaqForm select').val('');
+        $('#editFaqForm .images-viewer .row').html('');
         fetchAndSetfaqs();
         showFaqHome();
       });

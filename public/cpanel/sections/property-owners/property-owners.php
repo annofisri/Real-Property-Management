@@ -269,6 +269,16 @@
 
             // show hide sections            
             $('.property-owners-back-btn').click(function() {
+                //reset all input fields of add property
+                $('#addPropertyForm input').val('');
+                $('#addPropertyForm textarea').val('');
+                $('#addPropertyForm select').val('');
+                $('#addPropertyForm .images-viewer .row').html('');
+                //reset all input fields of edit property
+                $('#editPropertyForm input').val('');
+                $('#editPropertyForm textarea').val('');
+                $('#editPropertyForm select').val('');
+                $('#editPropertyForm .images-viewer .row').html('');
                 fetchAndSetpropertyOwners();
                 showpropertyOwnersHome();
             });
