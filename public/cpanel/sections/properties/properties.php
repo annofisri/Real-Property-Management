@@ -719,9 +719,9 @@
                                     <div class="col-md-4">
                                         <div class="image-block position-relative">
                                             <img src="/upload/${image}" alt="" class="property-img">
-                                            <button type="button" class="btn btn-close position-absolute top-0 end-0 delete-media-btn" aria-label="Close" data-file_name="${image}" data-file_type="image">
-                                                
-                                            </button>
+                                            <div type="button" class="position-absolute top-0 end-0 delete-media-btn" data-file_name="${image}" data-file_type="image">
+                                                <img src="./assets/images/delete-icon.svg" alt="">                                                  
+                                            </div>
                                         </div>
                                     </div>
                                     `);
@@ -741,9 +741,9 @@
                                             <source src="/upload/${video}" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
-                                            <button type="button" class="btn btn-close position-absolute top-0 end-0 delete-media-btn" aria-label="Close" data-file_name="${video}" data-file_type="video">
-                                                
-                                            </button>
+                                            <div type="button" class=" position-absolute top-0 end-0 delete-media-btn" data-file_name="${video}" data-file_type="video">
+                                             <img src="./assets/images/delete-icon.svg" alt="">   
+                                            </div>
                                         </div>
                                     </div>
                                     `);
