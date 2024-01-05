@@ -300,6 +300,5 @@ class TableManager
         $uploadedFiles['videos'] = implode(',', $videos_filename);
 
         return $uploadedFiles;
-
     }
 }

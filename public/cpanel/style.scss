@@ -1221,7 +1221,8 @@ $font-light: 400;
     line-height: 22px; /* 157.143% */
   }
 }
-.images-viewer {
+.images-viewer,
+.selected-media-viewer {
   margin-top: 40px;
   padding: 24px;
   border-radius: 4px;
@@ -1244,7 +1245,13 @@ $font-light: 400;
         height: 30px;
         width: 30px;
         background: #fff;
-        // opacity: 0.5;
+        opacity: 0.8;
+
+        &:hover {
+          cursor: pointer;
+          background: #fff;
+          opacity: 1;
+        }
       }
     }
   }

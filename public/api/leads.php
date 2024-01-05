@@ -25,6 +25,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getAll') {
   //     $limit = 100;
   // }
   $result = $tableLeads->getAll();
+  $result = array_reverse($result);
   $output['success'] = true;
   $output['data'] = $result;
   $output['message'] = 'Leads fetched successfully';

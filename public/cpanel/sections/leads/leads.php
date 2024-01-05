@@ -81,7 +81,7 @@
                 url: '/api/leads.php?action=getAll',
                 type: 'GET',
                 success: function(response) {
-                    console.log(response);
+
                     if (response.success) {
                         $('.table-body').html('');
                         response.data.forEach((item, index) => {
@@ -100,7 +100,7 @@
                                     ${item.email}
                                 </td>
                                 <td>
-                                    ${item.phone_number}
+                                    ${item.phone_number || '-'}
                                 </td>
                                 <td>
                                     ${item.message}
@@ -109,14 +109,14 @@
                                     ${item.type}
                                 </td>
                                 <td>
-                                    ${item.property_id}
+                                    ${item.property_id ? `<a href="/property-single?id=${item.property_id}" target="_blank">${item.property_id}</a>` : '-'}
                                 </td>
                             `)
                         })
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.error(error);
                 }
             });
         }

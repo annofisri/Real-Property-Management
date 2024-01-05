@@ -133,7 +133,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'updateById' && isset($_GET['id
     $data['city_id'] = $_POST['city_id'] ?? null;
 
 
-    if(!isset($_FILES['images'])){
+    if (!isset($_FILES['images'])) {
         $data['images'] = $thisProperty['images'];
     }
 
@@ -272,10 +272,68 @@ if (isset($_GET['filterProperty'])) {
 
 
     $result = $tableProperty->getProperties($settings);
+    if (!$result) {
+        $output['success'] = false;
+        $output['data'] = null;
+        $output['message'] = 'No properties found';
+        echo json_encode($output);
+        exit;
+    }
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Properties fetched successfully';
 
+    echo json_encode($output);
+    exit;
+}
+
+
+//delete media files by proeprty id, media type and media file name
+if (isset($_GET['action']) && $_GET['action'] == 'deleteMedia') {
+
+    $data = [];
+
+    $property_id = $_POST['property_id'] ?? null;
+    $media_type = $_POST['file_type'] ?? null;
+    $media_file_name = $_POST['file_name'] ?? null;
+
+
+    $thisProperty = $tableProperty->getById($property_id);
+
+
+
+    if (!$property_id || !$media_type || !$media_file_name || empty($thisProperty)) {
+        $output['success'] = false;
+        $output['data'] = null;
+        $output['message'] = 'Invalid Request';
+        echo json_encode($output);
+        exit;
+    }
+
+    if ($media_type == 'image') {
+        $images = explode(',', $thisProperty['images']);
+        $images = array_diff($images, [$media_file_name]);
+        $images = implode(',', $images);
+        $data['images'] = $images;
+    } else if ($media_type == 'video') {
+        $videos = explode(',', $thisProperty['videos']);
+        $videos = array_diff($videos, [$media_file_name]);
+        $videos = implode(',', $videos);
+        $data['videos'] = $videos;
+    }
+    $result = $tableProperty->updateById($property_id, $data);
+    if (!$result) {
+        $output['success'] = false;
+        $output['data'] = null;
+        $output['message'] = 'Operation failed';
+        echo json_encode($output);
+        exit;
+    }
+
+    // unlink(__DIR__ . '/../public/upload/' . $media_file_name);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Media file deleted successfully';
     echo json_encode($output);
     exit;
 }

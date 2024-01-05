@@ -39,10 +39,10 @@ function navbar()
           </li>
 
           
-          <li>
+          <!-- <li>
             <a class="nav-link scrollto login-button 
             " href="/login">Sign in</a>
-          </li>
+          </li>--!>
         </ul>
         <i class="bi bi-list mobile-nav-toggle dark-icon"></i>
       </nav>

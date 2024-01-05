@@ -131,7 +131,7 @@
                     contentType: false,
 
                     success: function(response) {
-                        console.log(response);
+
                         if (response.success) {
                             toastr.success('Message successfully sent.', 'Success');
                             $('#contact-form').trigger('reset');
@@ -140,7 +140,7 @@
                         }
                     },
                     error: function(response) {
-                        console.log(response);
+
                         toastr.error(response.responseText, 'Error');
                     }
                 });

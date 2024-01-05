@@ -127,14 +127,13 @@
     <?php include_once './includes/scripts.php'; ?>
 
     <script>
-
         //fetch categories dynamically
         function fetchAndSetCategories() {
             $.ajax({
                 url: '/api/category.php?action=getAll',
                 type: 'GET',
                 success: function(response) {
-                    console.log(response);
+
                     if (response.success) {
                         $('.property-category-btns').html('');
                         response.data.forEach((item, index) => {

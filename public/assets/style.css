@@ -142,6 +142,11 @@ a:hover {
   font-weight: 500;
   line-height: 125%; /* 20px */
 }
+.navbar a:hover, .navbar a:focus,
+.navbar a:focus:hover,
+.navbar a:focus:focus {
+  text-decoration: underline;
+}
 
 .navbar a i,
 .navbar a:focus i {
@@ -383,6 +388,9 @@ a:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 125%; /* 20px */
+}
+.footer .footer-body ul li a:hover {
+  text-decoration: underline;
 }
 .footer .footer-body .recently-viewed-product-card {
   display: flex;
@@ -1366,6 +1374,7 @@ input[type=radio]:checked + label {
 
 .thumbnail {
   width: 100%;
+  min-height: 125px;
   height: 125px;
   cursor: pointer;
 }
@@ -1388,6 +1397,7 @@ input[type=radio]:checked + label {
 }
 
 .left-arrow {
+  z-index: 1;
   left: 10px;
   border: 2px solid var(--Active, #000000);
   border-radius: 50%;
@@ -1591,6 +1601,10 @@ input[type=radio]:checked + label {
   }
 }
 @media (max-width: 600px) {
+  .property-details-hero .all-details .property-description .head-title,
+  .property-details-hero .all-details .property-details .head-title {
+    width: unset;
+  }
   .large-image {
     height: 300px !important;
   }

@@ -121,7 +121,7 @@
         method: 'GET',
         dataType: 'json',
         success: function(response) {
-          console.log(response);
+
           if (response.success) {
             let faqs = response.data;
             let faqsList = $('#faqsList tbody');
@@ -156,7 +156,7 @@
           }
         },
         error: function(error) {
-          console.log(error);
+          console.error(error);
         }
       });
     }
@@ -175,9 +175,9 @@
         e.preventDefault();
         // check validityFaq
         if (this.checkValidity()) {
-          console.log('valid');
+
           let formData = new FormData(this);
-          console.log(formData);
+
           $.ajax({
             url: '/api/faq.php?action=addNew',
             method: 'POST',
@@ -186,7 +186,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-              console.log(response);
+
               if (response.success) {
                 fetchAndSetfaqs();
                 showFaqHome();
@@ -194,7 +194,7 @@
               }
             },
             error: function(error) {
-              console.log(error);
+              console.error(error);
               toastr.error('Something went wrong', 'Error');
             }
           });
@@ -207,7 +207,7 @@
       //on click of edit and submit button of edit faq form
       $('#editFaqForm').on('submit', function(e) {
         e.preventDefault();
-        console.log('edit faq form submitted');
+
         //check validity
         if (this.checkValidity()) {
           let formData = new FormData(this);
@@ -221,7 +221,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-              console.log(response);
+
               if (response.success) {
                 fetchAndSetfaqs();
                 showFaqHome();
@@ -229,7 +229,7 @@
               }
             },
             error: function(error) {
-              console.log(error);
+              console.error(error);
               toastr.error('Something went wrong', 'Error');
             }
           });
@@ -266,14 +266,14 @@
       //on click of view faq button on action column of faqs table
       $('body').on('click', '.view-faq', function() {
         let faqId = $(this).data('faqs-id');
-        console.log(faqId);
+
 
         $.ajax({
           url: '/api/faq.php?action=getById&id=' + faqId,
           method: 'GET',
           dataType: 'json',
           success: function(response) {
-            console.log(response);
+
             if (response.success) {
 
               // reseting all fields
@@ -290,7 +290,7 @@
                 $(this).text(faq[key]);
               });
 
-              console.log($('#faqDetailsDescription'));
+
 
 
               $('#faqDetailsDescription').val(faq.other_information);
@@ -332,7 +332,7 @@
 
           },
           error: function(error) {
-            console.log(error);
+            console.error(error);
           }
         });
       });
@@ -357,7 +357,6 @@
               let date = new Date(faq.created_at);
               let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
-              // console.log(faq);
 
 
               //select all divs inside edit faq form with data-key attribute
@@ -377,7 +376,7 @@
             }
           },
           error: function(error) {
-            console.log(error);
+            console.error(error);
           }
         });
         showEditFaq();
@@ -392,14 +391,14 @@
             method: 'GET',
             dataType: 'json',
             success: function(response) {
-              console.log(response);
+
               if (response.success) {
                 fetchAndSetfaqs();
                 toastr.success('Faq Successfully Deleted', 'Success');
               }
             },
             error: function(error) {
-              console.log(error);
+              console.error(error);
               toastr.error('Something went wrong', 'Error');
             }
           });

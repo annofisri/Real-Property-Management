@@ -122,7 +122,6 @@
         method: 'GET',
         dataType: 'json',
         success: function(response) {
-          console.log(response);
           if (response.success) {
             let categories = response.data;
             let categoriesList = $('#categoriesList tbody');
@@ -157,7 +156,7 @@
           }
         },
         error: function(error) {
-          console.log(error);
+          console.error(error);
         }
       });
     }
@@ -176,9 +175,9 @@
         e.preventDefault();
         // check validityCategory
         if (this.checkValidity()) {
-          console.log('valid');
+
           let formData = new FormData(this);
-          console.log(formData);
+
           $.ajax({
             url: '/api/category.php?action=addNew',
             method: 'POST',
@@ -187,7 +186,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-              console.log(response);
+
               if (response.success) {
                 fetchAndSetcategories();
                 showCategoryHome();
@@ -195,7 +194,7 @@
               }
             },
             error: function(error) {
-              console.log(error);
+              console.error(error);
               toastr.error('Something went wrong', 'Error');
             }
           });
@@ -208,7 +207,7 @@
       //on click of edit and submit button of edit category form
       $('#editCategoryForm').on('submit', function(e) {
         e.preventDefault();
-        console.log('edit category form submitted');
+
         //check validity
         if (this.checkValidity()) {
           let formData = new FormData(this);
@@ -220,7 +219,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-              console.log(response);
+
               if (response.success) {
                 fetchAndSetcategories();
                 showCategoryHome();
@@ -228,7 +227,7 @@
               }
             },
             error: function(error) {
-              console.log(error);
+              console.error(error);
               toastr.error('Something went wrong', 'Error');
             }
           });
@@ -264,14 +263,14 @@
       //on click of view category button on action column of categories table
       $('body').on('click', '.view-category', function() {
         categoryId = $(this).data('categories-id');
-        console.log(categoryId);
+
 
         $.ajax({
           url: '/api/category.php?action=getById&id=' + categoryId,
           method: 'GET',
           dataType: 'json',
           success: function(response) {
-            console.log(response);
+
             if (response.success) {
 
               // reseting all fields
@@ -288,7 +287,7 @@
                 $(this).text(category[key]);
               });
 
-              console.log($('#categoryDetailsDescription'));
+
 
 
               $('#categoryDetailsDescription').val(category.other_information);
@@ -330,7 +329,7 @@
 
           },
           error: function(error) {
-            console.log(error);
+            console.error(error);
           }
         });
       });
@@ -345,6 +344,7 @@
           dataType: 'json',
           success: function(response) {
             if (response.success) {
+
               //reset all input fields of edit category
               $('#editCategoryForm input').val('');
               $('#editCategoryForm textarea').val('');
@@ -355,7 +355,6 @@
               let date = new Date(category.created_at);
               let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
-              // console.log(category);
 
 
               //select all divs inside edit category form with data-key attribute
@@ -375,7 +374,7 @@
             }
           },
           error: function(error) {
-            console.log(error);
+            console.error(error);
           }
         });
         showEditCategory();
@@ -390,14 +389,14 @@
             method: 'GET',
             dataType: 'json',
             success: function(response) {
-              console.log(response);
+
               if (response.success) {
                 fetchAndSetcategories();
                 toastr.success('Category Successfully Deleted', 'Success');
               }
             },
             error: function(error) {
-              console.log(error);
+              console.error(error);
               toastr.error('Something went wrong', 'Error');
             }
           });

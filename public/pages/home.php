@@ -225,7 +225,7 @@
             const $featured_slider = $('#featured_slider');
             const $new_section = $('#new_section');
 
-            console.log($featured_slider, $new_section);
+
 
             var featuredProperties = [];
 

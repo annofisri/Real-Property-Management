@@ -24,13 +24,19 @@
     <div class="property-details-hero">
         <div class="container">
             <div class="row">
+                <div class="col-12 breadcrumbs mb-4">
+                    <a href="/">Home</a> / <a href="/properties">Properties</a> / <span>Property Details</span>
+                </div>
                 <div class="col-md-9 all-details">
                     <div class="row">
 
                         <div class="images-gallery">
-                            <div class="large-image position-relative">
+                            <div class="large-image position-relative d-flex align-items-center">
                                 <button class="arrow left-arrow">&lt;</button>
-                                <img id="active-image" src="" alt="Image 1">
+                                <img id="active-image" src="" alt="Image 1" class="object-fit-cover">
+                                <video controls alt="video" class="w-100 d-none">
+                                    <source src="" type="video/mp4">
+                                </video>
                                 <button class="arrow right-arrow">&gt;</button>
                             </div>
                             <div class="thumbnails">
@@ -240,17 +246,47 @@
         const urlParams = new URLSearchParams(window.location.search);
         const propertyId = parseInt(urlParams.get('id'));
 
+        //function to highlight the active thumbnail
+        function highlightThumbnail() {
+            thumbnails.removeClass('active-thumbnail');
+
+            thumbnails.eq(currentIndex).addClass('active-thumbnail');
+            var activeThumbnail = $('.active-thumbnail');
+            $('.thumbnails').animate({
+                scrollTop: activeThumbnail.offset().top - $('.thumbnails').offset().top + $('.thumbnails').scrollTop() - $('.thumbnails').height() / 2 + activeThumbnail.height() / 2
+            });
+
+        }
+
+        //function to update the thumbnails
+        function updateThumbnails(images, videos) {
+            $('.thumbnails').empty();
+
+            images.forEach(function(image) {
+                $('.thumbnails').append(
+                    `<img src="/upload/${image}" alt="Image thumbnail" class="thumbnail object-fit-cover" />`
+                );
+            });
+            videos.forEach(function(video) {
+
+                $('.thumbnails').append(
+                    `
+                    <img src="/assets/images/video-thumbnail.jpg" alt="Video thumbnail" class="thumbnail" data-video="/upload/${video}" />
+                    `
+                );
+            });
+            thumbnails = $('.thumbnail');
+        }
+
         //function to get all the property details by id
         function getPropertyDetails(propertyId) {
             $.ajax({
                 url: '/api/property.php?action=getById&id=' + propertyId,
                 method: 'GET',
                 success: function(response) {
-                    // console.log(response);
                     if (response.success) {
                         var property = response.data;
                         saveVisitedPage(property);
-                        // console.log(property);
                         $('.data').each(function() {
                             var key = $(this).data('key');
                             $(this).text(': ' + property[key]);
@@ -269,21 +305,26 @@
                                 $(this).text(': N/A');
                             }
                         });
+                        var images = [];
+                        var videos = [];
                         if (property.images) {
-                            var images = property.images.split(',');
-
-                            //patch images to gallery thumbnails
-                            images.forEach(function(image) {
-                                $('.thumbnails').append('<img class="thumbnail" src="/upload/' + image + '" alt="Image 1">');
-                            });
-                            //patch first index image to large image
-                            $('.large-image img').attr('src', '/upload/' + images[0]);
+                            images = property.images.split(',');
 
 
 
-                            thumbnails = $('.thumbnail');
-                            highlightThumbnail();
                         }
+
+                        if (property.videos) {
+                            videos = property.videos.split(',');
+
+                        }
+
+
+                        updateThumbnails(images, videos);
+                        //patch first index image to large image
+                        $('.large-image img').attr('src', '/upload/' + images[0]);
+                        //heightlight first thumbnail
+                        highlightThumbnail();
                         // update description and name
                         $('.property-name').text(property.name);
                         $('.property-description .texts').text(property.other_information);
@@ -296,20 +337,13 @@
                     }
                 },
                 error: function(error) {
-                    // console.log(error);
+                    // console.error(error);
                     toastr.error('Something went wrong!');
                 }
             });
         }
 
-        //function to highlight the active thumbnail
-        function highlightThumbnail() {
-            thumbnails.removeClass('active-thumbnail');
-            var activeThumbnail = thumbnails.eq(currentIndex).addClass('active-thumbnail');
-            $('.thumbnails').animate({
-                scrollTop: activeThumbnail.offset().top - $('.thumbnails').offset().top + $('.thumbnails').scrollTop() - $('.thumbnails').height() / 2 + activeThumbnail.height() / 2
-            });
-        }
+
 
 
         //function to get similar properties and patch to the DOM
@@ -318,22 +352,20 @@
                 url: '/api/property.php?action=getSimilarProperties&id=' + propertyId,
                 method: 'GET',
                 success: function(response) {
-                    // console.log(response);
                     if (response.success) {
                         var properties = response.data;
-                        // console.log(properties);
                         $('.similar-properties .row').empty();
                         properties.forEach(function(property) {
                             $('.similar-properties .row').append(
                                 `                                
                                 <div class="col-md-12 item">
-                                    <div class="card property-card">
+                                    <a href="/property-single?id=${property.id}" class="card property-card">
                                         <div class="card-img-top position-relative">
                                             <img src="/upload/${property.default_image ? property.default_image : 'placeholder.jpg'}" alt="product-img" class="img-fluid w-100 h-100">
                                         </div>
                                         <div class="card-body ">
                                             <p class="card-text">Rs. ${property.price}</p>
-                                            <a href="/property-single?id=${property.id}" class="card-title">${property.name}</a>
+                                            <div class="card-title">${property.name}</div>
                                             <div class="d-flex location">
                                                 <div class="icon-box">
                                                     <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100" />
@@ -341,7 +373,7 @@
                                                 <div class="nav-link"> ${property.address}</div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
 
                                 `
@@ -352,7 +384,7 @@
                     }
                 },
                 error: function(error) {
-                    // console.log(error);
+                    // console.error(error);
                     toastr.error('Something went wrong!');
                 }
             });
@@ -379,7 +411,6 @@
                 method: 'POST',
                 data: data,
                 success: function(response) {
-                    // console.log(response);
                     if (response.success) {
                         toastr.success(response.message);
                         $('#inqueryForm').trigger('reset');
@@ -388,7 +419,7 @@
                     }
                 },
                 error: function(error) {
-                    // console.log(error);
+                    // console.error(error);
                     toastr.error('Something went wrong!');
                 }
             });
@@ -397,23 +428,78 @@
 
         $(document).ready(function() {
 
+
+            //section to handle gallery thumbnails
             $('body').on('click', '.thumbnail', function() {
+                //CHECK IF CLICKED THUMBNAIL IS VIDEO
+                console.log($(this));
+                if ($(this).attr('data-video') !== undefined) {
+                    // console.log("here");
+
+                    $('.large-image video source').attr('src', $(this).attr('data-video'));
+                    $('.large-image video').removeClass('d-none');
+                    $('.large-image img').addClass('d-none');
+                    $('.large-image video')[0].load();
+                    $('.large-image video')[0].play();
+                    currentIndex = thumbnails.index(this);
+                    highlightThumbnail();
+                    return;
+                }
+
                 $('.large-image img').attr('src', $(this).attr('src'));
+                $('.large-image img').removeClass('d-none');
+                //remove src from video
+                $('.large-image video source').attr('src', '');
+                $('.large-image video').addClass('d-none');
                 currentIndex = thumbnails.index(this);
                 highlightThumbnail();
             });
 
             $('body').on('click', '.left-arrow', function() {
+
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
+                //CHECK IF CLICKED THUMBNAIL has video in it
+                if (thumbnails.eq(currentIndex).attr('data-video') !== undefined) {
+                    $('.large-image video source').attr('src', thumbnails.eq(currentIndex).attr('data-video'));
+                    $('.large-image video').removeClass('d-none');
+                    $('.large-image img').addClass('d-none');
+
+                    $('.large-image video')[0].load();
+                    $('.large-image video')[0].play();
+                    highlightThumbnail();
+                    return;
+                }
+
+
                 $('.large-image img').attr('src', thumbnails.eq(currentIndex).attr('src'));
+                $('.large-image img').removeClass('d-none');
+                $('.large-image video source').attr('src', '');
+                $('.large-image video').addClass('d-none');
                 highlightThumbnail();
             });
 
             $('body').on('click', '.right-arrow', function() {
                 currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
+                //CHECK IF CLICKED THUMBNAIL has video in it
+                if (thumbnails.eq(currentIndex).attr('data-video') !== undefined) {
+                    $('.large-image video source').attr('src', thumbnails.eq(currentIndex).attr('data-video'));
+                    $('.large-image video').removeClass('d-none');
+                    $('.large-image img').addClass('d-none');
+                    $('.large-image video')[0].load();
+                    $('.large-image video')[0].play();
+                    highlightThumbnail();
+                    return;
+                }
+
+
                 $('.large-image img').attr('src', thumbnails.eq(currentIndex).attr('src'));
+                $('.large-image img').removeClass('d-none');
+                $('.large-image video source').attr('src', '');
+                $('.large-image video').addClass('d-none');
                 highlightThumbnail();
             });
+
+            //handle thumbnails ends here
 
             //get property details
             getPropertyDetails(propertyId);
@@ -423,12 +509,8 @@
             //send inquiry
             $('body').on('submit', '.inquery-form form', function(e) {
                 e.preventDefault();
-                // var formData = new FormData(this);
-                // formData.append('type', 'property-inquiry');
-                // formData.append('property_id', propertyId);
                 let formData = $(this).serialize();
                 formData += '&property_id=' + propertyId;
-                // console.log(formData);
                 sendInquiry(formData);
             });
 

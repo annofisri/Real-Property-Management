@@ -149,7 +149,6 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(response);
                     if (response.success) {
                         let propertyOwners = response.data;
                         let propertyOwnersList = $('#propertyOwnersList tbody');
@@ -185,7 +184,7 @@
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.error(error);
                 }
             });
         }
@@ -204,9 +203,9 @@
                 e.preventDefault();
                 // check validity
                 if (this.checkValidity()) {
-                    console.log('valid');
+
                     let formData = new FormData(this);
-                    console.log(formData);
+
                     $.ajax({
                         url: '/api/property-owners.php?action=addNew',
                         method: 'POST',
@@ -215,7 +214,7 @@
                         processData: false,
                         contentType: false,
                         success: function(response) {
-                            console.log(response);
+
                             if (response.success) {
                                 fetchAndSetpropertyOwners();
                                 showpropertyOwnersHome();
@@ -223,7 +222,7 @@
                             }
                         },
                         error: function(error) {
-                            console.log(error);
+                            console.error(error);
                             toastr.error('Something went wrong', 'Error');
                         }
                     });
@@ -249,7 +248,7 @@
                         processData: false,
                         contentType: false,
                         success: function(response) {
-                            console.log(response);
+
                             if (response.success) {
                                 fetchAndSetpropertyOwners();
                                 showpropertyOwnersHome();
@@ -257,7 +256,7 @@
                             }
                         },
                         error: function(error) {
-                            console.log(error);
+                            console.error(error);
                             toastr.error('Something went wrong', 'Error');
                         }
                     });
@@ -294,14 +293,14 @@
             //on click of view property button on action column of propertyOwners table
             $('body').on('click', '.view-property', function() {
                 let propertyId = $(this).data('property-owners-id');
-                console.log(propertyId);
+
 
                 $.ajax({
                     url: '/api/property-owners.php?action=getById&id=' + propertyId,
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
+
                         if (response.success) {
 
                             // reseting all fields
@@ -318,7 +317,7 @@
                                 $(this).text(property[key]);
                             });
 
-                            console.log($('#propertyOwnerDetailsDescription'));
+
 
 
                             $('#propertyOwnerDetailsDescription').val(property.other_information);
@@ -360,7 +359,7 @@
 
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                     }
                 });
             });
@@ -385,7 +384,6 @@
                             let date = new Date(property.created_at);
                             let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
-                            // console.log(property);
 
 
                             //select all divs inside edit property form with data-key attribute
@@ -405,7 +403,7 @@
                         }
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                     }
                 });
                 showEditProperty();
@@ -414,7 +412,7 @@
             //on click of delete property button on action column of property-owners-owners table
             $('body').on('click', '.delete-property', function() {
                 let propertyId = $(this).data('property-owners-id');
-                console.log(propertyId);
+
                 $.ajax({
                     url: '/api/property-owners.php?action=deleteById&id=' + propertyId,
                     method: 'GET',
@@ -424,14 +422,14 @@
                         confirm('Are you sure you want to delete this property owner?');
                     },
                     success: function(response) {
-                        console.log(response);
+
                         if (response.success) {
                             fetchAndSetpropertyOwners();
                             toastr.success('Property Owner Successfully Deleted', 'Success');
                         }
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                         toastr.error('Something went wrong', 'Error');
                     }
                 });

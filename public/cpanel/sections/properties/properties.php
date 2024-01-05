@@ -106,720 +106,91 @@
         </section>
 
 
-        <section class="property-add d-none" id="addProperty">
-            <div class="head d-flex px-4 py-3 justify-content-between" style="height: 69px;">
-                <div class="d-flex gap-2">
-                    <div class="d-flex align-items-center property-back-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
-                            <path d="M18 4.43303H2.17064L5.73852 0.865107L4.93671 0.0632935L0 4.99997L4.93671 9.93672L5.73852 9.13486L2.17064 5.56698H18V4.43303Z" fill="#192E3D" />
-                        </svg>
-                    </div>
-                    <div class="title">Add Property Details</div>
-                </div>
-                <div class="save-btns d-flex gap-3">
-                    <div class="default-btn-outlined cancel-btn">
-                        Cancel
-                    </div>
-                    <div class="default-btn save-btn" onclick="$('form#addPropertyForm').submit()">
-                        Save
-                    </div>
-                </div>
-            </div>
-
-            <div class="property-add-main">
-                <form id="addPropertyForm">
-                    <div class="row">
-                        <div class="col-md-12 row">
-                            <div class="col-md-4">
-                                <label for="clientInfo" class="form-label">Client Info*</label>
-                                <select id="clientInfo" class="form-select" name="owner_id" required>
-
-                                </select>
-                            </div>
-                            <div class="col-md-2 pe-0">
-                                <label for="approveStatus" class="form-label">Approve Status*</label>
-                                <select id="approveStatus" class="form-select" name="approve_status" required>
-                                    <option value="">Choose...</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 pt-2">
-                            <div class="row g-3">
-
-                                <div class="col-md-12">
-                                    <label for="propertyName" class="form-label">Property Name*</label>
-                                    <input type="text" class="form-control" id="propertyName" name="name" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="province_id" class="form-label">Province* </label>
-                                    <select id="province_id" class="form-select" name="province_id" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Province 1</option>
-                                        <option value="2">Province 2</option>
-                                        <option value="3">Province 3</option>
-                                        <option value="4">Province 4</option>
-                                        <option value="5">Province 5</option>
-                                        <option value="6">Province 6</option>
-                                        <option value="7">Province 7</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="district_id" class="form-label">District* </label>
-                                    <select id="district_id" class="form-select" name="district_id" required>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="city_id" class="form-label">City* </label>
-                                    <select id="city_id" class="form-select" name="city_id" required>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="propertyAddress" class="form-label">Property Address*</label>
-                                    <input type="text" class="form-control" id="propertyAddress" name="address" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="propertyCategory" class="form-label">Category*</label>
-                                    <select id="propertyCategory" class="form-select" name="category_id" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Housing</option>
-                                        <option value="2">Apartment</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="propertyType" class="form-label">Type*</label>
-                                    <select id="propertyType" class="form-select" name="type" required>
-                                        <option value="">Choose...</option>
-                                        <option value="rent">Rent</option>
-                                        <option value="sale">Sale</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="contractTerms" class="form-label">Contract Terms (Rent) </label>
-                                    <input type="text" class="form-control" id="contractTerms" name="contract_term">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="totalStoreys" class="form-label">Total Storeys</label>
-                                    <input type="number" class="form-control" id="totalStoreys" name="storey" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="price" class="form-label">Price*</label>
-                                    <input type="number" class="form-control" id="price" name="price" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="visibility_status" class="form-label">Visibility Status*</label>
-                                    <select id="visibility_status" class="form-select" name="visibility_status" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Visible</option>
-                                        <option value="0">Hidden</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="border p-3">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label for="Gym" class="form-label">Gym*</label>
-                                                <select id="Gym" class="form-select" name="gym" required>
-                                                    <option value="">Choose...</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="security" class="form-label">Security*</label>
-                                                <select id="security" class="form-select" name="security" required>
-                                                    <option value="">Choose...</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="swimmingPool" class="form-label">Swimming Pool*</label>
-                                                <select id="swimmingPool" class="form-select" name="swimming_pool" required>
-                                                    <option value="">Choose...</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 upload-images">
-                                    <div class="upload-images-title">
-                                        Upload Property Images and Videos*
-                                    </div>
-                                    <input type="file" id="uploadImages" name="files[]" multiple required>
-                                    <!-- <div class="default-btn-outlined mt-2" id="uploadImagesBtn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                            <g clip-path="url(#clip0_440_8663)">
-                                                <path d="M8.29688 12.1634V9.70244H5.83594C5.44757 9.70244 5.13281 9.38768 5.13281 8.99931C5.13281 8.61108 5.44757 8.29619 5.83594 8.29619H8.29688V5.83525C8.29688 5.44702 8.61163 5.13213 9 5.13213C9.38837 5.13213 9.70312 5.44702 9.70312 5.83525V8.29619H12.1641C12.5524 8.29619 12.8672 8.61108 12.8672 8.99931C12.8672 9.38768 12.5524 9.70244 12.1641 9.70244H9.70312V12.1634C9.70312 12.5517 9.38837 12.8665 9 12.8665C8.61163 12.8665 8.29688 12.5517 8.29688 12.1634ZM15.364 2.63603C13.6641 0.936172 11.4039 0 9 0C6.59605 0 4.33589 0.936172 2.63603 2.63603C0.936172 4.33589 0 6.59605 0 9C0 11.4039 0.936172 13.6641 2.63603 15.364C4.33589 17.0638 6.59605 18 9 18C10.6458 18 12.2561 17.5515 13.6568 16.7029C13.989 16.5017 14.0952 16.0694 13.894 15.7374C13.6928 15.4052 13.2604 15.299 12.9283 15.5002C11.7473 16.2155 10.3888 16.5938 9 16.5938C4.81284 16.5938 1.40625 13.1872 1.40625 9C1.40625 4.81284 4.81284 1.40625 9 1.40625C13.1872 1.40625 16.5938 4.81284 16.5938 9C16.5938 10.4973 16.1485 11.9546 15.3062 13.2148C15.0903 13.5375 15.1771 13.9742 15.4999 14.1901C15.8226 14.4058 16.2594 14.319 16.4752 13.9963C17.4727 12.5042 18 10.7765 18 9C18 6.59605 17.0638 4.33589 15.364 2.63603Z" fill="#192E3D" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_440_8663">
-                                                    <rect width="18" height="18" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <div class="title">Add Images or Videos
-                                        </div>
-                                    </div> -->
-                                    <label for="uploadImages" class="default-btn-outlined mt-2" id="uploadImagesBtn">
-                                        <div class="d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                                <g clip-path="url(#clip0_440_8663)">
-                                                    <path d="M8.29688 12.1634V9.70244H5.83594C5.44757 9.70244 5.13281 9.38768 5.13281 8.99931C5.13281 8.61108 5.44757 8.29619 5.83594 8.29619H8.29688V5.83525C8.29688 5.44702 8.61163 5.13213 9 5.13213C9.38837 5.13213 9.70312 5.44702 9.70312 5.83525V8.29619H12.1641C12.5524 8.29619 12.8672 8.61108 12.8672 8.99931C12.8672 9.38768 12.5524 9.70244 12.1641 9.70244H9.70312V12.1634C9.70312 12.5517 9.38837 12.8665 9 12.8665C8.61163 12.8665 8.29688 12.5517 8.29688 12.1634ZM15.364 2.63603C13.6641 0.936172 11.4039 0 9 0C6.59605 0 4.33589 0.936172 2.63603 2.63603C0.936172 4.33589 0 6.59605 0 9C0 11.4039 0.936172 13.6641 2.63603 15.364C4.33589 17.0638 6.59605 18 9 18C10.6458 18 12.2561 17.5515 13.6568 16.7029C13.989 16.5017 14.0952 16.0694 13.894 15.7374C13.6928 15.4052 13.2604 15.299 12.9283 15.5002C11.7473 16.2155 10.3888 16.5938 9 16.5938C4.81284 16.5938 1.40625 13.1872 1.40625 9C1.40625 4.81284 4.81284 1.40625 9 1.40625C13.1872 1.40625 16.5938 4.81284 16.5938 9C16.5938 10.4973 16.1485 11.9546 15.3062 13.2148C15.0903 13.5375 15.1771 13.9742 15.4999 14.1901C15.8226 14.4058 16.2594 14.319 16.4752 13.9963C17.4727 12.5042 18 10.7765 18 9C18 6.59605 17.0638 4.33589 15.364 2.63603Z" fill="#192E3D" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_440_8663">
-                                                        <rect width="18" height="18" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            <div class="title">Add Images or Videos
-                                            </div>
-                                        </div>
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-md-6">
-                            <label for="propertyDescription" class="form-label">Property Descriptions</label>
-                            <textarea class="form-control" id="propertyDescription" name="other_information" rows="10"></textarea>
-                        </div>
-                        <div class="col-md-12 d-none">
-                            <div class="images-viewer">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="image-block position-relative">
-                                            <img src="./assets/images/property1.png" alt="" class="property-img">
-
-                                            <div class="delete-icon position-absolute end-0 top-0">
-                                                <div>
-                                                    <img src="./assets/images/delete-icon.svg" alt="" class="w-100 h-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="image-block position-relative">
-                                            <img src="./assets/images/property1.png" alt="" class="property-img">
-
-                                            <div class="delete-icon position-absolute end-0 top-0">
-                                                <div>
-                                                    <img src="./assets/images/delete-icon.svg" alt="" class="w-100 h-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="image-block position-relative">
-                                            <img src="./assets/images/property1.png" alt="" class="property-img">
-
-                                            <div class="delete-icon position-absolute end-0 top-0">
-                                                <div>
-                                                    <img src="./assets/images/delete-icon.svg" alt="" class="w-100 h-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-
-        <section class="property-add property-edit d-none" id="editProperty">
-            <div class="head d-flex px-4 py-3 justify-content-between" style="height: 69px;">
-                <div class="d-flex gap-2">
-                    <div class="d-flex align-items-center property-back-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
-                            <path d="M18 4.43303H2.17064L5.73852 0.865107L4.93671 0.0632935L0 4.99997L4.93671 9.93672L5.73852 9.13486L2.17064 5.56698H18V4.43303Z" fill="#192E3D" />
-                        </svg>
-                    </div>
-                    <div class="title">Edit Property Details</div>
-                </div>
-                <div class="save-btns d-flex gap-3">
-                    <div class="default-btn-outlined cancel-btn">
-                        Cancel
-                    </div>
-                    <div class="default-btn save-btn" onclick="$('form#editPropertyForm').submit()">
-                        Save
-                    </div>
-                </div>
-            </div>
-
-            <div class="property-add-main property-edit-main">
-                <form id="editPropertyForm">
-                    <div data-key="id" class="d-none">
-                        <input type="hidden" name="id" value="">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 row">
-                            <div class="col-md-4" data-key="owner_id">
-                                <label for="clientInfo" class="form-label">Client Info*</label>
-
-                                <select id="clientInfo" class="form-select" name="owner_id" required>
-
-                                </select>
-
-                            </div>
-                            <div class="col-md-2 pe-0" data-key="approve_status">
-                                <label for="approveStatus" class="form-label">Approve Status*</label>
-                                <select id="approveStatus" class="form-select" name="approve_status" required>
-                                    <option value="">Choose...</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6 pt-2">
-                            <div class="row g-3">
-
-                                <div class="col-md-12" data-key="name">
-                                    <label for="propertyName" class="form-label">Property name*</label>
-                                    <input type="text" class="form-control" id="propertyName" name="name" required>
-                                </div>
-                                <div class="col-md-12" data-key="address">
-                                    <label for="propertyAddress" class="form-label">Property Address*</label>
-                                    <input type="text" class="form-control" id="propertyAddress" name="address" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="province_id" class="form-label">Province </label>
-                                    <select id="province_id" class="form-select" name="province_id">
-                                        <option value="">Choose...</option>
-                                        <option value="1">Province 1</option>
-                                        <option value="2">Province 2</option>
-                                        <option value="3">Province 3</option>
-                                        <option value="4">Province 4</option>
-                                        <option value="5">Province 5</option>
-                                        <option value="6">Province 6</option>
-                                        <option value="7">Province 7</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="district_id" class="form-label">District</label>
-                                    <select id="district_id" class="form-select" name="district_id">
-                                    </select>
-                                </div>
-                                <div class="col-md-4" data-key="city_id">
-                                    <label for="city_id" class="form-label">City* </label>
-                                    <select id="city_id" class="form-select" name="city_id" required>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4" data-key="category_id">
-                                    <label for="propertyCategory" class="form-label">Category*</label>
-                                    <select id="propertyCategory" class="form-select" name="category_id" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Housing</option>
-                                        <option value="2">Apartment</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4" data-key="type">
-                                    <label for="propertyType" class="form-label">Type*</label>
-                                    <select id="propertyType" class="form-select" name="type" required>
-                                        <option value="">Choose...</option>
-                                        <option value="rent">Rent</option>
-                                        <option value="sale">Sale</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4" data-key="contract_term">
-                                    <label for="contractTerms" class="form-label">Contract Terms (Rent)</label>
-                                    <input type="text" class="form-control" id="contractTerms" name="contract_term">
-                                </div>
-                                <div class="col-md-4" data-key="storey">
-                                    <label for="totalStoreys" class="form-label">Total Storeys</label>
-                                    <input type="number" class="form-control" id="totalStoreys" name="storey" required>
-                                </div>
-                                <div class="col-md-4" data-key="price">
-                                    <label for="price" class="form-label">Price*</label>
-                                    <input type="number" class="form-control" id="price" name="price" required>
-                                </div>
-
-                                <div class="col-md-4" data-key="visibility_status">
-                                    <label for="visibility_status" class="form-label">Visibility Status*</label>
-                                    <select id="visibility_status" class="form-select" name="visibility_status" required>
-                                        <option value="">Choose...</option>
-                                        <option value="1">Visible</option>
-                                        <option value="0">Hidden</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="border p-3">
-                                        <div class="row">
-                                            <div class="col-md-4" data-key="gym">
-                                                <label for="Gym" class="form-label">Gym*</label>
-                                                <select id="Gym" class="form-select" name="gym" required>
-                                                    <option value="">Choose...</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-
-                                            </div>
-                                            <div class="col-md-4" data-key="security">
-                                                <label for="security" class="form-label">Security*</label>
-                                                <select id="security" class="form-select" name="security" required>
-                                                    <option value="">Choose...</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4" data-key="swimming_pool">
-                                                <label for="swimmingPool" class="form-label">Swimming Pool*</label>
-                                                <select id="swimmingPool" class="form-select" name="swimming_pool" required>
-                                                    <option value="">Choose...</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 upload-images">
-                                    <div class="upload-images-title">
-                                        Upload Property Images and Videos*
-                                    </div>
-                                    <input type="file" id="uploadImages" name="files[]" multiple required>
-                                    <!-- <div class="default-btn-outlined mt-2" id="uploadImagesBtn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                            <g clip-path="url(#clip0_440_8663)">
-                                                <path d="M8.29688 12.1634V9.70244H5.83594C5.44757 9.70244 5.13281 9.38768 5.13281 8.99931C5.13281 8.61108 5.44757 8.29619 5.83594 8.29619H8.29688V5.83525C8.29688 5.44702 8.61163 5.13213 9 5.13213C9.38837 5.13213 9.70312 5.44702 9.70312 5.83525V8.29619H12.1641C12.5524 8.29619 12.8672 8.61108 12.8672 8.99931C12.8672 9.38768 12.5524 9.70244 12.1641 9.70244H9.70312V12.1634C9.70312 12.5517 9.38837 12.8665 9 12.8665C8.61163 12.8665 8.29688 12.5517 8.29688 12.1634ZM15.364 2.63603C13.6641 0.936172 11.4039 0 9 0C6.59605 0 4.33589 0.936172 2.63603 2.63603C0.936172 4.33589 0 6.59605 0 9C0 11.4039 0.936172 13.6641 2.63603 15.364C4.33589 17.0638 6.59605 18 9 18C10.6458 18 12.2561 17.5515 13.6568 16.7029C13.989 16.5017 14.0952 16.0694 13.894 15.7374C13.6928 15.4052 13.2604 15.299 12.9283 15.5002C11.7473 16.2155 10.3888 16.5938 9 16.5938C4.81284 16.5938 1.40625 13.1872 1.40625 9C1.40625 4.81284 4.81284 1.40625 9 1.40625C13.1872 1.40625 16.5938 4.81284 16.5938 9C16.5938 10.4973 16.1485 11.9546 15.3062 13.2148C15.0903 13.5375 15.1771 13.9742 15.4999 14.1901C15.8226 14.4058 16.2594 14.319 16.4752 13.9963C17.4727 12.5042 18 10.7765 18 9C18 6.59605 17.0638 4.33589 15.364 2.63603Z" fill="#192E3D" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_440_8663">
-                                                    <rect width="18" height="18" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <div class="title">Add Images or Videos
-                                        </div>
-                                    </div> -->
-                                    <label for="uploadImages" class="default-btn-outlined mt-2" id="uploadImagesBtn">
-                                        <div class="d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                                <g clip-path="url(#clip0_440_8663)">
-                                                    <path d="M8.29688 12.1634V9.70244H5.83594C5.44757 9.70244 5.13281 9.38768 5.13281 8.99931C5.13281 8.61108 5.44757 8.29619 5.83594 8.29619H8.29688V5.83525C8.29688 5.44702 8.61163 5.13213 9 5.13213C9.38837 5.13213 9.70312 5.44702 9.70312 5.83525V8.29619H12.1641C12.5524 8.29619 12.8672 8.61108 12.8672 8.99931C12.8672 9.38768 12.5524 9.70244 12.1641 9.70244H9.70312V12.1634C9.70312 12.5517 9.38837 12.8665 9 12.8665C8.61163 12.8665 8.29688 12.5517 8.29688 12.1634ZM15.364 2.63603C13.6641 0.936172 11.4039 0 9 0C6.59605 0 4.33589 0.936172 2.63603 2.63603C0.936172 4.33589 0 6.59605 0 9C0 11.4039 0.936172 13.6641 2.63603 15.364C4.33589 17.0638 6.59605 18 9 18C10.6458 18 12.2561 17.5515 13.6568 16.7029C13.989 16.5017 14.0952 16.0694 13.894 15.7374C13.6928 15.4052 13.2604 15.299 12.9283 15.5002C11.7473 16.2155 10.3888 16.5938 9 16.5938C4.81284 16.5938 1.40625 13.1872 1.40625 9C1.40625 4.81284 4.81284 1.40625 9 1.40625C13.1872 1.40625 16.5938 4.81284 16.5938 9C16.5938 10.4973 16.1485 11.9546 15.3062 13.2148C15.0903 13.5375 15.1771 13.9742 15.4999 14.1901C15.8226 14.4058 16.2594 14.319 16.4752 13.9963C17.4727 12.5042 18 10.7765 18 9C18 6.59605 17.0638 4.33589 15.364 2.63603Z" fill="#192E3D" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_440_8663">
-                                                        <rect width="18" height="18" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            <div class="title">Add Images or Videos
-                                            </div>
-                                        </div>
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-md-6" data-key="other_information">
-                            <label for="propertyDescription" class="form-label">Property Descriptions</label>
-                            <textarea class="form-control" id="propertyDescription" name="other_information" rows="10"></textarea>
-                        </div>
-                        <div class="col-md-12 d-none">
-                            <div class="images-viewer">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="image-block position-relative">
-                                            <img src="./assets/images/property1.png" alt="" class="property-img">
-
-                                            <div class="delete-icon position-absolute end-0 top-0">
-                                                <div>
-                                                    <img src="./assets/images/delete-icon.svg" alt="" class="w-100 h-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="image-block position-relative">
-                                            <img src="./assets/images/property1.png" alt="" class="property-img">
-
-                                            <div class="delete-icon position-absolute end-0 top-0">
-                                                <div>
-                                                    <img src="./assets/images/delete-icon.svg" alt="" class="w-100 h-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="image-block position-relative">
-                                            <img src="./assets/images/property1.png" alt="" class="property-img">
-
-                                            <div class="delete-icon position-absolute end-0 top-0">
-                                                <div>
-                                                    <img src="./assets/images/delete-icon.svg" alt="" class="w-100 h-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-
-        <section class="property-view d-none" id="propertyDetails">
-            <div class="head d-flex px-4 py-3 justify-content-between" style="height: 69px;">
-                <div class="d-flex gap-2">
-                    <div class="d-flex align-items-center property-back-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
-                            <path d="M18 4.43303H2.17064L5.73852 0.865107L4.93671 0.0632935L0 4.99997L4.93671 9.93672L5.73852 9.13486L2.17064 5.56698H18V4.43303Z" fill="#192E3D" />
-                        </svg>
-                    </div>
-                    <div class="title">Property Details</div>
-                </div>
-                <div class="save-btns d-flex gap-3">
-                    <div class="default-btn-outlined reject-btn approveOrRejectProperty" data-status="rejected" id="rejectProperty">
-                        Reject
-                    </div>
-                    <div class="default-btn approve-btn approveOrRejectProperty" data-status="approved" id="approveProperty">
-                        Approve
-                    </div>
-                </div>
-            </div>
-
-            <div class="property-add-main property-view-main">
-                <div class="row" style="width: 100%;">
-
-                    <div class=" col-md-6">
-                        <div class="all-details m-3 p-2">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Property Owner ID
-                                        </div>
-                                        <div class="property-info-value" data-key="owner_id">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Owner Name
-                                        </div>
-                                        <div class="property-info-value" data-key="owner_name">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Property ID
-                                        </div>
-                                        <div class="property-info-value" data-key="id">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Property Name
-                                        </div>
-                                        <div class="property-info-value" data-key="name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Property Address
-                                        </div>
-                                        <div class="property-info-value" data-key="address">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Category
-                                        </div>
-                                        <div class="property-info-value" data-key="category_name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Property Type
-                                        </div>
-                                        <div class="property-info-value" data-key="type">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Total Story
-                                        </div>
-                                        <div class="property-info-value" data-key="storey">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Gated Community
-                                        </div>
-                                        <div class="property-info-value" data-key="gated_community">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            No of Bedrooms
-                                        </div>
-                                        <div class="property-info-value" data-key="bedroom">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            No of Bathrooms
-                                        </div>
-                                        <div class="property-info-value" data-key="bathroom">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Security
-                                        </div>
-                                        <div class="property-info-value" data-key="security">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Swimming pool
-                                        </div>
-                                        <div class="property-info-value" data-key="swimming_pool">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Gym
-                                        </div>
-                                        <div class="property-info-value" data-key="gym">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Contract Terms (Rent)
-                                        </div>
-                                        <div class="property-info-value" data-key="contract_term">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Monthly Rental
-                                        </div>
-                                        <div class="property-info-value" data-key="monthly_rental">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Price
-                                        </div>
-                                        <div class="property-info-value" data-key="price">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="detail">
-                                        <div class="property-info-name">
-                                            Phone Number
-                                        </div>
-                                        <div class="property-info-value" data-key="phone_number">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="propertyDetailsDescription" class="form-label">Property Descriptions</label>
-                                <textarea class="form-control" id="propertyDetailsDescription" rows="10" readonly disabled></textarea>
-                            </div>
-                            <div class="col-md-12 view-all-images">
-                                <div class="title">
-                                    Images and Video
-                                </div>
-                                <div class="images-viewer">
-                                    <div class="row">
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <form id="metaTagsForm">
-
-                        <input type="hidden" name="id" value="">
-                        <div class="col-md-12">
-                            <div class="row px-4">
-                                <div class="col-md-12 mb-2">
-                                    <label for="metaTitle" class="form-label">Meta Title</label>
-                                    <input type="text" class="form-control" id="metaTitle" name="meta_title">
-                                </div>
-                                <div class="col-md-12 mb-2">
-                                    <label for="metaDescription" class="form-label">Meta Description</label>
-                                    <textarea class="form-control" id="metaDescription" rows="3" name="meta_description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+        <?php include_once('properties-add.php'); ?>
+        <?php include_once('properties-edit.php'); ?>
+        <?php include_once('properties-details.php'); ?>
     </main>
 
     <?php include_once('./includes/scripts.php'); ?>
 
     <script>
+        let propertyId = null;
+
+        //update file count on file upload
+        function updateFileCount(count) {
+            $('.selected-file-count').text(count);
+
+        }
+
+        //update media viewer on file upload in add property
+        function updateAddPropertyMediaViewer(files) {
+            $('#addPropertyForm .images-viewer .row').html('');
+            let imagesHtml = '';
+            files.forEach(file => {
+                if (file.type.includes('image')) {
+                    imagesHtml += `
+                    <div class="col-md-3">
+                        <div class="image-block position-relative">
+                            <img src="${URL.createObjectURL(file)}" alt="" class="property-img">
+                        </div>
+                    </div>
+                    `;
+                } else if (file.type.includes('video')) {
+                    imagesHtml += `
+                    <div class="col-md-3">
+                        <div class="image-block position-relative">
+                            <video controls class="property-video w-100">
+                                <source src="${URL.createObjectURL(file)}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            $('#addPropertyForm .images-viewer .row').append(imagesHtml);
+        }
+
+
+        //update media viewer on file upload in edit property
+        function updateEditPropertyMediaViewer(files) {
+            $('#editPropertyForm .selected-media-viewer .row').html('');
+            let imagesHtml = '';
+            files.forEach(file => {
+                if (file.type.includes('image')) {
+                    imagesHtml += `
+                    <div class="col-md-3">
+                        <div class="image-block position-relative">
+                            <img src="${URL.createObjectURL(file)}" alt="" class="property-img">
+                        </div>
+                    </div>
+                    `;
+                } else if (file.type.includes('video')) {
+                    imagesHtml += `
+                    <div class="col-md-3">
+                        <div class="image-block position-relative">
+                            <video controls class="property-video w-100">
+                                <source src="${URL.createObjectURL(file)}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    `;
+                }
+            });
+
+            $('#editPropertyForm .selected-media-viewer .row').append(imagesHtml);
+        }
+
+
+
         //fetch categories dynamically
         function fetchAndSetCategories() {
             $.ajax({
                 url: '/api/category.php?action=getAll',
                 type: 'GET',
                 success: function(response) {
-                    console.log(response);
                     if (response.success) {
                         let categories = response.data;
                         let propertyCategoryAdd = $('#addPropertyForm #propertyCategory');
@@ -848,7 +219,6 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    console.log(response);
                     if (response.success) {
                         let clients = response.data;
                         let clientInfoAdd = $('#addPropertyForm #clientInfo');
@@ -866,7 +236,7 @@
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.error(error);
                 }
             });
         }
@@ -910,7 +280,6 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(response);
                     if (response.success) {
                         let properties = response.data;
                         let propertiesList = $('#propertiesList tbody');
@@ -951,16 +320,75 @@
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.error(error);
                 }
             });
         }
 
-
+        //function to reset all input fields of add property
+        function resetAddPropertyForm() {
+            $('#addPropertyForm input').val('');
+            $('#addPropertyForm textarea').val('');
+            $('#addPropertyForm select').val('');
+            $('#addPropertyForm .images-viewer .row').html('');
+            $('#addPropertyForm .selected-file-count').text('0');
+            $('#addPropertyForm .selected-media-viewer .row').html('');
+        }
+        //function to reset all input fields of edit property
+        function resetEditPropertyForm() {
+            $('#editPropertyForm input').val('');
+            $('#editPropertyForm textarea').val('');
+            $('#editPropertyForm select').val('');
+            $('#editPropertyForm .images-viewer .row').html('');
+            $('#editPropertyForm .selected-file-count').text('0');
+            $('#editPropertyForm .selected-media-viewer .row').html('');
+        }
+        //function to reset all input fields of view property
+        function resetPropertyDetailsForm() {
+            $('#propertyDetails .property-info-value').text('');
+            $('#propertyDetails .images-viewer .row').html('');
+            $('#propertyDetailsDescription').val('');
+            $('#metaTagsForm input[name="id"]').val('');
+            $('#metaTagsForm input[name="meta_title"]').val('');
+            $('#metaTagsForm textarea[name="meta_description"]').val('');
+        }
 
 
 
         $(document).ready(function() {
+
+            updateFileCount(0);
+
+            //update media viewer on file upload for add property
+            $('#addPropertyForm input[type="file"]#uploadImages').change(function() {
+                let files = $(this)[0].files;
+                files = Array.from(files);
+
+                updateAddPropertyMediaViewer(files);
+            });
+
+            //update media viewer on file upload for edit property
+            $('#editPropertyForm input[type="file"]#uploadImagesEdit').change(function() {
+                let files = $(this)[0].files;
+                files = Array.from(files);
+
+
+                updateEditPropertyMediaViewer(files);
+            });
+
+
+            //update file count on file upload for edit property
+            $('#editPropertyForm input[type="file"]').change(function() {
+                let count = $(this)[0].files.length;
+                updateFileCount(count);
+            });
+
+            //update file count on file upload for add property
+            $('#addPropertyForm input[type="file"]').change(function() {
+                let count = $(this)[0].files.length;
+                updateFileCount(count);
+            });
+
             //fetch and set properties on page load
             fetchAndSetProperties();
 
@@ -968,7 +396,6 @@
             $('#addPropertyForm').ready(function() {
                 fetchAndSetClientInfo();
                 fetchAndSetCategories();
-
             });
             $('#editPropertyForm').ready(function() {
                 fetchAndSetClientInfo();
@@ -981,9 +408,7 @@
                 e.preventDefault();
                 // check validity
                 if (this.checkValidity()) {
-                    console.log('valid');
                     let formData = new FormData(this);
-                    console.log(formData);
                     $.ajax({
                         url: '/api/property.php?action=addNew',
                         method: 'POST',
@@ -992,7 +417,6 @@
                         processData: false,
                         contentType: false,
                         success: function(response) {
-                            console.log(response);
                             if (response.success) {
                                 fetchAndSetProperties();
                                 showPropertyHome();
@@ -1000,7 +424,7 @@
                             }
                         },
                         error: function(error) {
-                            console.log(error);
+                            console.error(error);
                             toastr.error('Something went wrong', 'Error');
                         }
                     });
@@ -1013,7 +437,6 @@
             //on click of edit and submit button of edit property form
             $('#editPropertyForm').on('submit', function(e) {
                 e.preventDefault();
-                console.log('edit property form submitted');
                 //check validity
                 if (this.checkValidity()) {
                     let formData = new FormData(this);
@@ -1027,7 +450,6 @@
                         processData: false,
                         contentType: false,
                         success: function(response) {
-                            console.log(response);
                             if (response.success) {
                                 fetchAndSetProperties();
                                 showPropertyHome();
@@ -1035,7 +457,7 @@
                             }
                         },
                         error: function(error) {
-                            console.log(error);
+                            console.error(error);
                             toastr.error('Something went wrong', 'Error');
                         }
                     });
@@ -1046,51 +468,35 @@
             });
 
 
-            // show hide sections            
+            //on click of back and cancel button as well as add btn of property home
             $('.property-back-btn').click(function() {
-
-                //reset all input fields of add property
-                $('#addPropertyForm input').val('');
-                $('#addPropertyForm textarea').val('');
-                $('#addPropertyForm select').val('');
-                $('#addPropertyForm .images-viewer .row').html('');
-                //reset all input fields of edit property
-                $('#editPropertyForm input').val('');
-                $('#editPropertyForm textarea').val('');
-                $('#editPropertyForm select').val('');
-                $('#editPropertyForm .images-viewer .row').html('');
+                resetAddPropertyForm();
+                resetEditPropertyForm();
+                resetPropertyDetailsForm();
                 fetchAndSetProperties();
                 showPropertyHome();
             });
+
             $('#addPropertyBtn').click(function() {
                 showAddProperty();
             });
             $('.cancel-btn').click(function() {
-                //reset all input fields of add property
-                $('#addPropertyForm input').val('');
-                $('#addPropertyForm textarea').val('');
-                $('#addPropertyForm select').val('');
-                $('#addPropertyForm .images-viewer .row').html('');
-                //reset all input fields of edit property
-                $('#editPropertyForm input').val('');
-                $('#editPropertyForm textarea').val('');
-                $('#editPropertyForm select').val('');
-                $('#editPropertyForm .images-viewer .row').html('');
+                resetAddPropertyForm();
+                resetEditPropertyForm();
+                resetPropertyDetailsForm();
                 fetchAndSetProperties();
                 showPropertyHome();
             });
 
             //on click of view property button on action column of properties table
             $('body').on('click', '.view-property', function() {
-                let propertyId = $(this).data('property-id');
-                console.log(propertyId);
+                propertyId = $(this).data('property-id');
 
                 $.ajax({
                     url: '/api/property.php?action=getById&id=' + propertyId,
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response);
                         if (response.success) {
 
                             // reseting all fields
@@ -1143,11 +549,13 @@
                                 let imagesHtml = '';
                                 videos.split(',').forEach(video => {
                                     imagesHtml += `
-                                    <div class="col-md-3">
+                                    <div class="col">
                                         <div class="image-block position-relative">
-                                            <img src="/upload/${video}" alt="" class="property-img">
+                                            <video controls class="property-video w-100">
+                                                <source src="/upload/${video}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
                                         </div>
-                                    </div>
                                     `;
                                 });
                                 $('#propertyDetails .images-viewer .row').append(imagesHtml);
@@ -1159,7 +567,7 @@
 
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                     }
                 });
             });
@@ -1181,7 +589,6 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        console.log(response);
                         if (response.success) {
                             fetchAndSetProperties();
                             showPropertyHome();
@@ -1193,7 +600,7 @@
                         }
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                         toastr.error('Something went wrong', 'Error');
                     }
                 });
@@ -1238,6 +645,11 @@
                 return citiesInDistrict;
             }
 
+
+
+
+
+
             $('[name="province_id"]').change(function() {
                 $('[name="district_id"]').empty();
                 $('[name="city_id"]').empty();
@@ -1271,7 +683,7 @@
 
             //on click of edit property button on action column of properties table
             $('body').on('click', '.edit-property', function() {
-                let propertyId = $(this).data('property-id');
+                propertyId = $(this).data('property-id');
 
                 $.ajax({
                     url: '/api/property.php?action=getById&id=' + propertyId,
@@ -1279,6 +691,7 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.success) {
+
                             //reset all input fields of edit property
                             $('#editPropertyForm input').val('');
                             $('#editPropertyForm textarea').val('');
@@ -1289,8 +702,49 @@
                             let date = new Date(property.created_at);
                             let formattedDate = date.getFullYear() + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2);
 
-                            console.log(property);
+                            let medias = '';
+                            let images = property.images;
+                            let videos = property.videos;
+                            if (images) {
+                                medias += images;
 
+                                let imagesArray = images.split(',');
+                                imagesArray.forEach(image => {
+                                    $('#editPropertyForm .images-viewer .row').append(`
+
+                                    <div class="col-md-3">
+                                        <div class="image-block position-relative">
+                                            <img src="/upload/${image}" alt="" class="property-img">
+                                            <button type="button" class="btn btn-close position-absolute top-0 end-0 delete-media-btn" aria-label="Close" data-file_name="${image}" data-file_type="image">
+                                                
+                                            </button>
+                                        </div>
+                                    </div>
+                                    `);
+                                });
+
+                            }
+
+                            if (videos) {
+                                medias += ',' + videos;
+                                let videosArray = videos.split(',');
+                                videosArray.forEach(video => {
+                                    $('#editPropertyForm .images-viewer .row').append(`
+
+                                    <div class="col-md-3">
+                                        <div class="image-block position-relative">
+                                        <video controls class="property-video w-100">
+                                            <source src="/upload/${video}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                            <button type="button" class="btn btn-close position-absolute top-0 end-0 delete-media-btn" aria-label="Close" data-file_name="${video}" data-file_type="video">
+                                                
+                                            </button>
+                                        </div>
+                                    </div>
+                                    `);
+                                });
+                            }
 
                             //select all divs inside edit property form with data-key attribute
                             $('#editPropertyForm div[data-key]').each(function() {
@@ -1309,16 +763,54 @@
                         }
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                     }
                 });
                 showEditProperty();
             });
 
+            //on click of delete media button on edit property form
+            $('#editPropertyForm').on('click', '.delete-media-btn', function() {
+                let fileName = $(this).data('file_name');
+                let fileType = $(this).data('file_type');
+                const button = $(this);
+                let data = {
+                    file_name: fileName,
+                    file_type: fileType,
+                    property_id: propertyId
+                };
+
+                // 
+
+                $.ajax({
+                    url: '/api/property.php?action=deleteMedia',
+                    method: 'POST',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function() {
+                        return confirm("Are you sure you want to delete this media?");
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            button.closest('.col-md-3').remove();
+                            toastr.success('Media Successfully Deleted', 'Success');
+                            // fetchAndSetProperties();
+
+                        } else {
+                            toastr.error('Something went wrong', 'Error');
+                        }
+                    },
+                    error: function(error) {
+                        console.error(error);
+                        toastr.error('Something went wrong', 'Error');
+                    }
+                });
+
+            });
+
             //on click of delete property button on action column of properties table
             $('body').on('click', '.delete-property', function() {
-                let propertyId = $(this).data('property-id');
-                console.log(propertyId);
+                propertyId = $(this).data('property-id');
                 $.ajax({
                     url: '/api/property.php?action=deleteById&id=' + propertyId,
                     method: 'GET',
@@ -1327,14 +819,13 @@
                         return confirm("Are you sure you want to delete this property?");
                     },
                     success: function(response) {
-                        console.log(response);
                         if (response.success) {
                             fetchAndSetProperties();
                             toastr.success('Property Successfully Deleted', 'Success');
                         }
                     },
                     error: function(error) {
-                        console.log(error);
+                        console.error(error);
                         toastr.error('Something went wrong', 'Error');
                     }
                 });

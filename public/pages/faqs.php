@@ -131,7 +131,7 @@
                 url: '/api/faq.php?action=getAll',
                 type: 'GET',
                 success: function(response) {
-                    console.log(response);
+
                     if (response.success) {
                         $('.accordion').html('');
 
@@ -156,7 +156,7 @@
                     }
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.error(error);
 
                 }
             });
