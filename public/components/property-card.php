@@ -1,5 +1,5 @@
 <?php
-function propertyCard($id = '1', $type = 'sale', $image = 'product-img.png', $title = 'Beautiful Apartment', $location = 'Kathmandu', $price = 'Rs. 1,50,000', $category = 'Apartment')
+function propertyCard($id = '1', $type = 'sale', $image = 'product-img.png', $title = 'Beautiful Apartment', $location = 'Kathmandu', $price = 150000, $category = 'Apartment')
 {
 
 
@@ -22,7 +22,7 @@ function propertyCard($id = '1', $type = 'sale', $image = 'product-img.png', $ti
                 </div>
                 <a class="nav-link" href=""> ' . $location . '</a>
           </div>
-          <p class="card-text">' . $price . '</p>
+          <p class="card-text">Rs. ' . $price . '</p>
           <a href="/property-single" class="view-details-btn">View Details</a>
         </div>
       </div>

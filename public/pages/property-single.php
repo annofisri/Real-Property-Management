@@ -69,12 +69,34 @@
                                                     <div class="col-6 data" data-key="price"></div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="row border-bottom">
-                                                    <div class=" col-6 key">Location</div>
+                                                    <div class=" col-6 key">Province</div>
+                                                    <div class="col-6 data" data-key="province_name"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">District</div>
+                                                    <div class="col-6 data" data-key="district_name"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">City</div>
+                                                    <div class="col-6 data" data-key="city_name"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row border-bottom">
+                                                    <div class=" col-6 key">Address</div>
                                                     <div class="col-6 data" data-key="address"></div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="row border-bottom">
                                                     <div class=" col-6 key">No. of Storeys</div>
@@ -118,7 +140,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -286,13 +307,18 @@
                 success: function(response) {
                     if (response.success) {
                         var property = response.data;
+                        console.log(property);
                         saveVisitedPage(property);
                         $('.data').each(function() {
                             var key = $(this).data('key');
                             $(this).text(': ' + property[key]);
-                            //check if property is null
+                            //check if key is null
                             if (property[key] == null) {
                                 $(this).text(': N/A');
+                            }
+                            //check key is price
+                            if (key == 'price') {
+                                $(this).text(': Rs. ' + property[key]);
                             }
                         });
 

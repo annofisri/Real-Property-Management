@@ -103,7 +103,7 @@
               <input type="number" class="form-control" id="totalStoreys" name="storey" required>
             </div>
             <div class="col-md-4" data-key="price">
-              <label for="price" class="form-label">Price*</label>
+              <label for="price" class="form-label">Price (Rs.) *</label>
               <input type="number" class="form-control" id="price" name="price" required>
             </div>
 
@@ -152,7 +152,7 @@
               <div class="upload-images-title">
                 Upload Property Images and Videos*
               </div>
-              <input type="file" id="uploadImagesEdit" name="files[]" multiple hidden required>
+              <input type="file" id="uploadImagesEdit" name="files[]" multiple hidden>
               <label for="uploadImagesEdit" class="default-btn-outlined mt-2 d-inline-block" id="uploadImagesBtn">
                 <div class="d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">

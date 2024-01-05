@@ -132,9 +132,31 @@ if (isset($_GET['action']) && $_GET['action'] == 'updateById' && isset($_GET['id
     $data['default_image'] = $_FILES['default_image'] ?? null;
     $data['city_id'] = $_POST['city_id'] ?? null;
 
-
-    if (!isset($_FILES['images'])) {
+    // check if we are updating new files or not
+    if (empty($_FILES['files']['name'][0])) {
         $data['images'] = $thisProperty['images'];
+        $data['videos'] = $thisProperty['videos'];
+    } else {
+        $uploadedFiles = $tableProperty->uploadFiles($_FILES);
+        //check if images exists in database or not
+        if (empty($thisProperty['images'])) {
+            $data['images'] = $uploadedFiles['images'];
+            //set default image to first image because the default image in this case was a placeholder image
+            $_default = explode(',', $uploadedFiles['images']);
+            if (isset($_default[0])) {
+                $default_image = $_default[0];
+            }
+            $data['default_image'] = $default_image;
+        } else {
+            $data['images'] = $thisProperty['images'] . ',' . $uploadedFiles['images'];
+        }
+
+        //check if videos exists in database or not
+        if (empty($thisProperty['videos'])) {
+            $data['videos'] = $uploadedFiles['videos'];
+        } else {
+            $data['videos'] = $thisProperty['videos'] . ',' . $uploadedFiles['videos'];
+        }
     }
 
     //required fields : id, name, category_id, type, address, price, city_id, owner_id

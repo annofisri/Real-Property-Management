@@ -285,7 +285,7 @@ a:hover {
   padding: 10px 0;
   border-radius: 10px;
   background-color: #fff;
-  overflow-y: auto;
+  overflow-y: scroll;
   transition: 0.3s;
 }
 
@@ -1367,9 +1367,25 @@ input[type=radio]:checked + label {
   margin-left: 20px;
   width: 15%;
   max-height: 565px;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   margin-left: 20px;
+}
+.thumbnails::-webkit-scrollbar {
+  width: 10px;
+}
+.thumbnails::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px; /* Add rounded corners to the track */
+}
+.thumbnails::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #888, #555); /* Add a subtle gray gradient to the thumb */
+  border-radius: 10px; /* Add rounded corners to the thumb */
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out; /* Add a transition to the thumb */
+}
+.thumbnails::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #555, #333); /* Darken the gradient when hovering */
 }
 
 .thumbnail {
@@ -1537,6 +1553,8 @@ input[type=radio]:checked + label {
   .images-gallery .thumbnails .thumbnail {
     width: 125px;
     height: 100%;
+    min-width: 125px;
+    min-height: unset;
   }
 }
 @media (max-width: 991px) {

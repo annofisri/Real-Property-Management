@@ -145,7 +145,7 @@
               <div class="upload-images-title">
                 Upload Property Images and Videos*
               </div>
-              <input type="file" id="uploadImages" name="files[]" multiple hidden required>
+              <input type="file" id="uploadImages" name="files[]" multiple hidden>
 
               <label for="uploadImages" class="default-btn-outlined mt-2 d-inline-block" id="uploadImagesBtn">
                 <div class="d-flex align-items-center">

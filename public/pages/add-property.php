@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-Add Property | Real Property Nepal
+        Add Property | Real Property Nepal
     </title>
     <?php include_once './includes/links.php'; ?>
 </head>
@@ -168,7 +167,7 @@ Add Property | Real Property Nepal
                             </div>
 
                             <div class="col-md-4">
-                                <label for="total-price">Total Price</label>
+                                <label for="total-price">Total Price (Rs.)</label>
                                 <input type="number" class="form-control" aria-label="Total Price" id="total-price" name="total-price">
                             </div>
 

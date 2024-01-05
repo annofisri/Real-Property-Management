@@ -129,7 +129,7 @@
             files.forEach(file => {
                 if (file.type.includes('image')) {
                     imagesHtml += `
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="image-block position-relative">
                             <img src="${URL.createObjectURL(file)}" alt="" class="property-img">
                         </div>
@@ -137,7 +137,7 @@
                     `;
                 } else if (file.type.includes('video')) {
                     imagesHtml += `
-                    <div class="col-md-3">
+                    <div class="col">
                         <div class="image-block position-relative">
                             <video controls class="property-video w-100">
                                 <source src="${URL.createObjectURL(file)}" type="video/mp4">
@@ -160,7 +160,7 @@
             files.forEach(file => {
                 if (file.type.includes('image')) {
                     imagesHtml += `
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="image-block position-relative">
                             <img src="${URL.createObjectURL(file)}" alt="" class="property-img">
                         </div>
@@ -168,7 +168,7 @@
                     `;
                 } else if (file.type.includes('video')) {
                     imagesHtml += `
-                    <div class="col-md-3">
+                    <div class="col">
                         <div class="image-block position-relative">
                             <video controls class="property-video w-100">
                                 <source src="${URL.createObjectURL(file)}" type="video/mp4">
@@ -516,6 +516,10 @@
                             $('#propertyDetails .property-info-value').each(function() {
                                 let key = $(this).data('key');
                                 $(this).text(property[key]);
+                                //if key is price then add rs. before price
+                                if (key == 'price') {
+                                    $(this).text('Rs. ' + property[key]);
+                                }
                             });
 
                             $('#metaTagsForm input[name="meta_title"]').val(property.meta_title);
@@ -534,7 +538,7 @@
                                 let imagesHtml = '';
                                 images.split(',').forEach(image => {
                                     imagesHtml += `
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="image-block position-relative">
                                             <img src="/upload/${image}" alt="" class="property-img">
                                         </div>
@@ -712,7 +716,7 @@
                                 imagesArray.forEach(image => {
                                     $('#editPropertyForm .images-viewer .row').append(`
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="image-block position-relative">
                                             <img src="/upload/${image}" alt="" class="property-img">
                                             <button type="button" class="btn btn-close position-absolute top-0 end-0 delete-media-btn" aria-label="Close" data-file_name="${image}" data-file_type="image">
@@ -731,7 +735,7 @@
                                 videosArray.forEach(video => {
                                     $('#editPropertyForm .images-viewer .row').append(`
 
-                                    <div class="col-md-3">
+                                    <div class="col">
                                         <div class="image-block position-relative">
                                         <video controls class="property-video w-100">
                                             <source src="/upload/${video}" type="video/mp4">

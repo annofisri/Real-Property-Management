@@ -62,7 +62,7 @@
             $image = 'product-img.png',
             $title = 'Beautiful Small Apartment',
             $location = 'Budhanilkantha, Kathmandu',
-            $price = 'Rs. 1,50,00,000'
+            $price = 15000000
           );
           echo propertyCard(
             $id = 1000,
@@ -70,7 +70,7 @@
             $image = 'product-img.png',
             $title = 'Beautiful Small Apartment',
             $location = 'Budhanilkantha, Kathmandu',
-            $price = 'Rs. 1,50,00,000'
+            $price = 15000000
           );
           echo propertyCard(
             $id = 1000,
@@ -78,7 +78,7 @@
             $image = 'product-img.png',
             $title = 'Beautiful Small Apartment',
             $location = 'Budhanilkantha, Kathmandu',
-            $price = 'Rs. 1,50,00,000'
+            $price = 15000000
           );
           echo propertyCard(
             $id = 1000,
@@ -86,7 +86,7 @@
             $image = 'product-img.png',
             $title = 'Beautiful Small Apartment',
             $location = 'Budhanilkantha, Kathmandu',
-            $price = 'Rs. 1,50,00,000'
+            $price = 15000000
           );
           echo propertyCard(
             $id = 1000,
@@ -94,7 +94,7 @@
             $image = 'product-img.png',
             $title = 'Beautiful Small Apartment',
             $location = 'Budhanilkantha, Kathmandu',
-            $price = 'Rs. 1,50,00,000'
+            $price = 15000000
           );
 
           ?>
