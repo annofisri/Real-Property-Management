@@ -45,7 +45,7 @@
 
 
 
-  <section class="featured-properties">
+  <section class="featured-properties property-you-may-like ">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -55,49 +55,7 @@
       <div class="row">
         <div class="property-slider">
 
-          <?php
-          echo propertyCard(
-            $id = 1000,
-            $type = 'sale',
-            $image = 'product-img.png',
-            $title = 'Beautiful Small Apartment',
-            $location = 'Budhanilkantha, Kathmandu',
-            $price = 15000000
-          );
-          echo propertyCard(
-            $id = 1000,
-            $type = 'sale',
-            $image = 'product-img.png',
-            $title = 'Beautiful Small Apartment',
-            $location = 'Budhanilkantha, Kathmandu',
-            $price = 15000000
-          );
-          echo propertyCard(
-            $id = 1000,
-            $type = 'sale',
-            $image = 'product-img.png',
-            $title = 'Beautiful Small Apartment',
-            $location = 'Budhanilkantha, Kathmandu',
-            $price = 15000000
-          );
-          echo propertyCard(
-            $id = 1000,
-            $type = 'sale',
-            $image = 'product-img.png',
-            $title = 'Beautiful Small Apartment',
-            $location = 'Budhanilkantha, Kathmandu',
-            $price = 15000000
-          );
-          echo propertyCard(
-            $id = 1000,
-            $type = 'sale',
-            $image = 'product-img.png',
-            $title = 'Beautiful Small Apartment',
-            $location = 'Budhanilkantha, Kathmandu',
-            $price = 15000000
-          );
 
-          ?>
         </div>
       </div>
     </div>

@@ -56,7 +56,7 @@
 
 
 
-    <section class="featured-properties">
+    <section class="featured-properties property-you-may-like">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

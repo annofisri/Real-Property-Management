@@ -1,53 +1,4 @@
 $(document).ready(function () {
-  $(".property-slider").slick({
-    dots: true,
-    infinite: true,
-    autoplay: false,
-    speed: 300,
-    adaptiveHeight: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,
-
-    height: "100%",
-    gap: 10,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          arrows: false,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-  });
-
   if ($("#recently-viewed-list")) {
     const $container = $("#recently-viewed-list");
     let visitedPages = JSON.parse(localStorage.getItem("visitedPages")) || [];
@@ -76,6 +27,119 @@ $(document).ready(function () {
     } else {
       $container.addClass("invisible");
     }
+  }
+
+  //property you may like
+  const container = $(".property-you-may-like");
+  var propertyYouMayLike = [];
+  // console.log(container);
+  function getPropertyYouMayLike() {
+    const property_slider = $(container).find(".property-slider");
+
+    $.ajax({
+      url: "/api/property.php?action=getPropertyYouMayLike",
+      method: "GET",
+      dataType: "json",
+      success: function (response) {
+        propertyYouMayLike = response.data;
+        property_slider.empty();
+        if (propertyYouMayLike.length > 0) {
+          propertyYouMayLike.forEach((property) => {
+            property_slider.append(`
+              <div class="card property-card" style="width: 306px;">
+                                    <div class="card-img-top position-relative" >
+                                    <div class="property-type ${
+                                      property.type
+                                    }"><span class="text-capitalize">For ${
+              property.type
+            }</span></div>
+                                    <img src="/upload/${
+                                      property.default_image ||
+                                      "placeholder.jpg"
+                                    }" alt="product-img" class="img-fluid w-100 h-100">
+                                    <div class="property-id d-flex justify-content-end p-2">ID: ${
+                                      property.id
+                                    }</div>
+
+                                    <div class="property-category">${
+                                      property.category_name
+                                    }</div>
+                                    </div>
+                                    <div class="card-body ">
+                                    
+                                    <h5 class="card-title">${property.name}</h5>
+                                    <div class="d-flex location">
+                                            <div class="icon-box">
+                                            <img src="./assets/images/location-icon.svg" alt="location-icon" class="h-100 img-fluid w-100" />
+                                            </div>
+                                            <a class="nav-link" href="">${
+                                              property.address
+                                            }</a>
+                                    </div>
+                                    <p class="card-text">Rs. ${
+                                      property.price
+                                    }</p>
+                                    <a href="/property-single?id=${
+                                      property.id
+                                    }" class="view-details-btn">View Details</a>
+                                    </div>
+                                </div>
+              `);
+          });
+        }
+        property_slider.slick({
+          dots: true,
+          infinite: true,
+          autoplay: false,
+          speed: 300,
+          adaptiveHeight: true,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          arrows: true,
+
+          height: "100%",
+          gap: 10,
+
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false,
+              },
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false,
+                arrows: false,
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false,
+                arrows: false,
+              },
+            },
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ],
+        });
+      },
+    });
+  }
+  if (container) {
+    getPropertyYouMayLike();
   }
 });
 

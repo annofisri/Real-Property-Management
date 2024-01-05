@@ -307,7 +307,7 @@
                 success: function(response) {
                     if (response.success) {
                         var property = response.data;
-                        console.log(property);
+
                         saveVisitedPage(property);
                         $('.data').each(function() {
                             var key = $(this).data('key');
@@ -458,9 +458,9 @@
             //section to handle gallery thumbnails
             $('body').on('click', '.thumbnail', function() {
                 //CHECK IF CLICKED THUMBNAIL IS VIDEO
-                console.log($(this));
+
                 if ($(this).attr('data-video') !== undefined) {
-                    // console.log("here");
+                    // 
 
                     $('.large-image video source').attr('src', $(this).attr('data-video'));
                     $('.large-image video').removeClass('d-none');

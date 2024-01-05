@@ -116,6 +116,8 @@
     <script>
         let propertyId = null;
 
+
+
         //update file count on file upload
         function updateFileCount(count) {
             $('.selected-file-count').text(count);

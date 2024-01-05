@@ -60,14 +60,23 @@ if (isset($_GET['action']) && $_GET['action'] == 'deleteById' && isset($_GET['id
 
 //get Similar properties
 if (isset($_GET['action']) && $_GET['action'] == 'getSimilarProperties' && isset($_GET['id'])) {
-    // $page = $_GET['page'] ?? 1;
-    // $limit = $_GET['limit'] ?? 12;
 
-    // // restrict maximum items(ie. property) fetched to 100
-    // if ($limit > 100) {
-    //     $limit = 100;
-    // }
-    $result = $tableProperty->getAll(1, 3);
+    $property_id = $_GET['id'];
+    $thisProperty = $tableProperty->getById($property_id);
+
+    $settings = [
+        'where' => ['approve_status' => 'approved', 'visibility_status' => 1, 'category_id' => $thisProperty['category_id'], 'type' => $thisProperty['type'], 'city_id' => $thisProperty['city_id']],
+        'limit' => 4,
+    ];
+    $result1 = $tableProperty->getProperties($settings);
+    $result2 = $tableProperty->getProperties([
+        'where' => ['approve_status' => 'approved', 'visibility_status' => 1],
+        'limit' => 4,
+    ]);
+    $result = array_merge($result1, $result2);
+
+    //get only 4 properties
+    $result = array_slice($result, 0, 4);
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Properties fetched successfully';
@@ -132,30 +141,34 @@ if (isset($_GET['action']) && $_GET['action'] == 'updateById' && isset($_GET['id
     $data['default_image'] = $_FILES['default_image'] ?? null;
     $data['city_id'] = $_POST['city_id'] ?? null;
 
-    // check if we are updating new files or not
+    // check if we are adding new files or not
     if (empty($_FILES['files']['name'][0])) {
         $data['images'] = $thisProperty['images'];
         $data['videos'] = $thisProperty['videos'];
     } else {
         $uploadedFiles = $tableProperty->uploadFiles($_FILES);
-        //check if images exists in database or not
-        if (empty($thisProperty['images'])) {
-            $data['images'] = $uploadedFiles['images'];
-            //set default image to first image because the default image in this case was a placeholder image
-            $_default = explode(',', $uploadedFiles['images']);
-            if (isset($_default[0])) {
-                $default_image = $_default[0];
-            }
-            $data['default_image'] = $default_image;
-        } else {
-            $data['images'] = $thisProperty['images'] . ',' . $uploadedFiles['images'];
-        }
 
-        //check if videos exists in database or not
-        if (empty($thisProperty['videos'])) {
-            $data['videos'] = $uploadedFiles['videos'];
-        } else {
-            $data['videos'] = $thisProperty['videos'] . ',' . $uploadedFiles['videos'];
+        //check if uploaded files is null or not
+        if ($uploadedFiles) {
+            //check if images exists in database or not
+            if (empty($thisProperty['images'])) {
+                $data['images'] = $uploadedFiles['images'];
+                //set default image to first image because the default image in this case was a placeholder image
+                $_default = explode(',', $uploadedFiles['images']);
+                if (isset($_default[0])) {
+                    $default_image = $_default[0];
+                }
+                $data['default_image'] = $default_image;
+            } else {
+                $data['images'] = $thisProperty['images'] . ',' . $uploadedFiles['images'];
+            }
+
+            //check if videos exists in database or not
+            if (empty($thisProperty['videos'])) {
+                $data['videos'] = $uploadedFiles['videos'];
+            } else {
+                $data['videos'] = $thisProperty['videos'] . ',' . $uploadedFiles['videos'];
+            }
         }
     }
 
@@ -356,6 +369,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'deleteMedia') {
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Media file deleted successfully';
+    echo json_encode($output);
+    exit;
+}
+
+//get property you may like
+if (isset($_GET['action']) && $_GET['action'] == 'getPropertyYouMayLike') {
+
+    $result = $tableProperty->getProperties([
+        'where' => ['approve_status' => 'approved', 'visibility_status' => 1],
+        'limit' => 4,
+    ]);
+    $output['success'] = true;
+    $output['data'] = $result;
+    $output['message'] = 'Properties fetched successfully';
+
     echo json_encode($output);
     exit;
 }
