@@ -47,7 +47,8 @@
 
 
                 <div class="search-form">
-                    <form method="POST" class="d-flex justify-content-center gap-2">
+                    <form method="GET" action="/properties" class="d-flex justify-content-center gap-2">
+                        <input type="hidden" name="filterProperty">
                         <div class="search-inputs position-relative">
                             <div class="location-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
@@ -62,22 +63,14 @@
                                     </defs>
                                 </svg>
                             </div>
-                            <input type="text" name="location" class="location-input" placeholder="Location">
-                            <select name="region" id="region">
-                                <option>Region</option>
-                                <option value="all">All</option>
-                                <option value="kathmandu">Kathmandu</option>
-                                <option value="lalitpur">Lalitpur</option>
-                                <option value="bhaktapur">Bhaktapur</option>
-                            </select>
-                            <select name="type" id="type">
-                                <option>Type</option>
+                            <input type="text" name="searchProperty" class="location-input" placeholder="Location">
+                            <select name="type[]" id="type">
                                 <option value="all">All</option>
                                 <option value="sale">Sale</option>
                                 <option value="rent">Rent</option>
                             </select>
                         </div>
-                        <button class="search-btn">
+                        <button class="search-btn" type="submit">
                             <svg class="pb-1" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.25 15.1313C11.5637 15.1313 14.25 12.4451 14.25 9.13135C14.25 5.81764 11.5637 3.13135 8.25 3.13135C4.93629 3.13135 2.25 5.81764 2.25 9.13135C2.25 12.4451 4.93629 15.1313 8.25 15.1313Z" stroke="#FAFAFA" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M15.75 16.6314L12.4875 13.3689" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

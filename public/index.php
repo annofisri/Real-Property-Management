@@ -55,9 +55,7 @@ $availablePages = [
 
 ];
 
-$requested_page = $_GET['page'] ?? '/';
-
-
+$requested_page = $_GET['showpage'] ?? '/';
 
 if (!array_key_exists($requested_page, $availablePages) || !file_exists($availablePages[$requested_page])) {
   include_once($availablePages["404"]);

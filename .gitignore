@@ -7,3 +7,4 @@ build-script.php
 .editorconfig
 .vscode
 public/upload
+public/phpinfo.php

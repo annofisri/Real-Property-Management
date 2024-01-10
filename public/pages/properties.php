@@ -53,6 +53,13 @@
                         <div class="property-category-btns">
 
                         </div>
+                        <h6 class="property-price">
+                            Price
+                        </h6>
+                        <div class="property-price-filter">
+                            <div><span>Min:</span><input type="number" name="min" value="0"></div>
+                            <div><span>Max:</span><input type="number" name="max" value="0"></div>
+                        </div>
                     </form>
                 </div>
 
@@ -60,7 +67,7 @@
                 <div class="col-md-9 properties">
                     <div class="row">
                         <div class="col-md-12 search-bar">
-                            <form class="d-flex position-relative">
+                            <div class="d-flex position-relative">
                                 <div class="search-icon position-absolute">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
                                         <path d="M8.25 15.1313C11.5637 15.1313 14.25 12.4451 14.25 9.13135C14.25 5.81764 11.5637 3.13135 8.25 3.13135C4.93629 3.13135 2.25 5.81764 2.25 9.13135C2.25 12.4451 4.93629 15.1313 8.25 15.1313Z" stroke="#4E4E4E" stroke-linecap="round" stroke-linejoin="round" />
@@ -68,7 +75,7 @@
                                     </svg>
                                 </div>
                                 <input class="form-control me-2 search-input" id="search-property" type="search" placeholder="Search property by address, name or ID" aria-label="Search">
-                            </form>
+                            </div>
                         </div>
                         <div class="browse-properties col-md-12 d-flex">
 
@@ -92,27 +99,9 @@
 
                         </div>
                         <div class="pagination-section">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
-                                                <path d="M11.25 14.3813L6.75 9.88135L11.25 5.38135" stroke="#192E3D" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
-                                                <path d="M6.75 14.3813L11.25 9.88135L6.75 5.38135" stroke="#192E3D" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <div id="pagination">
+
+                            </div>
                         </div>
 
 
@@ -156,34 +145,54 @@
             //get categories dynamically
             $('body').on('load', fetchAndSetCategories());
 
+            $('#search-property').click(function() {
+                e.preventDefault();
+            });
+
             $('#filter_form').on('click', '.checkbox', function() {
                 $(this).prop('checked', !$(this).prop('checked'));
             });
+
+            function updatePagination(currentPage, totalPages) {
+                let paginationHtml = '';
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const activeClass = i === currentPage ? 'active' : '';
+                    paginationHtml += `<button class="pagination ${activeClass}" data-page="${i}">${i}</button>`;
+                }
+
+                $('#pagination').html(paginationHtml);
+
+                $('.pagination').on('click', function() {
+                    const newPage = $(this).data('page');
+                    const updatedUrl = updateUrlParameter(location.href, 'page', newPage);
+                    history.pushState(null, null, `${updatedUrl}`);
+                    handleChange();
+                    const scrollTop = $('#property-list').offset().top - 300;
+                    $('html, body').animate({
+                        scrollTop: scrollTop
+                    }, 1000);
+                });
+            }
 
             var properties = [];
 
             const handleChange = function() {
                 $('#property-list').addClass('opacity-05');
-                const searchProperty = $('#search-property').val();
-                const sortBy = $('#sort_by').val();
-                let formData = 'filterProperty&';
-                formData += $('#filter_form').serialize();
-                if (searchProperty) {
-                    formData += `&searchProperty=${encodeURIComponent(searchProperty)}`;
-                }
-                if (sortBy) {
-                    formData += `&sortBy=${encodeURIComponent(sortBy)}`;
+                let searchParams = window.location.search;
+                if (searchParams.startsWith('?')) {
+                    searchParams = searchParams.substring(1);
                 }
 
                 $.ajax({
                     url: '/api/property.php',
                     type: 'GET',
-                    data: formData,
+                    data: searchParams,
                     success: function(response) {
                         properties = response.data;
-                        // Update the URI using the History API
-                        const newUri = '?' + formData;
-                        history.pushState({}, '', newUri);
+                        const pagination = response.pagination;
+                        console.log(properties);
+                        updatePagination(pagination.current_page, Math.ceil(pagination.total_property / 12));
                         getPropertiesByFilter();
                     },
                     error: function(error) {
@@ -197,7 +206,31 @@
 
             handleChange();
             //handle filter change for dynamic filters
-            $('body').on('change', '#filter_form input, #sort_by, #search-property', handleChange);
+            $('body').on('change', '#filter_form input, #sort_by, #search-property', pushState);
+
+            function pushState() {
+                const searchProperty = $('#search-property').val();
+                const sortBy = $('#sort_by').val();
+                let formData = 'filterProperty&';
+                formData += $('#filter_form').serialize();
+                if (searchProperty) {
+                    formData += `&searchProperty=${encodeURIComponent(searchProperty)}`;
+                }
+                if (sortBy) {
+                    formData += `&sortBy=${encodeURIComponent(sortBy)}`;
+                }
+                // Update the URI using the History API
+                history.pushState({}, '', `?${formData}`);
+                handleChange();
+            }
+
+            function updateUrlParameter(uri, key, value) {
+                const url = new URL(uri);
+                url.searchParams.set(key, value);
+                return url.toString();
+            }
+
+
 
             function getPropertiesByFilter() {
                 $('#property-list').empty();

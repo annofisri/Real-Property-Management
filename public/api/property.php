@@ -267,56 +267,142 @@ if (isset($_GET['getNewProperties'])) {
 //filter properties based on category, type, search, 
 if (isset($_GET['filterProperty'])) {
 
+    $where = 'WHERE 1=1 AND ';
+    $params = [];
+
     $types = $_GET['type'] ?? [];
+    if (!empty($types)) {
+        if(isset($types[0]) AND $types[0] == 'all'){
+
+        }else{
+
+            $placeholders = implode(', ', array_map(function ($type) use (&$params) {
+                $paramName = ":type_" . count($params);
+                $params[$paramName] = $type;
+                return $paramName;
+            }, $types));
+    
+            $where .= "type IN ($placeholders) AND ";
+        }
+    }
+
     $category_ids = $_GET['category_id'] ?? [];
-    $isFeatured = $_GET['is_featured'] ?? '';
-    $isNew = $_GET['is_new'] ?? '';
-    $searchProperty = $_GET['searchProperty'] ?? '';
+    if (!empty($category_ids)) {
+        $placeholders = implode(', ', array_map(function ($category_id) use (&$params) {
+            $paramName = ":category_id_" . count($params);
+            $params[$paramName] = $category_id;
+            return $paramName;
+        }, $category_ids));
+
+        $where .= "category_id IN ($placeholders) AND ";
+    }
+
+    $isFeatured = isset($_GET['is_featured']) ? true : false;
+    if ($isFeatured) {
+        $where .= "is_featured = 1 AND ";
+    }
+
+    $isNew = isset($_GET['is_new']) ? true : false;
+    if ($isNew) {
+        $where .= "is_new = 1 AND ";
+    }
+
+    $minPrice = $_GET['min'] ?? 0;
+    $minPrice = (int)$minPrice;
+    if($minPrice > 0){
+        $where .= "price >= :min AND ";
+        $params[":min"] = $minPrice;
+    }
+    
+    $maxPrice = $_GET['max'] ?? 0;
+    $maxPrice = (int)$maxPrice;
+    if($maxPrice > 0){
+        $where .= "price <= :max AND ";
+        $params[":max"] = $maxPrice;
+    }
+
+    $searchProperty = $_GET['searchProperty'] ?? false;
+    if ($searchProperty) {
+        $where .= "(p.name LIKE :search OR p.address LIKE :search OR ci.name LIKE :search OR di.name LIKE :search OR pr.name LIKE :search OR p.id = :id) AND ";
+        $params[":search"] = '%' . $searchProperty . '%';
+        $params[":id"] = $searchProperty;
+    }
+
+    $where .= "approve_status=:approve_status AND visibility_status = 1 AND ";
+    $params[':approve_status'] = 'approved';
+
+    // Remove the trailing 'AND' from the where clause
+    $where = rtrim($where, 'AND ');
+
     $sortBy = $_GET['sortBy'] ?? '';
 
     $order_by = match ($sortBy) {
         'price-low-high' => 'price ASC',
         'price-high-low' => 'price DESC',
-        'property-asc'   => 'id ASC',
-        'property-desc'  => 'id DESC',
-        default          => 'id DESC'
+        'property-asc'   => 'p.id ASC',
+        'property-desc'  => 'p.id DESC',
+        default          => 'p.id DESC'
     };
 
-    $settings = [
-        'where' => ['approve_status' => 'approved', 'visibility_status' => 1]
-    ];
+    $page = $_GET['page'] ?? 1;
+    $limit = $_GET['limit'] ?? 12;
 
-    if (!empty($types)) {
-        $settings['where']['type'] = $types;
-    }
-    if (!empty($category_ids)) {
-        $settings['where']['category_id'] = $category_ids;
-    }
-    if (!empty($isFeatured)) {
-        $settings['where']['is_featured'] = 1;
-    }
-    if (!empty($isNew)) {
-        $settings['where']['is_new'] = 1;
-    }
-    if (!empty($sortBy)) {
-        $settings['order_by'] = $order_by;
-    }
-    if (!empty($searchProperty)) {
-        $settings['where']['p.name'] = '%LIKE%' . $searchProperty;
+    $page = (int)$page;
+    $limit = (int)$limit;
+
+    if($limit > 100){
+        $limit = 100;
     }
 
+    $offset = ($page - 1) * $limit;
 
-    $result = $tableProperty->getProperties($settings);
+    $params[':limit'] = $limit;
+    $params[':offset'] = $offset;
+
+    $sql = "SELECT p.id, p.name, p.category_id, p.type, p.address, p.gated_community, p.bedroom, p.bathroom, p.storey, p.security, p.swimming_pool, p.gym, p.monthly_rental, p.contract_term, p.other_information, p.images, p.videos, p.owner_id, p.approve_status, p.visibility_status, p.price, p.default_image, p.created_at, p.updated_at, p.city_id, p.is_featured, p.is_new, po.name as owner_name, po.email, po.phone_number, po.address as owner_address, po.dob, po.profession, ci.name as city_name, ci.district_id, di.name as district_name, di.province_id, pr.name as province_name, cat.name as category_name 
+    FROM properties p 
+    INNER JOIN property_owners po ON po.id = p.owner_id 
+    INNER JOIN cities ci ON ci.id = p.city_id 
+    INNER JOIN districts di ON di.id = ci.district_id 
+    INNER JOIN provinces pr ON pr.id = di.province_id 
+    INNER JOIN categories cat ON cat.id = p.category_id 
+    $where 
+    ORDER BY $order_by 
+    LIMIT :limit OFFSET :offset";
+
+    $result = $tableProperty->query($sql, $params);
+    
+    $sql = "SELECT COUNT(p.id) as total_property 
+    FROM properties p 
+    INNER JOIN property_owners po ON po.id = p.owner_id 
+    INNER JOIN cities ci ON ci.id = p.city_id 
+    INNER JOIN districts di ON di.id = ci.district_id 
+    INNER JOIN provinces pr ON pr.id = di.province_id 
+    INNER JOIN categories cat ON cat.id = p.category_id 
+    $where 
+    ORDER BY $order_by";
+
+    unset($params[':limit']);
+    unset($params[':offset']);
+
+    $total_property = $tableProperty->query($sql, $params);
+
+    $total_property_count = $total_property[0]['total_property'];
+
+    $pagination = ['current_page'=>$page, 'total_property'=>$total_property_count];
+
     if (!$result) {
         $output['success'] = false;
         $output['data'] = null;
         $output['message'] = 'No properties found';
+        $output['pagination'] = $pagination;
         echo json_encode($output);
         exit;
     }
     $output['success'] = true;
     $output['data'] = $result;
     $output['message'] = 'Properties fetched successfully';
+    $output['pagination'] = $pagination;
 
     echo json_encode($output);
     exit;
@@ -332,10 +418,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'deleteMedia') {
     $media_type = $_POST['file_type'] ?? null;
     $media_file_name = $_POST['file_name'] ?? null;
 
-
     $thisProperty = $tableProperty->getById($property_id);
-
-
 
     if (!$property_id || !$media_type || !$media_file_name || empty($thisProperty)) {
         $output['success'] = false;

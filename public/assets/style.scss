@@ -1365,40 +1365,28 @@ input[type="radio"]:checked + label {
     }
 
     .pagination-section {
-      .pagination {
-        margin-bottom: 0px;
-        li:first-child {
-          a {
-            border-radius: 6px 0px 0px 6px;
-            padding-left: 5px;
-            padding-right: 5px;
+      #pagination{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button.pagination {
+          padding: 0.25rem;
+          width: 32px;
+          text-align: center;
+          display: block;
+          border: 1px solid #ddd;
+
+          &:not(:first-child){
+            border-left: none;
           }
-        }
-        li:last-child {
-          a {
-            border-radius: 0px 6px 6px 0px;
-            padding-left: 5px;
-            padding-right: 5px;
+
+          &.active{
+            background-color: #c49e68;
           }
+
         }
-        .page-link {
-          color: var(--Text-3, #192e3d);
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 125%; /* 20px */
-        }
-      }
-      .page-item.active {
-        a {
-          background: var(--Active, #172a38);
-          color: var(--BG-1, #fafafa);
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 125%; /* 20px */
-          border: var(--bs-pagination-border-width) solid var(--Active, #172a38);
-        }
+
       }
     }
   }
@@ -1849,6 +1837,7 @@ input[type="radio"]:checked + label {
 
   .pagination-section {
     .pagination {
+      align-items: center;
       justify-content: center;
     }
   }

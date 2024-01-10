@@ -162,7 +162,7 @@ class TableManager
         po.name as owner_name,
         po.email,
         po.phone_number,
-        po.address,
+        po.address as owner_address,
         po.dob,
         po.profession,
         ci.name as city_name,
@@ -191,6 +191,19 @@ class TableManager
 
         // echo $sql;
 
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function query($sql, $params=[]){
+        $stmt = $this->db->prepare($sql);
+        foreach ($params as $paramName => $paramValue) {
+            if (in_array($paramName, [':limit', ':offset'])) {
+                $stmt->bindValue($paramName, $paramValue, PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue($paramName, $paramValue);
+            }
+        }
         $stmt->execute();
         return $stmt->fetchAll();
     }

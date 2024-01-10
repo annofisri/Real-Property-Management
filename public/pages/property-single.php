@@ -194,21 +194,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="phone">Phone Number<span class="required">*</span></label>
-                                            <input type="text" class="form-control" aria-label="Phone" id="phone" name="phone_number">
+                                            <input type="text" class="form-control" aria-label="Phone" id="phone" name="phone_number" required>
                                         </div>
-                                        <!-- <div class="col-md-6">
-                                            <label for="customerId">Customer ID (If available)</label>
-                                            <input type="text" class="form-control" aria-label="Customer ID" id="customerId" name="customerId">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="requestType">Request Type</label>
-                                            <select class="form-select" aria-label="Request Type" id="requestType" name="requestType">
-                                                <option selected>Choose...</option>
-                                                <option value="Inquiry">Inquiry</option>
-                                                <option value="Complaint">Complaint</option>
-                                                <option value="Feedback">Feedback</option>
-                                            </select>
-                                        </div> -->
 
                                         <div class="col-md-12 mt-4">
                                             <textarea class="form-control" id="message" name="message" rows="6" placeholder="Type your message here..." required></textarea>
